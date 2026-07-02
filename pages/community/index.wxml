@@ -1,0 +1,49 @@
+<view class="container {{themeClass}}">
+  <view class="hero-card community-hero">
+    <view class="page-title">学习小队</view>
+    <view class="page-subtitle">邀请同学组队，通过单词PK、排行榜和共享自建词库，把孤军奋战变成团队作战。</view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">创建或加入小队</view>
+    <button class="primary-btn" bindtap="createGroup">创建我的学习小队</button>
+    <input class="input code-input" placeholder="输入同学给你的小队码" value="{{groupCode}}" bindinput="onGroupCodeInput" />
+    <button class="secondary-btn" bindtap="joinGroup">加入小队</button>
+  </view>
+
+  <view wx:if="{{group}}" class="card group-card">
+    <view class="section-title">{{group.name || '单词英雄小队'}}</view>
+    <view class="invite-line">小队码：<text class="invite-code">{{group.code}}</text></view>
+    <button class="ghost-btn" bindtap="copyCode">复制小队码，发给同学</button>
+    <button class="primary-btn" bindtap="startPK">发起单词PK</button>
+    <button class="secondary-btn" bindtap="shareCurrentList">共享当前词库</button>
+    <button class="ghost-btn" bindtap="refreshGroup">刷新排行榜</button>
+  </view>
+
+  <view class="card">
+    <view class="section-title">PK排行榜</view>
+    <view wx:if="{{leaderboard.length}}">
+      <view wx:for="{{leaderboard}}" wx:key="userId" class="rank-row">
+        <view class="rank-no">{{index + 1}}</view>
+        <view class="rank-name">{{item.name}}</view>
+        <view class="rank-score">{{item.score}} 分</view>
+      </view>
+    </view>
+    <view wx:else class="muted">还没有PK成绩。完成一次PK后，这里会出现排行榜。</view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">共享词库</view>
+    <view wx:if="{{sharedLists.length}}">
+      <view wx:for="{{sharedLists}}" wx:key="wordListId" class="shared-row">
+        <view>
+          <view class="shared-title">{{item.title}}</view>
+          <view class="muted">{{item.ownerName}} 分享 · {{item.totalWords}} 个词</view>
+        </view>
+      </view>
+    </view>
+    <view wx:else class="muted">还没有共享词库。可以把当前自建词库共享给小队。</view>
+  </view>
+
+  <button class="ghost-btn" bindtap="goHome">回首页</button>
+</view>

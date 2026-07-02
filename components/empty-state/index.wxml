@@ -1,0 +1,6 @@
+<view class="empty">
+  <view class="icon">✨</view>
+  <view class="title">{{title}}</view>
+  <view class="description">{{description}}</view>
+  <button wx:if="{{buttonText}}" class="btn" bindtap="onTap">{{buttonText}}</button>
+</view>

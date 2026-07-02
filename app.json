@@ -1,0 +1,31 @@
+{
+  "pages": [
+    "pages/splash/index",
+    "pages/profile/index",
+    "pages/parent-report/index",
+    "pages/parent-login/index",
+    "pages/home/index",
+    "pages/lists/index",
+    "pages/import/index",
+    "pages/context-import/index",
+    "pages/study/index",
+    "pages/community/index",
+    "pages/story/index",
+    "pages/report/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "单词英雄",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f7f8fa",
+    "backgroundTextStyle": "light"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "plugins": {
+    "WechatSI": {
+      "version": "0.3.5",
+      "provider": "wx069ba97219f66d99"
+    }
+  }
+}

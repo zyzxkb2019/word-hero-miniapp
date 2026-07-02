@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "单词英雄",
+  "usingComponents": {
+    "progress-card": "/components/progress-card/index",
+    "empty-state": "/components/empty-state/index"
+  }
+}

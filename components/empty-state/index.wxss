@@ -1,0 +1,28 @@
+.empty {
+  background: #ffffff;
+  border-radius: 28rpx;
+  padding: 60rpx 36rpx;
+  text-align: center;
+  color: #64748b;
+}
+.icon {
+  font-size: 60rpx;
+  margin-bottom: 20rpx;
+}
+.title {
+  font-size: 32rpx;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 12rpx;
+}
+.description {
+  font-size: 26rpx;
+  line-height: 1.6;
+}
+.btn {
+  margin-top: 28rpx;
+  border-radius: 999rpx;
+  background: #4f46e5;
+  color: #ffffff;
+  font-weight: 700;
+}

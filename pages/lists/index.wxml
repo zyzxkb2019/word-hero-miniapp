@@ -1,0 +1,49 @@
+<view class="container {{themeClass}}">
+  <view class="hero-card">
+    <view class="page-title">我的词库</view>
+    <view class="page-subtitle">每个学生可以有多个词库。每个词会记录上传时间、已背次数、连续认出天数和拼写过关状态。</view>
+  </view>
+
+  <view class="card">
+    <button class="primary-btn" bindtap="createList">新建词库</button>
+    <button class="ghost-btn" bindtap="goHome">回首页</button>
+  </view>
+
+  <view wx:if="{{!lists.length}}" class="card">
+    <view class="section-title">还没有词库</view>
+    <view class="muted">先创建一个词库，就能开始背词闯关。</view>
+  </view>
+
+  <view wx:for="{{lists}}" wx:key="_id" class="card list-card {{currentWordListId === item._id ? 'active' : ''}}" data-id="{{item._id}}" bindtap="switchList">
+    <view class="list-header">
+      <view>
+        <view class="list-title">{{item.title}}</view>
+        <view class="muted">共 {{item.stats.totalWords}} 个词 · 已背 {{item.stats.reviewedCount}} 个 · 绿格 {{item.stats.greenCount}} 个 · 拼写格 {{item.stats.spellingPassedCount}} 个</view>
+      </view>
+      <view class="list-actions">
+        <view class="current-tag" wx:if="{{currentWordListId === item._id}}">当前</view>
+        <view class="delete-tag" data-id="{{item._id}}" data-title="{{item.title}}" catchtap="deleteList">删除</view>
+      </view>
+    </view>
+
+    <view class="stats-mini-grid">
+      <view class="stats-mini-item green">连续3天认出 {{item.stats.greenCount}}</view>
+      <view class="stats-mini-item blue">拼写过关 {{item.stats.spellingPassedCount}}</view>
+      <view class="stats-mini-item orange">新词 {{item.stats.newCount}}</view>
+    </view>
+
+    <view wx:if="{{item.masteredWords.length}}" class="green-box">
+      <view class="green-title">已过关绿格</view>
+      <view class="chip-row">
+        <view wx:for="{{item.masteredWords}}" wx:for-item="wordItem" wx:key="word" class="master-chip">{{wordItem.word}}</view>
+      </view>
+    </view>
+
+    <view wx:if="{{item.spellingWords.length}}" class="blue-box">
+      <view class="blue-title">拼写过关蓝格</view>
+      <view class="chip-row">
+        <view wx:for="{{item.spellingWords}}" wx:for-item="wordItem" wx:key="word" class="spelling-chip">{{wordItem.word}}</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,9 @@
+.parent-hero {
+  background: linear-gradient(135deg, #eef2ff 0%, #fff 50%, #dcfce7 100%);
+}
+.helper {
+  margin-top: 12rpx;
+  color: #64748b;
+  font-size: 24rpx;
+  line-height: 1.6;
+}

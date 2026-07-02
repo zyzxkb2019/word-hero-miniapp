@@ -1,0 +1,57 @@
+<view class="container {{themeClass}}">
+  <view class="hero-card">
+    <view class="page-title">创建你的专属单词冒险</view>
+    <view class="page-subtitle">填一点孩子的信息，后面的背词反馈和故事就会更像“为他一个人定制”。</view>
+  </view>
+
+  <view class="card">
+    <view class="form-item">
+      <text class="label">姓名</text>
+      <input class="input" placeholder="比如 Luna" value="{{form.name}}" data-field="name" bindinput="onInput" />
+    </view>
+
+    <view class="form-item">
+      <text class="label">年级</text>
+      <picker mode="selector" range="{{grades}}" bindchange="onGradeChange">
+        <view class="picker-value">{{form.grade || '请选择年级'}}</view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <text class="label">城市</text>
+      <input class="input" placeholder="比如 深圳" value="{{form.city}}" data-field="city" bindinput="onInput" />
+    </view>
+
+    <view class="form-item">
+      <text class="label">兴趣标签</text>
+      <view class="tag-row">
+        <view wx:for="{{interests}}" wx:key="*this" class="tag {{form.interests.indexOf(item) > -1 ? 'active' : ''}}" data-value="{{item}}" bindtap="toggleInterest">{{item}}</view>
+      </view>
+    </view>
+
+    <view class="form-item">
+      <text class="label">性格特点</text>
+      <textarea class="textarea" placeholder="比如：爱美，有点好胜，喜欢被夸" value="{{form.personality}}" data-field="personality" bindinput="onInput" />
+    </view>
+
+    <view class="form-item">
+      <text class="label">互动风格</text>
+      <view class="tag-row">
+        <view wx:for="{{interactionStyles}}" wx:key="*this" class="tag {{form.interactionStyle === item ? 'active' : ''}}" data-value="{{item}}" bindtap="chooseStyle">{{item}}</view>
+      </view>
+    </view>
+
+
+
+    <view class="form-item">
+      <text class="label">鼓励人声风格</text>
+      <view class="tag-row">
+        <view wx:for="{{voiceStyles}}" wx:key="*this" class="tag {{form.voiceStyle === item ? 'active' : ''}}" data-value="{{item}}" bindtap="chooseVoiceStyle">{{item}}</view>
+      </view>
+      <view class="voice-tip">当前用同声传译播报，先通过语气文案模拟不同人设；后续可接专业 TTS 做真正男女声切换。</view>
+    </view>
+
+    <button class="primary-btn" bindtap="saveProfile">保存并开始</button>
+    <button class="ghost-btn" bindtap="resetLocal">清空本地测试数据</button>
+  </view>
+</view>

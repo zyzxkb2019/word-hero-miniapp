@@ -1,0 +1,134 @@
+<view class="container {{themeClass}}">
+  <view class="hero-card">
+    <view class="page-title">{{user.name || '同学'}} 的学习报告</view>
+    <view class="page-subtitle">按21天抗遗忘来分层：见过几次、连续认出几天、能不能拼写，分开看。</view>
+  </view>
+
+  <progress-card
+    totalWords="{{report.totalWords}}"
+    masteredCount="{{report.masteredCount}}"
+    learningCount="{{report.learningCount}}"
+    unmasteredCount="{{report.unmasteredCount}}"
+  />
+
+  <view class="card curve-card">
+    <view class="section-title">专业学习曲线</view>
+    <canvas canvas-id="learningCurveCanvas" class="curve-canvas"></canvas>
+    <view class="curve-meta">
+      <text>最近练习 {{report.curveSummary.total || 0}} 次</text>
+      <text>正确率 {{report.curveSummary.accuracy || 0}}%</text>
+      <text>波动 {{report.curveSummary.volatility || 0}}</text>
+    </view>
+    <view class="diagnosis">{{report.curveSummary.trend || '完成一轮练习后自动生成曲线'}}</view>
+  </view>
+
+
+
+  <view class="card review-due-card">
+    <view class="section-title">到期复习任务</view>
+    <view class="due-summary">按 1/2/4/7/15 天抗遗忘节点，今天需要复习 {{report.dueReviewCount || 0}} 个词。</view>
+    <view wx:if="{{report.dueReviewWords.length}}" class="due-grid">
+      <view wx:for="{{report.dueReviewWords}}" wx:key="word" class="due-chip">
+        <text class="green-word">{{item.word}}</text>
+        <text class="green-meaning">{{item.meaning}}</text>
+        <text class="green-meta">建议：{{item.nextReviewDateText}}</text>
+      </view>
+    </view>
+    <view wx:else class="muted">今天暂无到期复习词，可以轻量巩固或阅读故事。</view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">抗遗忘分层</view>
+    <view class="memory-grid">
+      <view class="memory-stat green">
+        <view class="memory-num">{{report.greenCount}}</view>
+        <view class="memory-label">连续3天认出</view>
+      </view>
+      <view class="memory-stat blue">
+        <view class="memory-num">{{report.spellingPassedCount}}</view>
+        <view class="memory-label">拼写过关</view>
+      </view>
+      <view class="memory-stat orange clickable" bindtap="studyReviewedWords">
+        <view class="memory-num">{{report.reviewedCount}}</view>
+        <view class="memory-label">已背过</view>
+        <view class="memory-action">点这里再背</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">今日练习</view>
+    <view class="grid-two">
+      <view class="stat-box">
+        <view class="big-number">{{report.todayPracticeCount}}</view>
+        <view class="muted">练习次数</view>
+      </view>
+      <view class="stat-box">
+        <view class="big-number success">{{report.correctCount}}</view>
+        <view class="muted">答对次数</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card green-card">
+    <view class="section-title green-title">绿格：连续3天都能快速认出</view>
+    <view wx:if="{{report.masteredWords.length}}" class="green-grid">
+      <view wx:for="{{report.masteredWords}}" wx:key="word" class="green-chip">
+        <text class="green-word">{{item.word}}</text>
+        <text class="green-meaning">{{item.meaning}}</text>
+        <text class="green-meta">已背{{item.reviewedCount}}次 · 连续{{item.consecutiveRecognizedDays}}天</text>
+      </view>
+    </view>
+    <view wx:else class="muted">还没有正式进入绿格的词。连续3天都能认出，它们就会进来。</view>
+  </view>
+
+  <view class="card blue-card">
+    <view class="section-title blue-title">蓝格：能正确拼写</view>
+    <view wx:if="{{report.spellingWords.length}}" class="green-grid">
+      <view wx:for="{{report.spellingWords}}" wx:key="word" class="blue-chip">
+        <text class="green-word">{{item.word}}</text>
+        <text class="green-meaning">{{item.meaning}}</text>
+        <text class="green-meta">拼写{{item.spellingRightCount}}次 · 已背{{item.reviewedCount}}次</text>
+      </view>
+    </view>
+    <view wx:else class="muted">还没有拼写过关的词。拼写模式答对后，会进入蓝格。</view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">已背过的词：上传时间与次数</view>
+    <view wx:for="{{report.reviewedWords}}" wx:key="word" class="review-row review-row-clickable" data-word="{{item.word}}" bindtap="studyReviewedWord">
+      <view>
+        <view class="word">{{item.word}}</view>
+        <view class="meaning">{{item.meaning}}</view>
+        <view wx:if="{{item.example}}" class="example-line">{{item.example}}</view>
+      </view>
+      <view class="review-meta">
+        <view>上传：{{item.uploadDateText}}</view>
+        <view>已背：{{item.reviewedCount}}次</view>
+        <view>{{item.reviewHint}}</view>
+        <view class="continue-link">继续学</view>
+      </view>
+    </view>
+    <view wx:if="{{!report.reviewedWords.length}}" class="muted">还没有背过的词，先去闯一轮。</view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">重点复习词</view>
+    <view wx:for="{{report.weakWords}}" wx:key="word" class="weak-row weak-row-clickable" data-word="{{item.word}}" bindtap="studyWeakWord">
+      <text class="word">{{item.word}}</text>
+      <text class="meaning">{{item.meaning}}</text>
+      <text class="score">{{item.weakReason || item.masteryScore}}</text>
+    </view>
+    <view wx:if="{{!report.weakWords.length}}" class="muted">暂时没有薄弱词，今天状态不错。</view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">今日鼓励</view>
+    <view class="message">{{report.message}}</view>
+  </view>
+
+  <view class="card">
+    <button class="primary-btn" bindtap="goStudy">继续背词</button>
+    <button class="ghost-btn" bindtap="goHome">回首页</button>
+  </view>
+</view>

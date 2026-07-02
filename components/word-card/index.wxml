@@ -1,0 +1,6 @@
+<view class="word-card">
+  <view class="word">{{word}}</view>
+  <view wx:if="{{phonetic}}" class="phonetic">{{phonetic}}</view>
+  <view wx:if="{{showMeaning}}" class="meaning">{{meaning || '暂未填写中文释义'}}</view>
+  <view wx:else class="hint">点击卡片查看中文意思</view>
+</view>

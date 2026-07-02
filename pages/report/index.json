@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "学习报告",
+  "usingComponents": {
+    "progress-card": "/components/progress-card/index"
+  }
+}

@@ -1,0 +1,15 @@
+.report-hero { background: linear-gradient(135deg, #ecfeff 0%, #fff 50%, #fef3c7 100%); }
+.curve-canvas { width: 100%; height: 300rpx; border-radius: 24rpx; overflow: hidden; background: #f8fafc; }
+.curve-meta { display:flex; justify-content:space-between; margin-top:16rpx; color:#64748b; font-size:24rpx; }
+.diagnosis { margin-top:16rpx; padding:20rpx; border-radius:20rpx; background:#fff7ed; color:#9a3412; font-size:26rpx; line-height:1.6; font-weight:800; }
+.parent-grid { display:grid; grid-template-columns:1fr 1fr; gap:16rpx; }
+.parent-stat { border-radius:24rpx; padding:26rpx 12rpx; text-align:center; background:#f8fafc; color:#334155; font-weight:800; }
+.parent-stat .num { font-size:48rpx; font-weight:1000; color:#4f46e5; }
+.parent-stat.green { background:#dcfce7; color:#15803d; }
+.parent-stat.blue { background:#dbeafe; color:#1d4ed8; }
+.parent-stat.orange { background:#ffedd5; color:#c2410c; }
+.message { font-size:30rpx; line-height:1.8; color:#334155; }
+.list-row { padding:20rpx 0; border-bottom:1rpx solid #f1f5f9; }
+.list-title { font-size:30rpx; font-weight:900; color:#111827; margin-bottom:8rpx; }
+.weak-chip { display:inline-flex; flex-direction:column; margin:0 12rpx 12rpx 0; padding:16rpx 20rpx; border-radius:20rpx; background:#f1f5f9; color:#111827; font-size:26rpx; font-weight:900; }
+.weak-chip text { margin-top:4rpx; color:#64748b; font-weight:500; font-size:22rpx; }

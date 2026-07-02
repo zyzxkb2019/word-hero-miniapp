@@ -1,0 +1,220 @@
+.stat-box {
+  background: #f8fafc;
+  border-radius: 24rpx;
+  padding: 28rpx;
+  text-align: center;
+}
+.weak-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 140rpx;
+  gap: 12rpx;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f1f5f9;
+  align-items: center;
+}
+.weak-row-clickable {
+  border-radius: 18rpx;
+  padding-left: 16rpx;
+  padding-right: 16rpx;
+  background: #fff7ed;
+  border-bottom: 0;
+  margin-bottom: 12rpx;
+}
+.weak-row-clickable:active {
+  transform: scale(0.98);
+}
+.word {
+  font-size: 30rpx;
+  font-weight: 800;
+  color: #111827;
+}
+.meaning {
+  font-size: 26rpx;
+  color: #64748b;
+}
+.score {
+  text-align: right;
+  font-size: 22rpx;
+  font-weight: 800;
+  color: #4f46e5;
+}
+.message {
+  font-size: 30rpx;
+  line-height: 1.8;
+  color: #334155;
+}
+
+.green-card {
+  background: linear-gradient(135deg, #dcfce7 0%, #f0fdf4 100%);
+  border: 2rpx solid rgba(22, 163, 74, 0.16);
+}
+.green-title {
+  color: #15803d;
+}
+.green-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+.green-chip {
+  min-width: 180rpx;
+  padding: 18rpx 20rpx;
+  border-radius: 22rpx;
+  background: #16a34a;
+  color: #fff;
+  box-shadow: 0 10rpx 24rpx rgba(22, 163, 74, 0.18);
+}
+.green-word {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 900;
+}
+.green-meaning {
+  display: block;
+  margin-top: 6rpx;
+  font-size: 22rpx;
+  opacity: 0.86;
+}
+
+.memory-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14rpx;
+}
+.memory-stat {
+  border-radius: 24rpx;
+  padding: 24rpx 12rpx;
+  text-align: center;
+}
+.memory-stat.green { background: #dcfce7; color: #15803d; }
+.memory-stat.blue { background: #dbeafe; color: #1d4ed8; }
+.memory-stat.orange { background: #ffedd5; color: #c2410c; }
+.memory-stat.clickable {
+  position: relative;
+  box-shadow: 0 10rpx 26rpx rgba(194, 65, 12, 0.14);
+}
+.memory-stat.clickable:active {
+  transform: scale(0.98);
+}
+.memory-num {
+  font-size: 44rpx;
+  font-weight: 1000;
+}
+.memory-label {
+  margin-top: 6rpx;
+  font-size: 22rpx;
+  font-weight: 800;
+}
+.memory-action {
+  margin-top: 8rpx;
+  font-size: 20rpx;
+  font-weight: 900;
+  opacity: 0.78;
+}
+.blue-card {
+  background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
+  border: 2rpx solid rgba(37, 99, 235, 0.16);
+}
+.blue-title { color: #1d4ed8; }
+.blue-chip {
+  min-width: 180rpx;
+  padding: 18rpx 20rpx;
+  border-radius: 22rpx;
+  background: #2563eb;
+  color: #fff;
+  box-shadow: 0 10rpx 24rpx rgba(37, 99, 235, 0.18);
+}
+.green-meta {
+  display: block;
+  margin-top: 8rpx;
+  font-size: 20rpx;
+  opacity: 0.86;
+}
+.review-row {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 16rpx;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f1f5f9;
+  align-items: center;
+}
+.review-row-clickable {
+  border-radius: 18rpx;
+  padding-left: 16rpx;
+  padding-right: 16rpx;
+  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+  border-bottom: 0;
+  margin-bottom: 14rpx;
+}
+.review-meta {
+  color: #64748b;
+  font-size: 23rpx;
+  line-height: 1.6;
+  text-align: right;
+}
+.example-line {
+  margin-top: 8rpx;
+  color: #92400e;
+  font-size: 23rpx;
+  line-height: 1.45;
+}
+.continue-link {
+  display: inline-flex;
+  justify-content: flex-end;
+  color: #c2410c;
+  font-weight: 900;
+}
+.curve-card {
+  background: linear-gradient(180deg, #fff 0%, #f8fafc 100%);
+}
+.curve-canvas {
+  width: 100%;
+  height: 300rpx;
+  border-radius: 24rpx;
+  overflow: hidden;
+  background: #f8fafc;
+}
+.curve-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16rpx;
+  color: #64748b;
+  font-size: 23rpx;
+}
+.diagnosis {
+  margin-top: 16rpx;
+  padding: 20rpx;
+  border-radius: 20rpx;
+  background: #fff7ed;
+  color: #9a3412;
+  font-size: 26rpx;
+  line-height: 1.6;
+  font-weight: 800;
+}
+
+.review-due-card {
+  background: linear-gradient(135deg, #fff7ed 0%, #fef3c7 100%);
+  border: 2rpx solid rgba(245, 158, 11, 0.16);
+}
+.due-summary {
+  font-size: 26rpx;
+  color: #92400e;
+  line-height: 1.6;
+  font-weight: 800;
+  margin-bottom: 18rpx;
+}
+.due-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+.due-chip {
+  min-width: 190rpx;
+  padding: 18rpx 20rpx;
+  border-radius: 22rpx;
+  background: #f97316;
+  color: #fff;
+}
+.theme-dark .review-due-card {
+  background: #1e293b !important;
+}

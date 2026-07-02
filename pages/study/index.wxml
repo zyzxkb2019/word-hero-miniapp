@@ -1,0 +1,137 @@
+<view class="container {{themeClass}}">
+  <view wx:if="{{showCoinBurst}}" class="coin-burst" data-seed="{{effectSeed}}">
+    <text class="coin coin-1">🪙</text>
+    <text class="coin coin-2">⭐</text>
+    <text class="coin coin-3">🪙</text>
+    <text class="coin coin-4">✨</text>
+    <text class="coin coin-5">🪙</text>
+    <text class="coin coin-6">⭐</text>
+    <text class="coin coin-7">🪙</text>
+    <text class="coin coin-8">✨</text>
+  </view>
+
+  <view wx:if="{{showCombo}}" class="combo-pop">
+    <view class="combo-main">{{comboText}}</view>
+    <view class="combo-sub">连续答对，火力全开</view>
+  </view>
+
+  <view class="hero-card">
+    <view class="version-pill">v0.1.16 · 听音辨义已开启</view>
+    <view class="page-title">背词闯关</view>
+    <view class="page-subtitle">第 {{currentIndex + 1}} / {{studyWords.length}} 个。先听发音，再选中文意思。</view>
+    <view class="quick-mode-row">
+      <view class="quick-mode {{mode === 'listening' ? 'active' : ''}}" data-mode="listening" bindtap="switchMode">🔊 听音辨义</view>
+      <view class="quick-mode {{mode === 'flashcard' ? 'active' : ''}}" data-mode="flashcard" bindtap="switchMode">闪卡</view>
+      <view class="quick-mode {{mode === 'choice' ? 'active' : ''}}" data-mode="choice" bindtap="switchMode">四选一</view>
+      <view class="quick-mode {{mode === 'spelling' ? 'active' : ''}}" data-mode="spelling" bindtap="switchMode">拼写</view>
+    </view>
+  </view>
+
+
+
+  <view class="memory-dashboard">
+    <view wx:if="{{masteredWords.length}}" class="study-green-box">
+      <view class="study-green-title">连续3天认出 · 绿格：{{masteredWords.length}} 个</view>
+      <scroll-view scroll-x class="green-scroll">
+        <view class="green-scroll-inner">
+          <view wx:for="{{masteredWords}}" wx:key="word" class="study-green-chip">{{item.word}}</view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <view wx:if="{{spellingWords.length}}" class="study-spelling-box">
+      <view class="study-spelling-title">拼写过关 · 蓝格：{{spellingWords.length}} 个</view>
+      <scroll-view scroll-x class="green-scroll">
+        <view class="green-scroll-inner">
+          <view wx:for="{{spellingWords}}" wx:key="word" class="study-spelling-chip">{{item.word}}</view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <view wx:if="{{currentWord}}">
+    <view class="word-memory-strip">
+      <view class="memory-pill">{{currentWord.memoryLabel || '新词'}}</view>
+      <view class="memory-detail">已背 {{currentWord.reviewedCount || 0}} 次</view>
+      <view class="memory-detail">连续认出 {{currentWord.consecutiveRecognizedDays || 0}} 天</view>
+      <view class="memory-detail spelling">拼写 {{currentWord.spellingRightCount || 0}} 次</view>
+    </view>
+    <view class="review-hint">{{currentWord.reviewHint || '先见第一面'}}</view>
+    <view wx:if="{{currentWord.phonetic}}" class="phonetic-line">音标：{{currentWord.phonetic}}</view>
+    <view wx:if="{{currentWord.clozeExample}}" class="context-card cloze-card">
+      <view class="context-label">课文原句填空</view>
+      <view class="context-sentence">{{currentWord.clozeExample}}</view>
+      <view class="context-source">先在句子里看见这个词，再记意思。</view>
+    </view>
+    <view wx:if="{{currentWord.example && feedback}}" class="context-card">
+      <view class="context-label">课文原句 / 语境记忆</view>
+      <view class="context-sentence">{{currentWord.example}}</view>
+      <view wx:if="{{currentWord.sourceText}}" class="context-source">{{currentWord.sourceText}}</view>
+    </view>
+
+    <!-- 闪卡模式：允许先看英文，点击后翻中文 -->
+    <view wx:if="{{mode === 'flashcard'}}" bindtap="toggleMeaning">
+      <word-card word="{{currentWord.word}}" phonetic="{{currentWord.phonetic}}" meaning="{{currentWord.meaningText || currentWord.meaning}}" showMeaning="{{showMeaning}}" />
+    </view>
+
+    <!-- 听音辨义 / 四选一 / 拼写模式：上半屏不暴露英文答案，防止偷看 -->
+    <view wx:else class="quiz-card {{mode === 'listening' ? 'listening-card' : ''}}">
+      <view class="quiz-label">{{mode === 'listening' ? '听音辨义' : (mode === 'choice' ? '选择正确英文' : '拼写挑战')}}</view>
+
+      <block wx:if="{{mode === 'listening'}}">
+        <view class="speaker-zone" bindtap="playCurrentWord">
+          <view class="speaker-button">
+            <view class="speaker-icon">
+              <view class="speaker-core"></view>
+              <view class="speaker-wave wave-one"></view>
+              <view class="speaker-wave wave-two"></view>
+            </view>
+          </view>
+          <view class="speaker-title">点小喇叭，听标准发音</view>
+          <view class="speaker-tip">听完后，从下面 4 个中文意思中选择正确答案</view>
+        </view>
+      </block>
+
+      <block wx:else>
+        <view class="quiz-meaning">{{currentWord.meaningText || currentWord.meaning || '请根据提示完成本题'}}</view>
+        <view class="quiz-tip">答对后才显示英文答案</view>
+      </block>
+
+      <view wx:if="{{feedback}}" class="answer-reveal">答案：{{currentWord.word}} <text wx:if="{{currentWord.phonetic}}">{{currentWord.phonetic}}</text> · {{currentWord.meaningText || currentWord.meaning}}</view>
+    </view>
+
+    <view wx:if="{{mode === 'flashcard'}}" class="card">
+      <view class="section-title">你对这个词的感觉？</view>
+      <button class="primary-btn" data-result="known" bindtap="submitFlashcard">认识</button>
+      <button class="secondary-btn" data-result="unclear" bindtap="submitFlashcard">有点模糊</button>
+      <button class="ghost-btn" data-result="unknown" bindtap="submitFlashcard">不认识</button>
+    </view>
+
+    <view wx:elif="{{mode === 'listening'}}" class="card">
+      <view class="section-title">听到的是哪个中文意思？</view>
+      <button wx:for="{{choices}}" wx:key="word" class="choice-btn meaning-choice {{wrongChoiceWord === item.word ? 'wrong-shake' : ''}}" data-word="{{item.word}}" bindtap="submitChoice">{{item.primaryMeaning || item.meaning || '未填写中文意思'}}</button>
+      <button class="ghost-btn replay-btn" bindtap="playCurrentWord">再听一遍 🔊</button>
+    </view>
+
+    <view wx:elif="{{mode === 'choice'}}" class="card">
+      <view class="section-title">{{currentWord.meaningText || currentWord.meaning || '请选择正确英文'}}</view>
+      <button wx:for="{{choices}}" wx:key="word" class="choice-btn {{wrongChoiceWord === item.word ? 'wrong-shake' : ''}}" data-word="{{item.word}}" bindtap="submitChoice">{{item.word}}</button>
+    </view>
+
+    <view wx:elif="{{mode === 'spelling'}}" class="card">
+      <view class="section-title">请拼写这个词</view>
+      <view class="spelling-prompt">{{currentWord.meaningText || currentWord.meaning || '根据中文意思输入英文'}}</view>
+      <input class="input" placeholder="输入英文单词" value="{{spellingInput}}" bindinput="onSpellingInput" />
+      <button class="primary-btn" bindtap="submitSpelling">提交拼写</button>
+    </view>
+
+    <view wx:if="{{feedback}}" class="feedback {{feedbackType}}">{{feedback}}</view>
+  </view>
+
+  <view wx:else class="card">
+    <view class="section-title">本轮完成</view>
+    <view class="muted">今天的单词训练先到这里。去看看学习报告吧。</view>
+    <button class="primary-btn" bindtap="goReport">查看学习报告</button>
+    <button class="ghost-btn" bindtap="goHome">回首页</button>
+  </view>
+</view>

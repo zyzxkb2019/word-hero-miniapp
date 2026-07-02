@@ -1,0 +1,23 @@
+<view class="container {{themeClass}}">
+  <view class="hero-card">
+    <view class="page-title">用背过的词生成中英小故事</view>
+    <view class="page-subtitle">把 {{user.name || '你'}} 背过的词和短语，变成一篇 400 字以内、有画面感、适合学生阅读的中英结合小故事。</view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">选择用哪些词</view>
+    <view class="tag-row">
+      <view class="tag {{scope === 'reviewed' ? 'active' : ''}}" data-scope="reviewed" bindtap="chooseScope">已背过的词</view>
+      <view class="tag {{scope === 'mastered' ? 'active' : ''}}" data-scope="mastered" bindtap="chooseScope">已过关绿格词</view>
+      <view class="tag {{scope === 'all' ? 'active' : ''}}" data-scope="all" bindtap="chooseScope">当前词库全部词</view>
+    </view>
+    <button class="primary-btn" bindtap="generateStory">生成中英结合小故事</button>
+    <button class="ghost-btn" bindtap="goHome">回首页</button>
+  </view>
+
+  <view wx:if="{{story}}" class="card story-card">
+    <view class="story-title">{{story.title}}</view>
+    <rich-text wx:if="{{story.highlightHtml}}" class="story-content story-rich" nodes="{{story.highlightHtml}}"></rich-text>
+    <view wx:else class="story-content">{{story.content}}</view>
+  </view>
+</view>

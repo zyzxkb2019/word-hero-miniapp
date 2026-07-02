@@ -1,0 +1,91 @@
+<view class="container {{themeClass}} home-page">
+  <view class="hero-card home-hero">
+    <view class="hero-topline">WORD HERO · 专属学习舱</view>
+    <view class="page-title">欢迎回来，{{user.name || '同学'}}</view>
+    <view class="page-subtitle">{{welcomeMessage}}</view>
+    <view class="parent-code" wx:if="{{user.parentCode}}">家长绑定码：{{user.parentCode}}</view>
+    <view class="theme-toggle" bindtap="toggleTheme">{{isDark ? "☀️ 切换日间模式" : "🌙 切换夜间模式"}}</view>
+  </view>
+
+  <view wx:if="{{wordList}}">
+    <view wx:if="{{stats.dueReviewCount}}" class="review-task-card">
+      <view class="task-title">今日到期复习 · {{stats.dueReviewCount}} 个</view>
+      <view class="task-desc">系统按 1/2/4/7/15 天抗遗忘节点提醒，只练不会的，减少无效重复。</view>
+      <button class="primary-btn" bindtap="goDueReview">开始复习任务</button>
+    </view>
+    <view wx:if="{{hasResume}}" class="resume-card" bindtap="resumeStudy">
+      <view class="task-title">继续上次练习</view>
+      <view class="task-desc">上次练到第 {{lastProgress.currentIndex + 1}} 个，点击自动恢复。</view>
+    </view>
+    <progress-card
+      totalWords="{{stats.totalWords}}"
+      masteredCount="{{stats.masteredCount}}"
+      learningCount="{{stats.learningCount}}"
+      unmasteredCount="{{stats.unmasteredCount}}"
+      bind:learning="goLearningWords"
+      bind:unmastered="goUnmasteredWords"
+    />
+
+    <view class="current-panel">
+      <view>
+        <view class="panel-kicker">当前词库</view>
+        <view class="word-list-title">{{wordList.title}}</view>
+        <view class="muted">还有 {{stats.unmasteredCount}} 个词需要重点照顾。</view>
+      </view>
+      <button class="start-btn" bindtap="goStudy">开始闯关</button>
+    </view>
+  </view>
+
+  <empty-state wx:else title="还没有词表" description="先导入孩子正在背的单词，就能开始闯关。" buttonText="导入词表" bind:action="goImport" />
+
+  <view class="section-label">词库训练区</view>
+  <view class="module-grid wordbank-grid">
+    <view class="module-card main" bindtap="goStudy">
+      <view class="module-icon">⚔️</view>
+      <view class="module-title">开始背词</view>
+      <view class="module-desc">闪卡 / 四选一 / 拼写挑战</view>
+    </view>
+    <view class="module-card" bindtap="goLists">
+      <view class="module-icon">📚</view>
+      <view class="module-title">我的词库</view>
+      <view class="module-desc">切换词库 · 查看绿格</view>
+    </view>
+    <view class="module-card" bindtap="goImport">
+      <view class="module-icon">➕</view>
+      <view class="module-title">新建词库</view>
+      <view class="module-desc">手动/图片/教材/错题</view>
+    </view>
+    <view class="module-card" bindtap="goContextImport">
+      <view class="module-icon">📖</view>
+      <view class="module-title">课文语境导入</view>
+      <view class="module-desc">粘贴课文，自动匹配原句</view>
+    </view>
+  </view>
+
+  <view class="section-label">团队作战区</view>
+  <view class="feature-card community" bindtap="goCommunity">
+    <view>
+      <view class="feature-title">邀请同学组队学习</view>
+      <view class="feature-desc">单词PK、排行榜、共享自建词库，把孤军奋战变成团队作战。</view>
+    </view>
+    <view class="feature-arrow">→</view>
+  </view>
+
+  <view class="section-label">成长作品区</view>
+  <view class="feature-card story" bindtap="goStory">
+    <view>
+      <view class="feature-title">生成中英结合专属小故事</view>
+      <view class="feature-desc">把背过的词变成 400 字以内的阅读作品，生词会高亮。</view>
+    </view>
+    <view class="feature-arrow">→</view>
+  </view>
+
+  <view class="section-label">家长报告区</view>
+  <view class="feature-card report" bindtap="goReport">
+    <view>
+      <view class="feature-title">查看专业学习报告</view>
+      <view class="feature-desc">学习曲线、绿格、蓝格、错词建议，一屏看懂进度。</view>
+    </view>
+    <view class="feature-arrow">→</view>
+  </view>
+</view>

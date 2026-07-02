@@ -1,0 +1,11 @@
+<view class="splash-page {{themeClass}}">
+  <image class="splash-bg" src="/assets/images/splash-cover.jpg" mode="aspectFill" />
+  <view class="overlay">
+    <view class="top-spacer"></view>
+    <view class="bottom-panel">
+      <view class="welcome">{{name ? name + '，欢迎回来' : '欢迎进入单词英雄'}}</view>
+      <view class="desc">默认使用家长微信登录，继续上次学习位置。</view>
+      <button class="enter-btn" loading="{{checking}}" disabled="{{checking}}" bindtap="enterApp">微信登录，进入学习</button>
+    </view>
+  </view>
+</view>

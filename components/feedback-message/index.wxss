@@ -1,0 +1,17 @@
+.feedback {
+  padding: 24rpx 28rpx;
+  border-radius: 24rpx;
+  background: #eef2ff;
+  color: #3730a3;
+  font-size: 28rpx;
+  line-height: 1.6;
+  margin: 24rpx 0;
+}
+.feedback.wrong {
+  background: #fff7ed;
+  color: #c2410c;
+}
+.feedback.complete {
+  background: #ecfdf5;
+  color: #15803d;
+}

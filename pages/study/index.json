@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "背词闯关",
+  "usingComponents": {
+    "word-card": "/components/word-card/index"
+  }
+}

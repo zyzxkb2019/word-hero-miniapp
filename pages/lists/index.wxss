@@ -1,0 +1,119 @@
+.list-card {
+  border: 2rpx solid transparent;
+}
+.list-card.active {
+  border-color: #4f46e5;
+  box-shadow: 0 14rpx 34rpx rgba(79, 70, 229, 0.14);
+}
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20rpx;
+  align-items: flex-start;
+}
+.list-title {
+  font-size: 34rpx;
+  font-weight: 900;
+  color: #111827;
+  margin-bottom: 10rpx;
+}
+.current-tag {
+  padding: 10rpx 18rpx;
+  border-radius: 999rpx;
+  background: #e0e7ff;
+  color: #3730a3;
+  font-size: 24rpx;
+  font-weight: 800;
+}
+.green-box {
+  margin-top: 24rpx;
+  padding: 22rpx;
+  border-radius: 24rpx;
+  background: linear-gradient(135deg, #dcfce7 0%, #f0fdf4 100%);
+  border: 2rpx solid rgba(22, 163, 74, 0.16);
+}
+.green-title {
+  color: #15803d;
+  font-size: 26rpx;
+  font-weight: 900;
+  margin-bottom: 14rpx;
+}
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+.master-chip {
+  padding: 10rpx 18rpx;
+  border-radius: 999rpx;
+  background: #16a34a;
+  color: #fff;
+  font-size: 24rpx;
+  font-weight: 800;
+}
+
+.stats-mini-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12rpx;
+  margin-top: 22rpx;
+}
+.stats-mini-item {
+  border-radius: 18rpx;
+  padding: 14rpx 10rpx;
+  font-size: 22rpx;
+  font-weight: 900;
+  text-align: center;
+}
+.stats-mini-item.green {
+  background: #dcfce7;
+  color: #15803d;
+}
+.stats-mini-item.blue {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+.stats-mini-item.orange {
+  background: #ffedd5;
+  color: #c2410c;
+}
+.blue-box {
+  margin-top: 24rpx;
+  padding: 22rpx;
+  border-radius: 24rpx;
+  background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
+  border: 2rpx solid rgba(37, 99, 235, 0.16);
+}
+.blue-title {
+  color: #1d4ed8;
+  font-size: 26rpx;
+  font-weight: 900;
+  margin-bottom: 14rpx;
+}
+.spelling-chip {
+  padding: 10rpx 18rpx;
+  border-radius: 999rpx;
+  background: #2563eb;
+  color: #fff;
+  font-size: 24rpx;
+  font-weight: 800;
+}
+
+.list-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+  align-items: flex-end;
+}
+.delete-tag {
+  padding: 10rpx 18rpx;
+  border-radius: 999rpx;
+  background: #fee2e2;
+  color: #b91c1c;
+  font-size: 24rpx;
+  font-weight: 900;
+}
+.theme-dark .delete-tag {
+  background: rgba(239, 68, 68, 0.16);
+  color: #fecaca;
+}

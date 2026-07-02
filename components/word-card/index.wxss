@@ -1,0 +1,35 @@
+.word-card {
+  min-height: 320rpx;
+  border-radius: 32rpx;
+  background: linear-gradient(135deg, #4f46e5, #06b6d4);
+  color: #ffffff;
+  padding: 48rpx 32rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 18rpx 36rpx rgba(79, 70, 229, 0.25);
+}
+.word {
+  font-size: 64rpx;
+  font-weight: 900;
+  margin-bottom: 24rpx;
+}
+.meaning {
+  font-size: 36rpx;
+  font-weight: 700;
+}
+.hint {
+  font-size: 26rpx;
+  opacity: 0.78;
+}
+
+.phonetic {
+  font-size: 30rpx;
+  font-weight: 700;
+  opacity: 0.88;
+  margin-top: -10rpx;
+  margin-bottom: 20rpx;
+  letter-spacing: 1rpx;
+}

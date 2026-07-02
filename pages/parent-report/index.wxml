@@ -1,0 +1,47 @@
+<view class="container {{themeClass}}">
+  <view class="hero-card report-hero">
+    <view class="page-title">{{child.name || '孩子'}} 的家长报告</view>
+    <view class="page-subtitle">年级：{{child.grade || '未填写'}} · 绑定码：{{child.parentCode || '-'}}</view>
+  </view>
+
+  <view class="card curve-card">
+    <view class="section-title">学习曲线</view>
+    <canvas canvas-id="parentCurveCanvas" class="curve-canvas"></canvas>
+    <view class="curve-meta">
+      <text>最近练习 {{curveSummary.total || 0}} 次</text>
+      <text>正确率 {{curveSummary.accuracy || 0}}%</text>
+    </view>
+    <view class="diagnosis">{{curveSummary.trend || '暂无学习曲线'}}</view>
+  </view>
+
+  <view class="card professional-card">
+    <view class="section-title">掌握进度总览</view>
+    <view class="parent-grid">
+      <view class="parent-stat"><view class="num">{{overall.totalWords || 0}}</view><view>总词量</view></view>
+      <view class="parent-stat green"><view class="num">{{overall.greenCount || 0}}</view><view>绿格过关</view></view>
+      <view class="parent-stat blue"><view class="num">{{overall.spellingPassedCount || 0}}</view><view>拼写过关</view></view>
+      <view class="parent-stat orange"><view class="num">{{overall.weakCount || 0}}</view><view>重点复习</view></view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">专业解读</view>
+    <view class="message">{{parentMessage}}</view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">词库进度</view>
+    <view wx:for="{{lists}}" wx:key="_id" class="list-row">
+      <view class="list-title">{{item.title}}</view>
+      <view class="muted">共 {{item.stats.totalWords}} · 绿格 {{item.stats.greenCount}} · 拼写 {{item.stats.spellingPassedCount}} · 弱项 {{item.stats.weakCount}}</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">建议优先复盘</view>
+    <view wx:for="{{weakWords}}" wx:key="word" class="weak-chip">{{item.word}} <text>{{item.meaning}}</text></view>
+    <view wx:if="{{!weakWords.length}}" class="muted">暂时没有明显薄弱词。</view>
+  </view>
+
+  <view class="card"><button class="ghost-btn" bindtap="switchChild">切换孩子</button></view>
+</view>

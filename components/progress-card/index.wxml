@@ -1,0 +1,20 @@
+<view class="progress-card">
+  <view class="row">
+    <view class="stat-item">
+      <view class="label">总单词</view>
+      <view class="num">{{totalWords}}</view>
+    </view>
+    <view class="stat-item">
+      <view class="label">绿格过关</view>
+      <view class="num success">{{masteredCount}}</view>
+    </view>
+    <view class="stat-item clickable {{learningCount ? '' : 'disabled'}}" bindtap="tapLearning">
+      <view class="label">半掌握</view>
+      <view class="num warning">{{learningCount}}</view>
+    </view>
+    <view class="stat-item clickable {{unmasteredCount ? '' : 'disabled'}}" bindtap="tapUnmastered">
+      <view class="label">未掌握</view>
+      <view class="num danger">{{unmasteredCount}}</view>
+    </view>
+  </view>
+</view>

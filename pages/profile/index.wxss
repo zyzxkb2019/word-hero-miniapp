@@ -1,0 +1,8 @@
+/* 主要样式来自 app.wxss */
+
+.voice-tip {
+  margin-top: 12rpx;
+  color: #64748b;
+  font-size: 24rpx;
+  line-height: 1.6;
+}

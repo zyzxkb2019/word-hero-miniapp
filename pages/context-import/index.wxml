@@ -1,0 +1,54 @@
+<view class="container {{themeClass}}">
+  <view class="hero-card context-hero">
+    <view class="page-title">课文语境导入</view>
+    <view class="page-subtitle">把一个单元的课文粘贴进来，系统自动找出当前词表中每个单词出现的原句。</view>
+  </view>
+
+  <view wx:if="{{wordList}}" class="card current-list">
+    <view>
+      <view class="kicker">当前词库</view>
+      <view class="list-title">{{wordList.title}}</view>
+      <view class="muted">共 {{wordList.words.length}} 个词，将从课文里自动匹配原句。</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">1. 课文来源</view>
+    <input class="input" placeholder="例如：人教版七年级上 Unit 3 / 校内讲义 Week 6" value="{{sourceText}}" bindinput="onSourceInput" />
+  </view>
+
+  <view class="card">
+    <view class="section-title">2. 粘贴或识别课文</view>
+    <textarea class="textbook-textarea" value="{{rawText}}" placeholder="粘贴本单元英文课文。也可以先拍照识别，再手动修正。" bindinput="onTextInput" />
+    <view class="action-row">
+      <button class="secondary-btn" bindtap="chooseImage">选择课文图片</button>
+      <button class="secondary-btn warm" loading="{{ocrBusy}}" bindtap="recognizeImage">识别图片文字</button>
+    </view>
+    <image wx:if="{{imagePath}}" class="preview-image" src="{{imagePath}}" mode="aspectFill" />
+    <button class="primary-btn" loading="{{matching}}" bindtap="runMatch">自动匹配课文原句</button>
+  </view>
+
+  <view wx:if="{{matches.length}}" class="card result-card">
+    <view class="result-head">
+      <view>
+        <view class="section-title">3. 确认匹配结果</view>
+        <view class="muted">已匹配 {{matchedCount}} 个，待保存 {{selectedCount}} 个。可手动改句子。</view>
+      </view>
+      <button class="mini-save" loading="{{saving}}" bindtap="saveExamples">保存</button>
+    </view>
+
+    <view wx:for="{{matches}}" wx:key="word" class="match-row {{item.matched ? 'matched' : 'unmatched'}}">
+      <view class="match-top" data-index="{{index}}" bindtap="toggleSelect">
+        <view>
+          <view class="word">{{item.word}}</view>
+          <view class="meaning">{{item.meaning}}</view>
+        </view>
+        <view class="select-pill {{item.selected ? 'active' : ''}}">{{item.selected ? '保存' : '跳过'}}</view>
+      </view>
+      <textarea class="example-edit" value="{{item.example}}" data-index="{{index}}" placeholder="未自动匹配到，可在这里补一句课文原句" bindinput="editExample" />
+      <view wx:if="{{item.oldExample}}" class="old-example">原有：{{item.oldExample}}</view>
+    </view>
+
+    <button class="primary-btn" loading="{{saving}}" bindtap="saveExamples">保存选中的课文原句</button>
+  </view>
+</view>

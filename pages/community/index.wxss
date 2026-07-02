@@ -1,0 +1,59 @@
+.community-hero {
+  background: linear-gradient(135deg, #ecfeff 0%, #f5f3ff 60%, #fff7ed 100%);
+}
+.code-input {
+  margin-top: 22rpx;
+}
+.group-card {
+  border: 2rpx solid rgba(79, 70, 229, 0.16);
+}
+.invite-line {
+  font-size: 30rpx;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 16rpx;
+}
+.invite-code {
+  color: #4f46e5;
+  letter-spacing: 4rpx;
+}
+.rank-row {
+  display: grid;
+  grid-template-columns: 70rpx 1fr 130rpx;
+  align-items: center;
+  padding: 22rpx 0;
+  border-bottom: 1rpx solid #f1f5f9;
+}
+.rank-no {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  background: #e0e7ff;
+  color: #4338ca;
+  text-align: center;
+  line-height: 48rpx;
+  font-weight: 900;
+}
+.rank-name {
+  color: #111827;
+  font-weight: 800;
+}
+.rank-score {
+  text-align: right;
+  color: #f97316;
+  font-weight: 900;
+}
+.shared-row {
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f1f5f9;
+}
+.shared-title {
+  color: #111827;
+  font-size: 30rpx;
+  font-weight: 900;
+}
+.theme-dark .invite-line,
+.theme-dark .rank-name,
+.theme-dark .shared-title {
+  color: #f8fafc;
+}

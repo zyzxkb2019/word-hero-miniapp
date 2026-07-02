@@ -1,0 +1,20 @@
+<view class="container {{themeClass}} parent-page">
+  <view class="hero-card parent-hero">
+    <view class="page-title">家长学习报告入口</view>
+    <view class="page-subtitle">输入孩子的家长绑定码，就能看到学习曲线、绿格、蓝格、错词和专业报告。</view>
+  </view>
+
+  <view class="card">
+    <view class="form-item">
+      <text class="label">孩子绑定码</text>
+      <input class="input" placeholder="比如 A3F9K2" value="{{childCode}}" bindinput="onCodeInput" />
+      <view class="helper">绑定码在学生端首页/学习报告里显示。也可输入孩子姓名作为辅助。</view>
+    </view>
+    <view class="form-item">
+      <text class="label">孩子姓名（可选）</text>
+      <input class="input" placeholder="比如 宇泽 / Luna" value="{{childName}}" bindinput="onNameInput" />
+    </view>
+    <button class="primary-btn" bindtap="loginParent">查看孩子学习报告</button>
+    <button class="ghost-btn" bindtap="goStudent">我是学生，返回学生入口</button>
+  </view>
+</view>

@@ -1,0 +1,125 @@
+.context-hero {
+  background: linear-gradient(135deg, #ecfeff 0%, #ffffff 48%, #fef3c7 100%);
+}
+.current-list {
+  background: #0f172a;
+  color: #fff;
+}
+.kicker {
+  color: #67e8f9;
+  font-size: 22rpx;
+  font-weight: 900;
+  margin-bottom: 8rpx;
+}
+.list-title {
+  font-size: 34rpx;
+  font-weight: 1000;
+}
+.current-list .muted {
+  color: rgba(255,255,255,0.72);
+}
+.textbook-textarea {
+  min-height: 340rpx;
+  border-radius: 22rpx;
+  background: #f8fafc;
+  padding: 22rpx;
+  color: #111827;
+  font-size: 27rpx;
+  line-height: 1.6;
+}
+.action-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14rpx;
+  margin-top: 18rpx;
+}
+.secondary-btn.warm {
+  background: #ffedd5;
+  color: #9a3412;
+}
+.preview-image {
+  display: block;
+  width: 100%;
+  height: 260rpx;
+  border-radius: 22rpx;
+  margin-top: 18rpx;
+  background: #f1f5f9;
+}
+.result-card {
+  background: linear-gradient(180deg, #fff 0%, #f8fafc 100%);
+}
+.result-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 18rpx;
+  align-items: center;
+  margin-bottom: 18rpx;
+}
+.mini-save {
+  width: 150rpx;
+  height: 68rpx;
+  line-height: 68rpx;
+  border-radius: 999rpx;
+  background: #0f766e;
+  color: #fff;
+  font-size: 24rpx;
+  font-weight: 900;
+}
+.match-row {
+  padding: 20rpx;
+  border-radius: 22rpx;
+  background: #fff7ed;
+  border: 2rpx solid rgba(249, 115, 22, 0.16);
+  margin-bottom: 18rpx;
+}
+.match-row.matched {
+  background: #ecfdf5;
+  border-color: rgba(22, 163, 74, 0.16);
+}
+.match-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 16rpx;
+  align-items: center;
+  margin-bottom: 14rpx;
+}
+.word {
+  font-size: 32rpx;
+  color: #111827;
+  font-weight: 1000;
+}
+.meaning {
+  margin-top: 4rpx;
+  color: #64748b;
+  font-size: 24rpx;
+}
+.select-pill {
+  flex: 0 0 auto;
+  min-width: 92rpx;
+  text-align: center;
+  padding: 10rpx 18rpx;
+  border-radius: 999rpx;
+  background: #e2e8f0;
+  color: #475569;
+  font-size: 23rpx;
+  font-weight: 900;
+}
+.select-pill.active {
+  background: #16a34a;
+  color: #fff;
+}
+.example-edit {
+  min-height: 116rpx;
+  border-radius: 18rpx;
+  background: rgba(255,255,255,0.82);
+  padding: 16rpx 18rpx;
+  font-size: 25rpx;
+  line-height: 1.5;
+  color: #334155;
+}
+.old-example {
+  margin-top: 10rpx;
+  color: #92400e;
+  font-size: 22rpx;
+  line-height: 1.45;
+}
