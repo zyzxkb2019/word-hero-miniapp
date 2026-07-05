@@ -439,7 +439,7 @@ module.exports = [
       },
       {
         "word": "would",
-        "meaning": "想 （用于礼貌地邀请或向某人 提供某物）；将会",
+        "meaning": "想 （用于礼貌地邀请或向某人提供某物）；将会",
         "sourcePage": 24,
         "example": "Would you like to be my friend?",
         "clozeExample": "____ you like to be my friend?",
@@ -1415,7 +1415,7 @@ module.exports = [
       },
       {
         "word": "paint",
-        "meaning": "用颜料画；在……上 刷油漆 . 油漆；涂料",
+        "meaning": "用颜料画；在……上刷油漆 . 油漆；涂料",
         "sourcePage": 54,
         "example": "I (can / can’t) paint well.",
         "clozeExample": "I (can / can’t) ____ well.",
@@ -2437,7 +2437,7 @@ module.exports = [
       },
       {
         "word": "turn to somebody for help",
-        "meaning": "求助于 某人",
+        "meaning": "求助于某人",
         "sourcePage": 5,
         "example": "",
         "clozeExample": "",
@@ -2453,7 +2453,7 @@ module.exports = [
       },
       {
         "word": "be willing to do something",
-        "meaning": "愿意做 某事",
+        "meaning": "愿意做某事",
         "sourcePage": 5,
         "example": "",
         "clozeExample": "",
@@ -2655,7 +2655,7 @@ module.exports = [
       },
       {
         "word": "teenager",
-        "meaning": "（13 至19 岁 之间的）青少年",
+        "meaning": "（13 至19 岁之间的）青少年",
         "sourcePage": 28,
         "example": "Teen Life Magazine Every year, teenagers like you start junior high school.",
         "clozeExample": "Teen Life Magazine Every year, ____ like you start junior high school.",
@@ -3217,7 +3217,7 @@ module.exports = [
       },
       {
         "word": "play an important part in",
-        "meaning": "在……上 发挥重要作用",
+        "meaning": "在……上发挥重要作用",
         "sourcePage": 46,
         "example": "The solar terms also play an important part in traditional Chinese culture.",
         "clozeExample": "The solar terms also ____ traditional Chinese culture.",
@@ -3251,7 +3251,7 @@ module.exports = [
       },
       {
         "word": "amazing",
-        "meaning": "令人大为 惊奇的",
+        "meaning": "令人大为惊奇的",
         "sourcePage": 52,
         "example": "share some amazing facts about the Earth.",
         "clozeExample": "share some ____ facts about the Earth.",
@@ -4175,7 +4175,7 @@ module.exports = [
       },
       {
         "word": "gateway",
-        "meaning": "（通往其他 地区的）门户",
+        "meaning": "（通往其他地区的）门户",
         "sourcePage": 94,
         "example": "As the Silk Road developed, Dunhuang became China’s western gateway to the world.",
         "clozeExample": "As the Silk Road developed, Dunhuang became China’s western ____ to the world.",
@@ -4305,7 +4305,7 @@ module.exports = [
       },
       {
         "word": "act",
-        "meaning": "扮演（戏剧、电影中的 角色）",
+        "meaning": "扮演（戏剧、电影中的角色）",
         "sourcePage": 100,
         "example": "",
         "clozeExample": "",
@@ -4401,7 +4401,7 @@ module.exports = [
       },
       {
         "word": "hike",
-        "meaning": "去……远足；做徒步 旅行",
+        "meaning": "去……远足；做徒步旅行",
         "sourcePage": 104,
         "example": "T / F (3) When they arrived, they went on a long hike.",
         "clozeExample": "T / F (3) When they arrived, they went on a long ____.",
@@ -4890,14 +4890,6 @@ module.exports = [
         "examplePage": 126
       },
       {
-        "word": "add",
-        "meaning": "… to… 把……添加到……",
-        "sourcePage": 117,
-        "example": "Every Sunday my grandpa adds new ones to his collection, and I sometimes help him take old stamps from envelopes and postcards.",
-        "clozeExample": "Every Sunday my grandpa ____ new ones to his collection, and I sometimes help him take old stamps from envelopes and postcards.",
-        "examplePage": 117
-      },
-      {
         "word": "soft drink",
         "meaning": "软饮料（不含酒精）",
         "sourcePage": 120,
@@ -4928,6 +4920,2746 @@ module.exports = [
         "example": "(1) Joe knows his father owns a collection of rocks from all over the world.",
         "clozeExample": "(1) Joe knows his father owns a collection of rocks from ____.",
         "examplePage": 123
+      }
+    ]
+  },
+  {
+    "id": "pep-2024-g4a-unit-1",
+    "title": "人教PEP版 四年级上册 Unit 1",
+    "publisher": "人教PEP版",
+    "grade": "四年级上册",
+    "unit": "Unit 1",
+    "source": "新版教材丨人教PEP版4年级英语上册",
+    "words": [
+      {
+        "word": "PE",
+        "meaning": "体育（课）",
+        "sourcePage": null,
+        "example": "He's a PE teacher.",
+        "clozeExample": "He's a ____ teacher.",
+        "examplePage": 4
+      },
+      {
+        "word": "job",
+        "meaning": "工作；职业",
+        "sourcePage": null,
+        "example": "What's your mother's job?",
+        "clozeExample": "What's your mother's ____?",
+        "examplePage": 4
+      },
+      {
+        "word": "doctor",
+        "meaning": "医生",
+        "sourcePage": null,
+        "example": "My father is a doctor too.",
+        "clozeExample": "My father is a ____ too.",
+        "examplePage": 4
+      },
+      {
+        "word": "farmer",
+        "meaning": "农场主；",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "nurse",
+        "meaning": "护士",
+        "sourcePage": null,
+        "example": "Mum, You are a great nurse.",
+        "clozeExample": "Mum, You are a great ____.",
+        "examplePage": 9
+      },
+      {
+        "word": "office",
+        "meaning": "worker",
+        "sourcePage": 5,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 5
+      },
+      {
+        "word": "factory",
+        "meaning": "worker",
+        "sourcePage": 5,
+        "example": "He's a factory worker.",
+        "clozeExample": "He's a ____ worker.",
+        "examplePage": 5
+      },
+      {
+        "word": "busy",
+        "meaning": "忙碌的",
+        "sourcePage": null,
+        "example": "Mum and Dad are busy and tired.",
+        "clozeExample": "Mum and Dad are ____ and tired.",
+        "examplePage": 7
+      },
+      {
+        "word": "tired",
+        "meaning": "疲倦的",
+        "sourcePage": null,
+        "example": "Mum and Dad are busy and tired.",
+        "clozeExample": "Mum and Dad are busy and ____.",
+        "examplePage": 7
+      },
+      {
+        "word": "chore",
+        "meaning": "家庭杂务",
+        "sourcePage": null,
+        "example": "She can do some chores.",
+        "clozeExample": "She can do some ____.",
+        "examplePage": 3
+      },
+      {
+        "word": "cook",
+        "meaning": "烹饪；煮",
+        "sourcePage": null,
+        "example": "We often cook together and ...",
+        "clozeExample": "We often ____ together and ...",
+        "examplePage": 8
+      },
+      {
+        "word": "clean",
+        "meaning": "打扫；干净的",
+        "sourcePage": null,
+        "example": "I can clean my room.",
+        "clozeExample": "I can ____ my room.",
+        "examplePage": 3
+      },
+      {
+        "word": "room",
+        "meaning": "房间",
+        "sourcePage": null,
+        "example": "I can clean my room.",
+        "clozeExample": "I can clean my ____.",
+        "examplePage": 3
+      },
+      {
+        "word": "look after",
+        "meaning": "照顾",
+        "sourcePage": null,
+        "example": "I look after my sister.",
+        "clozeExample": "I ____ my sister.",
+        "examplePage": 8
+      },
+      {
+        "word": "sweep",
+        "meaning": "扫",
+        "sourcePage": null,
+        "example": "He can sweep the floor.",
+        "clozeExample": "He can ____ the floor.",
+        "examplePage": 3
+      },
+      {
+        "word": "floor",
+        "meaning": "地板；地面",
+        "sourcePage": null,
+        "example": "He can sweep the floor.",
+        "clozeExample": "He can sweep the ____.",
+        "examplePage": 3
+      },
+      {
+        "word": "together",
+        "meaning": "在一起；",
+        "sourcePage": null,
+        "example": "What do family do together?",
+        "clozeExample": "What do family do ____?",
+        "examplePage": 2
+      },
+      {
+        "word": "people",
+        "meaning": "人；人们",
+        "sourcePage": null,
+        "example": "People speak Chinese in .",
+        "clozeExample": "____ speak Chinese in .",
+        "examplePage": 6
+      },
+      {
+        "word": "child",
+        "meaning": "（复数children",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      }
+    ]
+  },
+  {
+    "id": "pep-2024-g4a-unit-2",
+    "title": "人教PEP版 四年级上册 Unit 2",
+    "publisher": "人教PEP版",
+    "grade": "四年级上册",
+    "unit": "Unit 2",
+    "source": "新版教材丨人教PEP版4年级英语上册",
+    "words": [
+      {
+        "word": "his",
+        "meaning": "他的",
+        "sourcePage": null,
+        "example": "He can his sister.",
+        "clozeExample": "He can ____ sister.",
+        "examplePage": 9
+      },
+      {
+        "word": "strong",
+        "meaning": "强壮的",
+        "sourcePage": null,
+        "example": "He's tall and strong.",
+        "clozeExample": "He's tall and ____.",
+        "examplePage": 16
+      },
+      {
+        "word": "hair",
+        "meaning": "头发",
+        "sourcePage": null,
+        "example": "Some friends' hair is short.",
+        "clozeExample": "Some friends' ____ is short.",
+        "examplePage": 15
+      },
+      {
+        "word": "also",
+        "meaning": "也",
+        "sourcePage": null,
+        "example": "We can also make a gift！!",
+        "clozeExample": "We can ____ make a gift！!",
+        "examplePage": 7
+      },
+      {
+        "word": "kind",
+        "meaning": "友好的",
+        "sourcePage": null,
+        "example": "She's quiet and kind.",
+        "clozeExample": "She's quiet and ____.",
+        "examplePage": 17
+      },
+      {
+        "word": "quiet",
+        "meaning": "文静的",
+        "sourcePage": null,
+        "example": "She's quiet and kind.",
+        "clozeExample": "She's ____ and kind.",
+        "examplePage": 17
+      },
+      {
+        "word": "best",
+        "meaning": "最好的",
+        "sourcePage": null,
+        "example": "Who's your best friend?",
+        "clozeExample": "Who's your ____ friend?",
+        "examplePage": 19
+      },
+      {
+        "word": "read",
+        "meaning": "阅读",
+        "sourcePage": null,
+        "example": "I can read and spell words with \"ch\".",
+        "clozeExample": "I can ____ and spell words with \"ch\".",
+        "examplePage": 11
+      },
+      {
+        "word": "play",
+        "meaning": "玩耍",
+        "sourcePage": null,
+        "example": "We play games together.",
+        "clozeExample": "We ____ games together.",
+        "examplePage": 20
+      },
+      {
+        "word": "game",
+        "meaning": "游戏",
+        "sourcePage": null,
+        "example": "We play games together.",
+        "clozeExample": "We play ____ together.",
+        "examplePage": 20
+      },
+      {
+        "word": "football",
+        "meaning": "足球运动",
+        "sourcePage": null,
+        "example": "We play football together.",
+        "clozeExample": "We play ____ together.",
+        "examplePage": 20
+      },
+      {
+        "word": "basketball",
+        "meaning": "教材词汇",
+        "sourcePage": 21,
+        "example": "I often play football and basketball.",
+        "clozeExample": "I often play football and ____.",
+        "examplePage": 21
+      },
+      {
+        "word": "always",
+        "meaning": "总是",
+        "sourcePage": null,
+        "example": "She always makes me smile.",
+        "clozeExample": "She ____ makes me smile.",
+        "examplePage": 21
+      }
+    ]
+  },
+  {
+    "id": "pep-2024-g4a-unit-3",
+    "title": "人教PEP版 四年级上册 Unit 3",
+    "publisher": "人教PEP版",
+    "grade": "四年级上册",
+    "unit": "Unit 3",
+    "source": "新版教材丨人教PEP版4年级英语上册",
+    "words": [
+      {
+        "word": "afternoon",
+        "meaning": "下午",
+        "sourcePage": 28,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 28
+      },
+      {
+        "word": "there",
+        "meaning": "（表示存在",
+        "sourcePage": null,
+        "example": "There is a playground.",
+        "clozeExample": "____ is a playground.",
+        "examplePage": 28
+      },
+      {
+        "word": "playground",
+        "meaning": "教材词汇",
+        "sourcePage": 28,
+        "example": "The playground or the school?",
+        "clozeExample": "The ____ or the school?",
+        "examplePage": 27
+      },
+      {
+        "word": "park",
+        "meaning": "公园",
+        "sourcePage": null,
+        "example": "He likes the park.",
+        "clozeExample": "He likes the ____.",
+        "examplePage": 25
+      },
+      {
+        "word": "over",
+        "meaning": "在……的远端",
+        "sourcePage": null,
+        "example": "There is also a nice park over there.",
+        "clozeExample": "There is also a nice park ____ there.",
+        "examplePage": 28
+      },
+      {
+        "word": "hospital",
+        "meaning": "医院",
+        "sourcePage": null,
+        "example": "The park or the hospital?",
+        "clozeExample": "The park or the ____?",
+        "examplePage": 27
+      },
+      {
+        "word": "shop",
+        "meaning": "商店",
+        "sourcePage": null,
+        "example": "There is a shop.",
+        "clozeExample": "There is a ____.",
+        "examplePage": 29
+      },
+      {
+        "word": "toilet",
+        "meaning": "厕所；卫生间",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "bus",
+        "meaning": "stop",
+        "sourcePage": 29,
+        "example": "He's a school bus driver.",
+        "clozeExample": "He's a school ____ driver.",
+        "examplePage": 40
+      },
+      {
+        "word": "library",
+        "meaning": "图书馆",
+        "sourcePage": null,
+        "example": "This is a library.",
+        "clozeExample": "This is a ____.",
+        "examplePage": 31
+      },
+      {
+        "word": "sport",
+        "meaning": "体育运动",
+        "sourcePage": null,
+        "example": "Let's do some sports.",
+        "clozeExample": "Let's do some ____.",
+        "examplePage": 31
+      },
+      {
+        "word": "walk",
+        "meaning": "散步；行走",
+        "sourcePage": null,
+        "example": "I often take a walk there.",
+        "clozeExample": "I often take a ____ there.",
+        "examplePage": 32
+      },
+      {
+        "word": "community",
+        "meaning": "社区",
+        "sourcePage": 32,
+        "example": "What do people do in a community?",
+        "clozeExample": "What do people do in a ____?",
+        "examplePage": 31
+      },
+      {
+        "word": "favourite",
+        "meaning": "最喜欢的",
+        "sourcePage": 33,
+        "example": "My favourite place is the museum.",
+        "clozeExample": "My ____ place is the museum.",
+        "examplePage": 33
+      },
+      {
+        "word": "place",
+        "meaning": "地方；场所",
+        "sourcePage": null,
+        "example": "Put the numbers in the correct places.",
+        "clozeExample": "Put the numbers in the correct ____.",
+        "examplePage": 21
+      },
+      {
+        "word": "photo",
+        "meaning": "照片",
+        "sourcePage": null,
+        "example": "There are many old things and photos.",
+        "clozeExample": "There are many old things and ____.",
+        "examplePage": 33
+      },
+      {
+        "word": "story",
+        "meaning": "故事",
+        "sourcePage": null,
+        "example": "He is telling a funny story.",
+        "clozeExample": "He is telling a funny ____.",
+        "examplePage": 44
+      },
+      {
+        "word": "buy",
+        "meaning": "购买",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      }
+    ]
+  },
+  {
+    "id": "pep-2024-g4a-unit-4",
+    "title": "人教PEP版 四年级上册 Unit 4",
+    "publisher": "人教PEP版",
+    "grade": "四年级上册",
+    "unit": "Unit 4",
+    "source": "新版教材丨人教PEP版4年级英语上册",
+    "words": [
+      {
+        "word": "firefighter",
+        "meaning": "教材词汇",
+        "sourcePage": 40,
+        "example": "Our neighbour is a firefighter.",
+        "clozeExample": "Our neighbour is a ____.",
+        "examplePage": 40
+      },
+      {
+        "word": "why",
+        "meaning": "为什么",
+        "sourcePage": null,
+        "example": "I can tell why someone is my friend.",
+        "clozeExample": "I can tell ____ someone is my friend.",
+        "examplePage": 23
+      },
+      {
+        "word": "driver",
+        "meaning": "司机",
+        "sourcePage": null,
+        "example": "He's a school bus driver.",
+        "clozeExample": "He's a school bus ____.",
+        "examplePage": 40
+      },
+      {
+        "word": "cleaner",
+        "meaning": "清洁工",
+        "sourcePage": null,
+        "example": "Mr Zhang is a cleaner.",
+        "clozeExample": "Mr Zhang is a ____.",
+        "examplePage": 47
+      },
+      {
+        "word": "cook",
+        "meaning": "厨师",
+        "sourcePage": null,
+        "example": "We often cook together and ...",
+        "clozeExample": "We often ____ together and ...",
+        "examplePage": 8
+      },
+      {
+        "word": "delivery",
+        "meaning": "worker",
+        "sourcePage": 41,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 41
+      },
+      {
+        "word": "police",
+        "meaning": "officer",
+        "sourcePage": 41,
+        "example": "My neighbour is a police officer.",
+        "clozeExample": "My neighbour is a ____ officer.",
+        "examplePage": 41
+      },
+      {
+        "word": "a lot",
+        "meaning": "of 大量；许多",
+        "sourcePage": 41,
+        "example": "She helps a lot of people.",
+        "clozeExample": "She helps ____ of people.",
+        "examplePage": 41
+      },
+      {
+        "word": "now",
+        "meaning": "现在",
+        "sourcePage": null,
+        "example": "Mum, I am a big boy now.",
+        "clozeExample": "Mum, I am a big boy ____.",
+        "examplePage": 9
+      },
+      {
+        "word": "make the bed",
+        "meaning": "铺床",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "old",
+        "meaning": "过去的；年纪大的；",
+        "sourcePage": null,
+        "example": "There are many old things and photos.",
+        "clozeExample": "There are many ____ things and photos.",
+        "examplePage": 33
+      },
+      {
+        "word": "tell",
+        "meaning": "讲述；告诉",
+        "sourcePage": null,
+        "example": "I can tell why someone is my friend.",
+        "clozeExample": "I can ____ why someone is my friend.",
+        "examplePage": 23
+      },
+      {
+        "word": "everyone",
+        "meaning": "每人",
+        "sourcePage": null,
+        "example": "Let's make friends with everyone.",
+        "clozeExample": "Let's make friends with ____.",
+        "examplePage": 78
+      }
+    ]
+  },
+  {
+    "id": "pep-2024-g4a-unit-5",
+    "title": "人教PEP版 四年级上册 Unit 5",
+    "publisher": "人教PEP版",
+    "grade": "四年级上册",
+    "unit": "Unit 5",
+    "source": "新版教材丨人教PEP版4年级英语上册",
+    "words": [
+      {
+        "word": "speak",
+        "meaning": "说话；发言",
+        "sourcePage": null,
+        "example": "People speak Chinese in .",
+        "clozeExample": "People ____ Chinese in .",
+        "examplePage": 6
+      },
+      {
+        "word": "weather",
+        "meaning": "天气",
+        "sourcePage": null,
+        "example": "How can the weather change our lives?",
+        "clozeExample": "How can the ____ change our lives?",
+        "examplePage": 50
+      },
+      {
+        "word": "sunny",
+        "meaning": "阳光充足的",
+        "sourcePage": null,
+        "example": "Well, it's sunny today.",
+        "clozeExample": "Well, it's ____ today.",
+        "examplePage": 52
+      },
+      {
+        "word": "hot",
+        "meaning": "热的",
+        "sourcePage": null,
+        "example": "It's hot and sunny here.",
+        "clozeExample": "It's ____ and sunny here.",
+        "examplePage": 57
+      },
+      {
+        "word": "bad",
+        "meaning": "令人不快的；坏的",
+        "sourcePage": 52,
+        "example": "Sort the weather from good to bad.",
+        "clozeExample": "Sort the weather from good to ____.",
+        "examplePage": 58
+      },
+      {
+        "word": "cold",
+        "meaning": "冷的",
+        "sourcePage": null,
+        "example": "The poor ducklings feel cold there.",
+        "clozeExample": "The poor ducklings feel ____ there.",
+        "examplePage": 30
+      },
+      {
+        "word": "windy",
+        "meaning": "多风的",
+        "sourcePage": null,
+        "example": "It's warm and windy.",
+        "clozeExample": "It's warm and ____.",
+        "examplePage": 53
+      },
+      {
+        "word": "cloudy",
+        "meaning": "多云的",
+        "sourcePage": null,
+        "example": "It's cool and cloudy.",
+        "clozeExample": "It's cool and ____.",
+        "examplePage": 58
+      },
+      {
+        "word": "rainy",
+        "meaning": "阴雨的",
+        "sourcePage": null,
+        "example": "It's cold and rainy.",
+        "clozeExample": "It's cold and ____.",
+        "examplePage": 55
+      },
+      {
+        "word": "snowy",
+        "meaning": "多雪的",
+        "sourcePage": null,
+        "example": "It's cold and snowy.",
+        "clozeExample": "It's cold and ____.",
+        "examplePage": 53
+      },
+      {
+        "word": "cool",
+        "meaning": "凉爽的",
+        "sourcePage": null,
+        "example": "It's cool and sunny.",
+        "clozeExample": "It's ____ and sunny.",
+        "examplePage": 52
+      },
+      {
+        "word": "warm",
+        "meaning": "温暖的",
+        "sourcePage": null,
+        "example": "It's warm and windy.",
+        "clozeExample": "It's ____ and windy.",
+        "examplePage": 53
+      },
+      {
+        "word": "tomorrow",
+        "meaning": "在明天",
+        "sourcePage": 53,
+        "example": "What's the weather like in Beijing tomorrow?",
+        "clozeExample": "What's the weather like in Beijing ____?",
+        "examplePage": 53
+      },
+      {
+        "word": "rain",
+        "meaning": "下雨；雨",
+        "sourcePage": null,
+        "example": "John, it's raining now.",
+        "clozeExample": "John, it's ____ now.",
+        "examplePage": 55
+      },
+      {
+        "word": "closed",
+        "meaning": "关闭的",
+        "sourcePage": null,
+        "example": "But it's closed now.",
+        "clozeExample": "But it's ____ now.",
+        "examplePage": 55
+      },
+      {
+        "word": "film",
+        "meaning": "电影",
+        "sourcePage": null,
+        "example": "Let's go and see a film.",
+        "clozeExample": "Let's go and see a ____.",
+        "examplePage": 55
+      },
+      {
+        "word": "idea",
+        "meaning": "想法；主意",
+        "sourcePage": null,
+        "example": "That's a good idea!",
+        "clozeExample": "That's a good ____!",
+        "examplePage": 55
+      },
+      {
+        "word": "fly",
+        "meaning": "操纵（飞行器等）；",
+        "sourcePage": null,
+        "example": "I fly a kite and I play.",
+        "clozeExample": "I ____ a kite and I play.",
+        "examplePage": 51
+      },
+      {
+        "word": "kite",
+        "meaning": "风筝",
+        "sourcePage": null,
+        "example": "I fly a kite and I play.",
+        "clozeExample": "I fly a ____ and I play.",
+        "examplePage": 51
+      },
+      {
+        "word": "snowman",
+        "meaning": "雪人",
+        "sourcePage": 56,
+        "example": "On snowy days, we can make a snowman.",
+        "clozeExample": "On snowy days, we can make a ____.",
+        "examplePage": 56
+      },
+      {
+        "word": "fun",
+        "meaning": "享乐；乐趣",
+        "sourcePage": null,
+        "example": "We have so much fun.",
+        "clozeExample": "We have so much ____.",
+        "examplePage": 23
+      },
+      {
+        "word": "their",
+        "meaning": "他们的；她们的；",
+        "sourcePage": null,
+        "example": "Binbin and Amy are talking about their dream communities.",
+        "clozeExample": "Binbin and Amy are talking about ____ dream communities.",
+        "examplePage": 34
+      },
+      {
+        "word": "swim",
+        "meaning": "游泳",
+        "sourcePage": null,
+        "example": "But don't swim there.",
+        "clozeExample": "But don't ____ there.",
+        "examplePage": 48
+      }
+    ]
+  },
+  {
+    "id": "pep-2024-g4a-unit-6",
+    "title": "人教PEP版 四年级上册 Unit 6",
+    "publisher": "人教PEP版",
+    "grade": "四年级上册",
+    "unit": "Unit 6",
+    "source": "新版教材丨人教PEP版4年级英语上册",
+    "words": [
+      {
+        "word": "whose",
+        "meaning": "谁的",
+        "sourcePage": null,
+        "example": "Whose sweater is this, Mum?",
+        "clozeExample": "____ sweater is this, Mum?",
+        "examplePage": 64
+      },
+      {
+        "word": "sweater",
+        "meaning": "毛衣",
+        "sourcePage": null,
+        "example": "In spring, wear a sweater.",
+        "clozeExample": "In spring, wear a ____.",
+        "examplePage": 63
+      },
+      {
+        "word": "sock",
+        "meaning": "短袜",
+        "sourcePage": null,
+        "example": "For black socks they can wear.",
+        "clozeExample": "For black ____ they can wear.",
+        "examplePage": 30
+      },
+      {
+        "word": "mine",
+        "meaning": "我的",
+        "sourcePage": null,
+        "example": "The pink socks are mine.",
+        "clozeExample": "The pink socks are ____.",
+        "examplePage": 65
+      },
+      {
+        "word": "wear",
+        "meaning": "穿；戴",
+        "sourcePage": null,
+        "example": "For black socks they can wear.",
+        "clozeExample": "For black socks they can ____.",
+        "examplePage": 30
+      },
+      {
+        "word": "shirt",
+        "meaning": "衬衫",
+        "sourcePage": null,
+        "example": "Can I wear this new shirt today?",
+        "clozeExample": "Can I wear this new ____ today?",
+        "examplePage": 64
+      },
+      {
+        "word": "coat",
+        "meaning": "大衣；外套",
+        "sourcePage": null,
+        "example": "Yes, but wear a coat too.",
+        "clozeExample": "Yes, but wear a ____ too.",
+        "examplePage": 64
+      },
+      {
+        "word": "dress",
+        "meaning": "连衣裙",
+        "sourcePage": null,
+        "example": "This purple dress is Mum's.",
+        "clozeExample": "This purple ____ is Mum's.",
+        "examplePage": 65
+      },
+      {
+        "word": "which",
+        "meaning": "哪一个；哪一些",
+        "sourcePage": 67,
+        "example": "Sarah, which season do you like?",
+        "clozeExample": "Sarah, ____ season do you like?",
+        "examplePage": 67
+      },
+      {
+        "word": "season",
+        "meaning": "季节",
+        "sourcePage": null,
+        "example": "How are our lives different in each season?",
+        "clozeExample": "How are our lives different in each ____?",
+        "examplePage": 62
+      },
+      {
+        "word": "winter",
+        "meaning": "冬天",
+        "sourcePage": null,
+        "example": "Spring, summer, autumn and winter.",
+        "clozeExample": "Spring, summer, autumn and ____.",
+        "examplePage": 63
+      },
+      {
+        "word": "snow",
+        "meaning": "下雪；雪",
+        "sourcePage": null,
+        "example": "The boy is having fun in the snow.",
+        "clozeExample": "The boy is having fun in the ____.",
+        "examplePage": 53
+      },
+      {
+        "word": "get together",
+        "meaning": "聚会",
+        "sourcePage": null,
+        "example": "My family and I often get together and have fun.",
+        "clozeExample": "My family and I often ____ and have fun.",
+        "examplePage": 67
+      },
+      {
+        "word": "spring",
+        "meaning": "春天",
+        "sourcePage": null,
+        "example": "Spring, summer, autumn and winter.",
+        "clozeExample": "____, summer, autumn and winter.",
+        "examplePage": 63
+      },
+      {
+        "word": "summer",
+        "meaning": "夏天",
+        "sourcePage": null,
+        "example": "Spring, summer, autumn and winter.",
+        "clozeExample": "Spring, ____, autumn and winter.",
+        "examplePage": 63
+      },
+      {
+        "word": "autumn",
+        "meaning": "秋天",
+        "sourcePage": null,
+        "example": "Spring, summer, autumn and winter.",
+        "clozeExample": "Spring, summer, ____ and winter.",
+        "examplePage": 63
+      },
+      {
+        "word": "T-shirt",
+        "meaning": "T恤衫",
+        "sourcePage": null,
+        "example": "Wear dresses and T-shirts.",
+        "clozeExample": "Wear dresses and ____s.",
+        "examplePage": 69
+      },
+      {
+        "word": "fall",
+        "meaning": "落下",
+        "sourcePage": null,
+        "example": "I like the falling leaves.",
+        "clozeExample": "I like the ____ leaves.",
+        "examplePage": 69
+      },
+      {
+        "word": "leaf",
+        "meaning": "（复数leaves ）",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "glove",
+        "meaning": "手套",
+        "sourcePage": null,
+        "example": "Oh, where is my glove?",
+        "clozeExample": "Oh, where is my ____?",
+        "examplePage": 66
+      },
+      {
+        "word": "then",
+        "meaning": "然后；那时",
+        "sourcePage": null,
+        "example": "Then spring comes again.",
+        "clozeExample": "____ spring comes again.",
+        "examplePage": 69
+      }
+    ]
+  },
+  {
+    "id": "pep-2024-g5a-unit-1",
+    "title": "人教PEP版 五年级上册 Unit 1",
+    "publisher": "人教PEP版",
+    "grade": "五年级上册",
+    "unit": "Unit 1",
+    "source": "人教PEP版5年级英语上册",
+    "words": [
+      {
+        "word": "old",
+        "meaning": "老的； 年纪大的",
+        "sourcePage": 5,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 5
+      },
+      {
+        "word": "young",
+        "meaning": "年轻的； 岁数不大的",
+        "sourcePage": 5,
+        "example": "2 Wu yifan; bo you know Mr Young?",
+        "clozeExample": "2 Wu yifan; bo you know Mr ____?",
+        "examplePage": 4
+      },
+      {
+        "word": "funny",
+        "meaning": "滑稷的； 可笑的 _",
+        "sourcePage": null,
+        "example": "- 【'_言鼻}′「z叁浠~、{′ Oliver Ts he funny?",
+        "clozeExample": "- 【'_言鼻}′「z叁浠~、{′ Oliver Ts he ____?",
+        "examplePage": 4
+      },
+      {
+        "word": "kind",
+        "meaning": "/kammndy 体贴的； 憎祥的；",
+        "sourcePage": null,
+        "example": "She「s very kind.",
+        "clozeExample": "She「s very ____.",
+        "examplePage": 3
+      },
+      {
+        "word": "strict",
+        "meaning": "要求严格的； 严厉的",
+        "sourcePage": 5,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 5
+      },
+      {
+        "word": "polite",
+        "meaning": "有礼貌的； 客气的",
+        "sourcePage": 8,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 8
+      },
+      {
+        "word": "hard-working",
+        "meaning": "1ha:d 工作努力的； 辛勤的",
+        "sourcePage": 8,
+        "example": "【 不 They are hard-working.",
+        "clozeExample": "【 不 They are ____.",
+        "examplePage": 8
+      },
+      {
+        "word": "helpful",
+        "meaning": "有用的；",
+        "sourcePage": null,
+        "example": "very helpful af home.",
+        "clozeExample": "very ____ af home.",
+        "examplePage": 9
+      },
+      {
+        "word": "clever",
+        "meaning": "聪明的； 聪颖的",
+        "sourcePage": 8,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 8
+      },
+      {
+        "word": "shy",
+        "meaning": "/fay 羟怯的； 胸腹的； 怕生的",
+        "sourcePage": 8,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 8
+      },
+      {
+        "word": "know",
+        "meaning": "知道； 了解",
+        "sourcePage": 4,
+        "example": "2 Wu yifan; bo you know Mr Young?",
+        "clozeExample": "2 Wu yifan; bo you ____ Mr Young?",
+        "examplePage": 4
+      },
+      {
+        "word": "our",
+        "meaning": "我们的",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "will",
+        "meaning": "将要",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "sometimes",
+        "meaning": "有时；",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "robot",
+        "meaning": "机器人",
+        "sourcePage": 9,
+        "example": "Design a robot of your own.",
+        "clozeExample": "Design a ____ of your own.",
+        "examplePage": 9
+      },
+      {
+        "word": "him",
+        "meaning": "/ 〔 用作宾语或表语 ) 他",
+        "sourcePage": 9,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 9
+      },
+      {
+        "word": "speak",
+        "meaning": "会说； 会讲； 用说话 _p,9",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "finish",
+        "meaning": "/ 完成； 做好",
+        "sourcePage": 9,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 9
+      }
+    ]
+  },
+  {
+    "id": "pep-2024-g5a-unit-2",
+    "title": "人教PEP版 五年级上册 Unit 2",
+    "publisher": "人教PEP版",
+    "grade": "五年级上册",
+    "unit": "Unit 2",
+    "source": "人教PEP版5年级英语上册",
+    "words": [
+      {
+        "word": "watch",
+        "meaning": "看",
+        "sourcePage": 18,
+        "example": "Wu Yifan often watches TV on the weekend.",
+        "clozeExample": "Wu Yifan often ____ TV on the weekend.",
+        "examplePage": 19
+      },
+      {
+        "word": "watch TV",
+        "meaning": "看电视",
+        "sourcePage": 18,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 18
+      },
+      {
+        "word": "do",
+        "meaning": "做； 干",
+        "sourcePage": 18,
+        "example": "What do you often do on the weekend ?",
+        "clozeExample": "What ____ you often do on the weekend ?",
+        "examplePage": 18
+      },
+      {
+        "word": "do homework",
+        "meaning": "做作业",
+        "sourcePage": 18,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 18
+      },
+      {
+        "word": "read",
+        "meaning": "/ri:dy 看； 读",
+        "sourcePage": 18,
+        "example": "匿 I often read books on the weekend.",
+        "clozeExample": "匿 I often ____ books on the weekend.",
+        "examplePage": 18
+      },
+      {
+        "word": "read books",
+        "meaning": "看书",
+        "sourcePage": 18,
+        "example": "匿 I often read books on the weekend.",
+        "clozeExample": "匿 I often ____ on the weekend.",
+        "examplePage": 18
+      },
+      {
+        "word": "play",
+        "meaning": "/ple 踩； 玩； 参加 ( 体育",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "play football",
+        "meaning": "蹇足球",
+        "sourcePage": 18,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 18
+      },
+      {
+        "word": "cooking",
+        "meaning": "焕饪； 焕调",
+        "sourcePage": 14,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 14
+      },
+      {
+        "word": "often",
+        "meaning": "“ /pfhy 时常； 常常",
+        "sourcePage": 17,
+        "example": "What do you often do on the weekend ?",
+        "clozeExample": "What do you ____ do on the weekend ?",
+        "examplePage": 18
+      },
+      {
+        "word": "park",
+        "meaning": "“ 公园",
+        "sourcePage": 17,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 17
+      },
+      {
+        "word": "tired",
+        "meaning": "疲偿的",
+        "sourcePage": 19,
+        "example": "Robin: you look tired.",
+        "clozeExample": "Robin: you look ____.",
+        "examplePage": 19
+      },
+      {
+        "word": "sport",
+        "meaning": "“ 体育运动",
+        "sourcePage": 19,
+        "example": "Robin: bo you often play Sports?",
+        "clozeExample": "Robin: bo you often play ____?",
+        "examplePage": 19
+      },
+      {
+        "word": "play sports",
+        "meaning": "做体育运动",
+        "sourcePage": 19,
+        "example": "Robin: bo you often play Sports?",
+        "clozeExample": "Robin: bo you often ____?",
+        "examplePage": 19
+      },
+      {
+        "word": "should",
+        "meaning": "〔 常用于纠正别人 ) 应该 , 应当",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "every",
+        "meaning": "每一个 , 每个",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "day",
+        "meaning": "/de 一天； 一日",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "schedule",
+        "meaning": "Afediu:l/ 工作计划；",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      }
+    ]
+  },
+  {
+    "id": "pep-2024-g5a-unit-3",
+    "title": "人教PEP版 五年级上册 Unit 3",
+    "publisher": "人教PEP版",
+    "grade": "五年级上册",
+    "unit": "Unit 3",
+    "source": "人教PEP版5年级英语上册",
+    "words": [
+      {
+        "word": "sandwich",
+        "meaning": "三明治",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "salad",
+        "meaning": "荣茉沙拉； 混合沙拉",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "hamburger",
+        "meaning": "汉堡包",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "ice cream",
+        "meaning": "泉激凌",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "tea",
+        "meaning": "茶； 茶水",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "fresh",
+        "meaning": "/freJy 新鲜的； 刚摘的",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "healthy",
+        "meaning": "/helgiy 健康的",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "delicious",
+        "meaning": "美咏的； 可口的",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "hot",
+        "meaning": "辣的； 辛辣的",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "sweet",
+        "meaning": "含韬的； 甜的",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "drink",
+        "meaning": "喝； 饮",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "thirsty",
+        "meaning": "渴的； 口渴的",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "favourite",
+        "meaning": "特别喜爱的改",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "onion",
+        "meaning": "/Anjony 评怨 5 头",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      }
+    ]
+  },
+  {
+    "id": "pep-2024-g5a-unit-4",
+    "title": "人教PEP版 五年级上册 Unit 4",
+    "publisher": "人教PEP版",
+    "grade": "五年级上册",
+    "unit": "Unit 4",
+    "source": "人教PEP版5年级英语上册",
+    "words": [
+      {
+        "word": "sing",
+        "meaning": "唱； 唱歌",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "song",
+        "meaning": "歌更",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "sing English songs",
+        "meaning": "啸荚文歌",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "play the pipa",
+        "meaning": "弹玟",
+        "sourcePage": 39,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 39
+      },
+      {
+        "word": "kung",
+        "meaning": "功夫； 武术 “",
+        "sourcePage": 39,
+        "example": "Can Mike do any kung fu?",
+        "clozeExample": "Can Mike do any ____ fu?",
+        "examplePage": 41
+      },
+      {
+        "word": "do kung fu",
+        "meaning": "练步术",
+        "sourcePage": 19,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 19
+      },
+      {
+        "word": "dance",
+        "meaning": "“ 跳舞",
+        "sourcePage": 39,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 39
+      },
+      {
+        "word": "draw cartoons",
+        "meaning": "画漫画 P",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "cook",
+        "meaning": "/kuky …苴责月_=_ 焕任",
+        "sourcePage": 42,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 42
+      },
+      {
+        "word": "swim",
+        "meaning": "/swimy 游泳",
+        "sourcePage": 25,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 25
+      },
+      {
+        "word": "play basketball",
+        "meaning": "打签球",
+        "sourcePage": 42,
+        "example": "( ) He can play basketball.",
+        "clozeExample": "( ) He can ____.",
+        "examplePage": 43
+      },
+      {
+        "word": "ping-pong",
+        "meaning": "“ 乒共球",
+        "sourcePage": 42,
+        "example": "I can play ping-pong.",
+        "clozeExample": "I can play ____.",
+        "examplePage": 42
+      },
+      {
+        "word": "play ping-pong",
+        "meaning": "打乔乓球",
+        "sourcePage": 42,
+        "example": "I can play ping-pong.",
+        "clozeExample": "I can ____.",
+        "examplePage": 42
+      },
+      {
+        "word": "party",
+        "meaning": "乘会； 派对",
+        "sourcePage": 38,
+        "example": "do for fhe party, children?",
+        "clozeExample": "do for fhe ____, children?",
+        "examplePage": 38
+      },
+      {
+        "word": "next",
+        "meaning": "“ 下一个的； 素接着的；",
+        "sourcePage": 28,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 28
+      },
+      {
+        "word": "wonderful",
+        "meaning": "极好的；",
+        "sourcePage": 28,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 28
+      },
+      {
+        "word": "problem",
+        "meaning": "/problamy 问题限 1",
+        "sourcePage": 27,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 27
+      },
+      {
+        "word": "no problem",
+        "meaning": "没问题",
+        "sourcePage": 41,
+        "example": "WMr Ma: No problem.",
+        "clozeExample": "WMr Ma: ____.",
+        "examplePage": 41
+      },
+      {
+        "word": "email",
+        "meaning": "电子邮件 p 河",
+        "sourcePage": 22,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 22
+      },
+      {
+        "word": "at",
+        "meaning": "/at: aetl",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      }
+    ]
+  },
+  {
+    "id": "pep-2024-g5a-unit-5",
+    "title": "人教PEP版 五年级上册 Unit 5",
+    "publisher": "人教PEP版",
+    "grade": "五年级上册",
+    "unit": "Unit 5",
+    "source": "人教PEP版5年级英语上册",
+    "words": [
+      {
+        "word": "clock",
+        "meaning": "“ 时钟； 钟",
+        "sourcePage": 49,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 49
+      },
+      {
+        "word": "plant",
+        "meaning": "植物",
+        "sourcePage": 49,
+        "example": "a plant in my room.",
+        "clozeExample": "a ____ in my room.",
+        "examplePage": 49
+      },
+      {
+        "word": "bottle",
+        "meaning": "瓶子",
+        "sourcePage": 49,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 49
+      },
+      {
+        "word": "water",
+        "meaning": "水颊",
+        "sourcePage": 49,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 49
+      },
+      {
+        "word": "bike",
+        "meaning": "/balky 自行车； 脚踏车",
+        "sourcePage": 49,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 49
+      },
+      {
+        "word": "photo",
+        "meaning": "照片； 相片 P",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "front",
+        "meaning": "正面",
+        "sourcePage": 52,
+        "example": "Where is the ball2 Its in front of l .",
+        "clozeExample": "Where is the ball2 Its in ____ of l .",
+        "examplePage": 52
+      },
+      {
+        "word": "in front of",
+        "meaning": "在 …... 前面",
+        "sourcePage": 52,
+        "example": "Where is the ball2 Its in front of l .",
+        "clozeExample": "Where is the ball2 Its ____ l .",
+        "examplePage": 52
+      },
+      {
+        "word": "between",
+        "meaning": "/butwi:ny 在 …... 中间 “",
+        "sourcePage": 52,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 52
+      },
+      {
+        "word": "above",
+        "meaning": "在 …... 上面",
+        "sourcePage": 52,
+        "example": "Choose one sentence from above and write.",
+        "clozeExample": "Choose one sentence from ____ and write.",
+        "examplePage": 50
+      },
+      {
+        "word": "beside",
+        "meaning": "在旅边",
+        "sourcePage": 52,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 52
+      },
+      {
+        "word": "behind",
+        "meaning": "在 …...",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "there",
+        "meaning": "表示存在或发生 )",
+        "sourcePage": 48,
+        "example": "- There is a table beside the bed.",
+        "clozeExample": "- ____ is a table beside the bed.",
+        "examplePage": 47
+      },
+      {
+        "word": "grandparent",
+        "meaning": "祖父；",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "their",
+        "meaning": "/6eay 他们的； 她们的；",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "house",
+        "meaning": "房屋； 房子； 住宅",
+        "sourcePage": 51,
+        "example": "I just moved into an old house.",
+        "clozeExample": "I just moved into an old ____.",
+        "examplePage": 53
+      },
+      {
+        "word": "lot",
+        "meaning": "/loty 大量； 许多",
+        "sourcePage": 51,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 51
+      },
+      {
+        "word": "lots of",
+        "meaning": "大量； 许多",
+        "sourcePage": 51,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 51
+      },
+      {
+        "word": "flower",
+        "meaning": "/flauay 花； 花朵",
+        "sourcePage": 51,
+        "example": "[ Some flowers, [-] Some toys.",
+        "clozeExample": "[ Some ____, [-] Some toys.",
+        "examplePage": 51
+      },
+      {
+        "word": "move",
+        "meaning": "搬家",
+        "sourcePage": 53,
+        "example": "I just moved into an old house.",
+        "clozeExample": "I just ____ into an old house.",
+        "examplePage": 53
+      },
+      {
+        "word": "dirty",
+        "meaning": "肮脏的",
+        "sourcePage": 53,
+        "example": "The rooms are dirty.",
+        "clozeExample": "The rooms are ____.",
+        "examplePage": 53
+      },
+      {
+        "word": "everywhere",
+        "meaning": "处处；",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "mouse",
+        "meaning": "“ 老鼠",
+        "sourcePage": 53,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 53
+      },
+      {
+        "word": "live",
+        "meaning": "“ 住； 居住",
+        "sourcePage": 53,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 53
+      },
+      {
+        "word": "nature",
+        "meaning": "“ 自然界； 大自然",
+        "sourcePage": 53,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 53
+      }
+    ]
+  },
+  {
+    "id": "pep-2024-g5a-unit-6",
+    "title": "人教PEP版 五年级上册 Unit 6",
+    "publisher": "人教PEP版",
+    "grade": "五年级上册",
+    "unit": "Unit 6",
+    "source": "人教PEP版5年级英语上册",
+    "words": [
+      {
+        "word": "forest",
+        "meaning": "“ 森林； 林区",
+        "sourcePage": 59,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 59
+      },
+      {
+        "word": "lake",
+        "meaning": "湖； 湖泊",
+        "sourcePage": 59,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 59
+      },
+      {
+        "word": "hill",
+        "meaning": "山丘； 小山",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "tree",
+        "meaning": "树； 树水； 乔木",
+        "sourcePage": 62,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 62
+      },
+      {
+        "word": "bridge",
+        "meaning": "袱",
+        "sourcePage": 62,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 62
+      },
+      {
+        "word": "village",
+        "meaning": "“ 村庄； 村镇",
+        "sourcePage": 62,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 62
+      },
+      {
+        "word": "house",
+        "meaning": "房屋； 房子； 住宅",
+        "sourcePage": 62,
+        "example": "Robin is at Mr Jones「 house.",
+        "clozeExample": "Robin is at Mr Jones「 ____.",
+        "examplePage": 63
+      },
+      {
+        "word": "go boating",
+        "meaning": "去划船",
+        "sourcePage": 58,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 58
+      },
+      {
+        "word": "rabbit",
+        "meaning": "“ 兖； 野兖",
+        "sourcePage": 61,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 61
+      },
+      {
+        "word": "high",
+        "meaning": "高的",
+        "sourcePage": 63,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 63
+      }
+    ]
+  },
+  {
+    "id": "pep-2024-g6a-unit-1",
+    "title": "人教PEP版 六年级上册 Unit 1",
+    "publisher": "人教PEP版",
+    "grade": "六年级上册",
+    "unit": "Unit 1",
+    "source": "人教PEP版6年级英语上册",
+    "words": [
+      {
+        "word": "science",
+        "meaning": "科学",
+        "sourcePage": 5,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 5
+      },
+      {
+        "word": "far",
+        "meaning": "较远的",
+        "sourcePage": 8,
+        "example": "Robin:; Were in front of the WMike: Is 汀 far?",
+        "clozeExample": "Robin:; Were in front of the WMike: Is 汀 ____?",
+        "examplePage": 8
+      },
+      {
+        "word": "museum",
+        "meaning": "博物馆",
+        "sourcePage": 5,
+        "example": "WMan: Ifs next to the museum.",
+        "clozeExample": "WMan: Ifs next to the ____.",
+        "examplePage": 4
+      },
+      {
+        "word": "tell",
+        "meaning": "告诉",
+        "sourcePage": 8,
+        "example": "Wu Yifan: Yesl I tell 6randpa.",
+        "clozeExample": "Wu Yifan: Yesl I ____ 6randpa.",
+        "examplePage": 8
+      },
+      {
+        "word": "post office",
+        "meaning": "邮局",
+        "sourcePage": 5,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 5
+      }
+    ]
+  },
+  {
+    "id": "pep-2024-g6a-unit-2",
+    "title": "人教PEP版 六年级上册 Unit 2",
+    "publisher": "人教PEP版",
+    "grade": "六年级上册",
+    "unit": "Unit 2",
+    "source": "人教PEP版6年级英语上册",
+    "words": [
+      {
+        "word": "cinema",
+        "meaning": "电影院",
+        "sourcePage": 5,
+        "example": "l 昊 Wu yifan: Where is the cinema?",
+        "clozeExample": "l 昊 Wu yifan: Where is the ____?",
+        "examplePage": 5
+      },
+      {
+        "word": "on foot",
+        "meaning": "“ foot 步行",
+        "sourcePage": 15,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 15
+      },
+      {
+        "word": "hospital",
+        "meaning": "医院",
+        "sourcePage": 5,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 5
+      },
+      {
+        "word": "by",
+        "meaning": "/ball 乘",
+        "sourcePage": 15,
+        "example": "( ) They will go by bus:.",
+        "clozeExample": "( ) They will go ____ bus:.",
+        "examplePage": 14
+      },
+      {
+        "word": "crossing",
+        "meaning": "十字路口",
+        "sourcePage": 7,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 7
+      },
+      {
+        "word": "bus",
+        "meaning": "“ 公共汽车",
+        "sourcePage": 15,
+        "example": "( ) They will go by bus:.",
+        "clozeExample": "( ) They will go by ____:.",
+        "examplePage": 14
+      },
+      {
+        "word": "turn",
+        "meaning": "转弯",
+        "sourcePage": 7,
+        "example": "Robin: Turn left at the bookstore.",
+        "clozeExample": "Robin: ____ left at the bookstore.",
+        "examplePage": 6
+      },
+      {
+        "word": "plane",
+        "meaning": "飞机",
+        "sourcePage": 15,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 15
+      },
+      {
+        "word": "left",
+        "meaning": "「taeksiy 出租汽车 P",
+        "sourcePage": 7,
+        "example": "Robin: Turn left at the bookstore.",
+        "clozeExample": "Robin: Turn ____ at the bookstore.",
+        "examplePage": 6
+      },
+      {
+        "word": "straight",
+        "meaning": "笔直地",
+        "sourcePage": 7,
+        "example": "M 孙 “ 6o straight and you can see the Palace Museum.",
+        "clozeExample": "M 孙 “ 6o ____ and you can see the Palace Museum.",
+        "examplePage": 7
+      },
+      {
+        "word": "ship",
+        "meaning": "/fipy 船",
+        "sourcePage": 15,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 15
+      },
+      {
+        "word": "right",
+        "meaning": "右",
+        "sourcePage": 7,
+        "example": "_ then turn right again.",
+        "clozeExample": "_ then turn ____ again.",
+        "examplePage": 9
+      },
+      {
+        "word": "subway",
+        "meaning": "地铁",
+        "sourcePage": 15,
+        "example": "foadiiRHbtbiKhg this in tthe subway.",
+        "clozeExample": "foadiiRHbtbiKhg this in tthe ____.",
+        "examplePage": 16
+      },
+      {
+        "word": "ask",
+        "meaning": "问",
+        "sourcePage": 4,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 4
+      },
+      {
+        "word": "train",
+        "meaning": "火车",
+        "sourcePage": 15,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 15
+      },
+      {
+        "word": "sir",
+        "meaning": "slow 〔 使 ) 放慢速度； 慢的",
+        "sourcePage": 17,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 17
+      },
+      {
+        "word": "down",
+        "meaning": "“ 湘少； 降低",
+        "sourcePage": 17,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 17
+      },
+      {
+        "word": "interesting",
+        "meaning": "有趣的 “",
+        "sourcePage": 6,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 6
+      },
+      {
+        "word": "slow down",
+        "meaning": "慷下来",
+        "sourcePage": 17,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 17
+      },
+      {
+        "word": "stop",
+        "meaning": "停下",
+        "sourcePage": 17,
+        "example": "Stop and woil at 60 atf a green light.",
+        "clozeExample": "____ and woil at 60 atf a green light.",
+        "examplePage": 17
+      },
+      {
+        "word": "restaurant",
+        "meaning": "/restronty 餐馆",
+        "sourcePage": 6,
+        "example": "a great Ifalian restaurant.",
+        "clozeExample": "a great Ifalian ____.",
+        "examplePage": 6
+      },
+      {
+        "word": "pizza",
+        "meaning": "止萨饼",
+        "sourcePage": 6,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 6
+      },
+      {
+        "word": "early",
+        "meaning": "早到的",
+        "sourcePage": 14,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 14
+      },
+      {
+        "word": "street",
+        "meaning": "/stri:ty 大街； 街途",
+        "sourcePage": 6,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 6
+      },
+      {
+        "word": "helmet",
+        "meaning": "头盔",
+        "sourcePage": 16,
+        "example": "Wr Jones; A helmet.",
+        "clozeExample": "Wr Jones; A ____.",
+        "examplePage": 16
+      },
+      {
+        "word": "get",
+        "meaning": "到达",
+        "sourcePage": 6,
+        "example": "WMike: How can we get there?",
+        "clozeExample": "WMike: How can we ____ there?",
+        "examplePage": 6
+      },
+      {
+        "word": "must",
+        "meaning": "“ 必须",
+        "sourcePage": 16,
+        "example": "bikes must wear one.",
+        "clozeExample": "bikes ____ wear one.",
+        "examplePage": 16
+      },
+      {
+        "word": "attention",
+        "meaning": "注意",
+        "sourcePage": 16,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 16
+      },
+      {
+        "word": "gave",
+        "meaning": "pay attention to 注意",
+        "sourcePage": 16,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 16
+      },
+      {
+        "word": "traffic",
+        "meaning": "交通",
+        "sourcePage": 16,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 16
+      },
+      {
+        "word": "feature",
+        "meaning": "Afi:tfa / 特点",
+        "sourcePage": 8,
+        "example": "Wu Yifan「s grandpa gave Robin a new feature.",
+        "clozeExample": "Wu Yifan「s grandpa gave Robin a new ____.",
+        "examplePage": 8
+      },
+      {
+        "word": "traffic lights",
+        "meaning": "交通信号灯",
+        "sourcePage": 16,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 16
+      },
+      {
+        "word": "sled",
+        "meaning": "/sledy 雪椴",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "fast",
+        "meaning": "快的",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "ferry",
+        "meaning": "轮浣",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      }
+    ]
+  },
+  {
+    "id": "pep-2024-g6a-unit-3",
+    "title": "人教PEP版 六年级上册 Unit 3",
+    "publisher": "人教PEP版",
+    "grade": "六年级上册",
+    "unit": "Unit 3",
+    "source": "人教PEP版6年级英语上册",
+    "words": [
+      {
+        "word": "visit",
+        "meaning": "拜访",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "film",
+        "meaning": "电影",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "take a trip",
+        "meaning": "宇振行",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "supermarket",
+        "meaning": "/「sju:pama:kity 超",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "evening",
+        "meaning": "晓上； 傍晓",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "tonight",
+        "meaning": "/ta! 皿山在今晓",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "tomorrow",
+        "meaning": "明天",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "next week",
+        "meaning": "下周",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "dictionary",
+        "meaning": "/「dlkfanriy 词典",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "comic",
+        "meaning": "/ 滑稽的",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "comic book",
+        "meaning": "儿童的 ) 连环画册",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "postcard",
+        "meaning": "明信片",
+        "sourcePage": null,
+        "example": "I want to buy a postcard.",
+        "clozeExample": "I want to buy a ____.",
+        "examplePage": 4
+      },
+      {
+        "word": "lesson",
+        "meaning": "/lesny 课",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "space",
+        "meaning": "太空",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "half",
+        "meaning": "“ /ha:fy 一半",
+        "sourcePage": 26,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 26
+      },
+      {
+        "word": "price",
+        "meaning": "价格",
+        "sourcePage": 26,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 26
+      },
+      {
+        "word": "together",
+        "meaning": "一起",
+        "sourcePage": 28,
+        "example": "when your family get together.",
+        "clozeExample": "when your family get ____.",
+        "examplePage": 28
+      },
+      {
+        "word": "get together",
+        "meaning": "棣会",
+        "sourcePage": 28,
+        "example": "when your family get together.",
+        "clozeExample": "when your family ____.",
+        "examplePage": 28
+      },
+      {
+        "word": "poem",
+        "meaning": "/pauImy 诗",
+        "sourcePage": 28,
+        "example": "to read a poem.",
+        "clozeExample": "to read a ____.",
+        "examplePage": 28
+      }
+    ]
+  },
+  {
+    "id": "pep-2024-g6a-unit-4",
+    "title": "人教PEP版 六年级上册 Unit 4",
+    "publisher": "人教PEP版",
+    "grade": "六年级上册",
+    "unit": "Unit 4",
+    "source": "人教PEP版6年级英语上册",
+    "words": [
+      {
+        "word": "studies",
+        "meaning": "(study 的第三",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "hiking",
+        "meaning": "远足",
+        "sourcePage": 41,
+        "example": "puzzles and going hiking?",
+        "clozeExample": "puzzles and going ____?",
+        "examplePage": 40
+      },
+      {
+        "word": "pen pal",
+        "meaning": "笔友",
+        "sourcePage": 38,
+        "example": "Oliver, this is my pen pal Peter.",
+        "clozeExample": "Oliver, this is my ____ Peter.",
+        "examplePage": 37
+      },
+      {
+        "word": "idea",
+        "meaning": "想法； 主意",
+        "sourcePage": 38,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 38
+      },
+      {
+        "word": "amazing",
+        "meaning": "令人惊奇的 “",
+        "sourcePage": 40,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 40
+      },
+      {
+        "word": "shall",
+        "meaning": "乔示征权意见仪市门",
+        "sourcePage": 27,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 27
+      },
+      {
+        "word": "club",
+        "meaning": "/klaby 俱乐部",
+        "sourcePage": 42,
+        "example": "Finish this ad for a cooking club.",
+        "clozeExample": "Finish this ad for a cooking ____.",
+        "examplePage": 43
+      },
+      {
+        "word": "share",
+        "meaning": "分享",
+        "sourcePage": 42,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 42
+      }
+    ]
+  },
+  {
+    "id": "pep-2024-g6a-unit-5",
+    "title": "人教PEP版 六年级上册 Unit 5",
+    "publisher": "人教PEP版",
+    "grade": "六年级上册",
+    "unit": "Unit 5",
+    "source": "人教PEP版6年级英语上册",
+    "words": [
+      {
+        "word": "postman",
+        "meaning": "邮递员",
+        "sourcePage": 49,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 49
+      },
+      {
+        "word": "businessman",
+        "meaning": "商人；",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "police officer",
+        "meaning": "/ 警察",
+        "sourcePage": 49,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 49
+      },
+      {
+        "word": "fisherman",
+        "meaning": "/fifamany 混民",
+        "sourcePage": 51,
+        "example": "Mike; My uncle is a fisherman.",
+        "clozeExample": "Mike; My uncle is a ____.",
+        "examplePage": 50
+      },
+      {
+        "word": "scientist",
+        "meaning": "科学家",
+        "sourcePage": 51,
+        "example": "Oliver: My aunt is a scientist.",
+        "clozeExample": "Oliver: My aunt is a ____.",
+        "examplePage": 51
+      },
+      {
+        "word": "pilot",
+        "meaning": "/parlaty 飞行员",
+        "sourcePage": 51,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 51
+      },
+      {
+        "word": "coach",
+        "meaning": "教练",
+        "sourcePage": 51,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 51
+      },
+      {
+        "word": "country",
+        "meaning": "国家",
+        "sourcePage": 48,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 48
+      },
+      {
+        "word": "head teacher",
+        "meaning": "校长",
+        "sourcePage": 48,
+        "example": "She is a head teacher.",
+        "clozeExample": "She is a ____.",
+        "examplePage": 46
+      },
+      {
+        "word": "sea",
+        "meaning": "大海",
+        "sourcePage": 50,
+        "example": "WMike: He works att sea.",
+        "clozeExample": "WMike: He works att ____.",
+        "examplePage": 50
+      },
+      {
+        "word": "stay",
+        "meaning": "保持",
+        "sourcePage": 50,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 50
+      },
+      {
+        "word": "university",
+        "meaning": "大学 “",
+        "sourcePage": 51,
+        "example": "Oliver: She works at a university.",
+        "clozeExample": "Oliver: She works at a ____.",
+        "examplePage": 51
+      },
+      {
+        "word": "gym",
+        "meaning": "体育馆",
+        "sourcePage": 52,
+        "example": "1 He wants to work in a gym:.",
+        "clozeExample": "1 He wants to work in a ____:.",
+        "examplePage": 52
+      },
+      {
+        "word": "if",
+        "meaning": "如果",
+        "sourcePage": 52,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 52
+      },
+      {
+        "word": "reporter",
+        "meaning": "记者",
+        "sourcePage": 52,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 52
+      },
+      {
+        "word": "type",
+        "meaning": "打字",
+        "sourcePage": 52,
+        "example": "and she can type very quickly.",
+        "clozeExample": "and she can ____ very quickly.",
+        "examplePage": 52
+      },
+      {
+        "word": "quickly",
+        "meaning": "迅速地",
+        "sourcePage": 52,
+        "example": "and she can type very quickly.",
+        "clozeExample": "and she can type very ____.",
+        "examplePage": 52
+      }
+    ]
+  },
+  {
+    "id": "pep-2024-g6a-unit-6",
+    "title": "人教PEP版 六年级上册 Unit 6",
+    "publisher": "人教PEP版",
+    "grade": "六年级上册",
+    "unit": "Unit 6",
+    "source": "人教PEP版6年级英语上册",
+    "words": [
+      {
+        "word": "angry",
+        "meaning": "生气的",
+        "sourcePage": 52,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 52
+      },
+      {
+        "word": "afraid",
+        "meaning": "害怕",
+        "sourcePage": 59,
+        "example": "Theyre afraid of him.",
+        "clozeExample": "Theyre ____ of him.",
+        "examplePage": 58
+      },
+      {
+        "word": "sad",
+        "meaning": "/stedy 难过的",
+        "sourcePage": 59,
+        "example": "WMum: Dont be sad.",
+        "clozeExample": "WMum: Dont be ____.",
+        "examplePage": 60
+      },
+      {
+        "word": "happy",
+        "meaning": "高兴的",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "wear",
+        "meaning": "宏",
+        "sourcePage": 61,
+        "example": "you should wear warm clothes.",
+        "clozeExample": "you should ____ warm clothes.",
+        "examplePage": 61
+      },
+      {
+        "word": "more",
+        "meaning": "“ 更多的",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "deep",
+        "meaning": "“ /di:py 深的",
+        "sourcePage": 61,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 61
+      },
+      {
+        "word": "breath",
+        "meaning": "呼吸",
+        "sourcePage": 61,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 61
+      },
+      {
+        "word": "take a deep breath",
+        "meaning": "深深吸一口气",
+        "sourcePage": 61,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 61
+      },
+      {
+        "word": "count",
+        "meaning": "“ 数数",
+        "sourcePage": 61,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 61
+      },
+      {
+        "word": "count to ten",
+        "meaning": "数到十",
+        "sourcePage": 61,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 61
+      },
+      {
+        "word": "chase",
+        "meaning": "“ 追赶",
+        "sourcePage": 58,
+        "example": "Sarah: He chases the mice.",
+        "clozeExample": "Sarah: He ____ the mice.",
+        "examplePage": 58
+      },
+      {
+        "word": "mice",
+        "meaning": "“",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "bad",
+        "meaning": "“ 邪恶的； 坏的",
+        "sourcePage": 58,
+        "example": "Sarah: Because the mice are bad.",
+        "clozeExample": "Sarah: Because the mice are ____.",
+        "examplePage": 58
+      },
+      {
+        "word": "hurt",
+        "meaning": "/ha:ity 取伤",
+        "sourcePage": 58,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 58
+      },
+      {
+        "word": "should",
+        "meaning": "“ 应该",
+        "sourcePage": 60,
+        "example": "you should wear warm clothes.",
+        "clozeExample": "you ____ wear warm clothes.",
+        "examplePage": 61
+      },
+      {
+        "word": "feel",
+        "meaning": "觉得； 感到",
+        "sourcePage": 60,
+        "example": "Sam: How does bad feel now?",
+        "clozeExample": "Sam: How does bad ____ now?",
+        "examplePage": 60
+      },
+      {
+        "word": "well",
+        "meaning": "/wel 健康； 身体好",
+        "sourcePage": 60,
+        "example": "WMum: Not well Letfs go to the hospial.",
+        "clozeExample": "WMum: Not ____ Letfs go to the hospial.",
+        "examplePage": 60
+      },
+      {
+        "word": "grass",
+        "meaning": "“ 草坪",
+        "sourcePage": 62,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 62
+      },
+      {
+        "word": "hear",
+        "meaning": "“ 听见",
+        "sourcePage": 62,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 62
+      },
+      {
+        "word": "ant",
+        "meaning": "虾蚁",
+        "sourcePage": 62,
+        "example": "It is a liftle ant.",
+        "clozeExample": "It is a liftle ____.",
+        "examplePage": 62
+      },
+      {
+        "word": "stuck",
+        "meaning": "陷住； 无法移动",
+        "sourcePage": 62,
+        "example": "He is stuck in the mud.",
+        "clozeExample": "He is ____ in the mud.",
+        "examplePage": 62
+      },
+      {
+        "word": "pull",
+        "meaning": "/puly 拉； 拳 P",
+        "sourcePage": null,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": null
+      },
+      {
+        "word": "everyone",
+        "meaning": "“ 夺人",
+        "sourcePage": 62,
+        "example": "",
+        "clozeExample": "",
+        "examplePage": 62
       }
     ]
   }
