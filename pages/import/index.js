@@ -162,7 +162,9 @@ Page({
       wx.showToast({ title: '请先导入课后单词表', icon: 'none' })
       return
     }
-    words = attachExamplesFromText(words, text)
+    if (looksLikePassage) {
+      words = attachExamplesFromText(words, text)
+    }
     const parsedWords = annotateWords(words)
     this.setData({ parsedWords, errors: result.errors })
 
