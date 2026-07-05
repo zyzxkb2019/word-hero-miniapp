@@ -85,6 +85,30 @@ function joinWords(words) {
   }).join('\n')
 }
 
+function normalizeTextbookWords(words) {
+  return annotateWords((words || []).map((item) => ({
+    ...item,
+    meaning: item.meaning || '',
+    example: item.example || '',
+    clozeExample: item.clozeExample || '',
+    masteryScore: 0,
+    rightCount: 0,
+    wrongCount: 0,
+    reviewedCount: 0,
+    recognitionDates: [],
+    consecutiveRecognizedDays: 0,
+    recognitionPassed: false,
+    spellingRightCount: 0,
+    spellingWrongCount: 0,
+    spellingPassed: false,
+    lastReviewedAt: null,
+    lastSpelledAt: null,
+    memoryStatus: 'new',
+    uploadAt: Date.now(),
+    createdAt: Date.now()
+  })))
+}
+
 Page({
   data: {
     themeClass: theme.getThemeClass(),
@@ -193,15 +217,22 @@ Page({
     this.setData({
       selectedUnitIndex: index,
       title: unit.title,
-      rawText: joinWords(unit.words)
+      rawText: joinWords(unit.words),
+      parsedWords: normalizeTextbookWords(unit.words),
+      errors: []
     })
-    this.runParser(joinWords(unit.words))
+    wx.showToast({ title: `已载入 ${unit.words.length} 个教材词`, icon: 'none' })
   },
 
   useSelectedUnit() {
     const unit = this.data.textbookUnits[this.data.selectedUnitIndex]
-    this.setData({ title: unit.title, rawText: joinWords(unit.words) })
-    this.runParser(joinWords(unit.words))
+    this.setData({
+      title: unit.title,
+      rawText: joinWords(unit.words),
+      parsedWords: normalizeTextbookWords(unit.words),
+      errors: []
+    })
+    wx.showToast({ title: `已载入 ${unit.words.length} 个教材词`, icon: 'none' })
   },
 
   importWrongWords() {
