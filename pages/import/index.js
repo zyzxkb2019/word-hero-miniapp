@@ -150,11 +150,19 @@ Page({
     let words = result.words
     const wordLikeCount = (String(text || '').match(/[A-Za-z][A-Za-z'-]{1,}/g) || []).length
     const looksLikePassage = wordLikeCount >= 8 && /[.!?。！？]/.test(String(text || ''))
-    if ((words.length < 2 && wordLikeCount >= 8) || looksLikePassage) {
-      words = extractWordsFromPassage(text, this.data.maxWords)
-    } else {
-      words = attachExamplesFromText(words, text)
+    if (looksLikePassage && words.length < 2) {
+      this.setData({
+        parsedWords: [],
+        errors: [{
+          line: 0,
+          text: '',
+          reason: '这段内容像课文原文。为避免把 the、and、is 这类简单词误当生词，请先导入课后单词表，再用课文原文匹配例句。'
+        }]
+      })
+      wx.showToast({ title: '请先导入课后单词表', icon: 'none' })
+      return
     }
+    words = attachExamplesFromText(words, text)
     const parsedWords = annotateWords(words)
     this.setData({ parsedWords, errors: result.errors })
 
