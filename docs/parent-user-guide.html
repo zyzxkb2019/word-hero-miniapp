@@ -89,8 +89,8 @@
       margin: 0 auto;
       padding: 56px 20px 42px;
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 32px;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 30px;
       align-items: center;
     }
     .eyebrow {
@@ -134,19 +134,27 @@
     }
     .primary { background: var(--brand); color: #fff; }
     .secondary { background: #fff; color: var(--brand); border: 1px solid #bfdbfe; }
+    .phone-stack {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      align-items: center;
+      justify-items: center;
+    }
     .phone {
       background: #111827;
       border-radius: 28px;
-      padding: 14px;
+      padding: 12px;
       box-shadow: var(--shadow);
-      max-width: 350px;
+      max-width: 390px;
+      width: 100%;
       justify-self: center;
     }
     .screen {
       background: #f8fafc;
       border-radius: 20px;
-      padding: 18px;
-      min-height: 430px;
+      padding: 16px;
+      min-height: 350px;
     }
     .mini-title { font-size: 24px; font-weight: 1000; margin-bottom: 12px; }
     .pill-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
@@ -164,6 +172,46 @@
     .chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
     .chip { background: #d1fae5; color: #065f46; border-radius: 7px; padding: 5px 9px; font-weight: 900; }
     .focus { color: var(--red); background: #fee2e2; border-radius: 4px; padding: 0 2px; }
+    .unit-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: #eef2ff;
+      color: #3730a3;
+      font-size: 12px;
+      font-weight: 1000;
+      margin-bottom: 10px;
+    }
+    .cloze-sentence {
+      font-size: 18px;
+      line-height: 1.45;
+      font-weight: 900;
+      color: #111827;
+    }
+    .blank {
+      display: inline-block;
+      min-width: 76px;
+      border-bottom: 4px solid #111827;
+      transform: translateY(-2px);
+      margin: 0 4px;
+    }
+    .phone-note {
+      margin-top: 10px;
+      color: #667085;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .contrast-card {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: #9a3412;
+      border-radius: 12px;
+      padding: 12px;
+      margin-top: 12px;
+      font-size: 14px;
+      font-weight: 800;
+    }
     main { max-width: 1180px; margin: 0 auto; padding: 34px 20px 80px; }
     section { scroll-margin-top: 78px; }
     .section-head { margin: 38px 0 16px; display: flex; align-items: end; justify-content: space-between; gap: 16px; }
@@ -253,6 +301,7 @@
       .grid-3, .grid-2 { grid-template-columns: 1fr; }
       .mode-item { grid-template-columns: 1fr; }
       .nav { display: none; }
+      .phone-stack { grid-template-columns: 1fr; }
       .phone { width: 100%; max-width: 380px; }
     }
     @media print {
@@ -288,23 +337,38 @@
           <a class="secondary" href="#feedback">查看内测反馈清单</a>
         </div>
       </div>
-      <div class="phone" aria-label="功能示意">
-        <div class="screen">
-          <div class="mini-title">背词闯关</div>
-          <div class="pill-row"><span class="pill">听音辨义</span><span class="pill">四选一</span><span class="pill">拼写</span></div>
-          <div class="demo-card">
-            <div class="demo-label">考试变身</div>
-            <div class="word-row">organize 会这样变</div>
-            <div class="chips"><span class="chip">organizes</span><span class="chip">organized</span><span class="chip">organizing</span></div>
+      <div class="phone-stack" aria-label="核心功能示意">
+        <div class="phone" aria-label="教材课文原句填空示意">
+          <div class="screen">
+            <div class="mini-title">教材单元精准闯关</div>
+            <div class="unit-badge">七年级上 · Unit 1 · 课文原句</div>
+            <div class="demo-card">
+              <div class="demo-label">课文原句填空</div>
+              <div class="cloze-sentence">the editors of the first modern encyclopaedias, like the Encyclopaedia Britannica, <span class="blank"></span> the entries in alphabetical order.</div>
+              <div class="phone-note">目标词：organize。不是泛泛背词，而是对准教材里第一次出现它的句子。</div>
+            </div>
+            <div class="demo-card">
+              <div class="demo-label">选择正确英文</div>
+              <div class="word-row">组织；整理</div>
+              <div class="chips"><span class="chip">record</span><span class="chip">organize</span><span class="chip">include</span></div>
+            </div>
+            <div class="contrast-card">这是真正贴着孩子课本走的背词方式，和大众化词库软件不一样。</div>
           </div>
-          <div class="demo-card">
-            <div class="demo-label">一串会读</div>
-            <div class="word-row">i-e = /aɪ/ <img class="sound" src="../assets/images/speaker-mini.png" alt="播放" /></div>
-            <div class="chips"><span class="chip">organ<span class="focus">i</span>ze</span><span class="chip">b<span class="focus">i</span>ke</span><span class="chip">l<span class="focus">i</span>ke</span></div>
-          </div>
-          <div class="demo-card">
-            <div class="demo-label">课文原句填空</div>
-            <div>the editors..., ____ the entries in alphabetical order.</div>
+        </div>
+        <div class="phone" aria-label="拼读和变形示意">
+          <div class="screen">
+            <div class="mini-title">背词闯关</div>
+            <div class="pill-row"><span class="pill">听音辨义</span><span class="pill">四选一</span><span class="pill">拼写</span></div>
+            <div class="demo-card">
+              <div class="demo-label">考试变身</div>
+              <div class="word-row">organize 会这样变</div>
+              <div class="chips"><span class="chip">organizes</span><span class="chip">organized</span><span class="chip">organizing</span></div>
+            </div>
+            <div class="demo-card">
+              <div class="demo-label">一串会读</div>
+              <div class="word-row">i-e = /aɪ/ <img class="sound" src="../assets/images/speaker-mini.png" alt="播放" /></div>
+              <div class="chips"><span class="chip">organ<span class="focus">i</span>ze</span><span class="chip">b<span class="focus">i</span>ke</span><span class="chip">l<span class="focus">i</span>ke</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -331,12 +395,16 @@
         <div><h2>二、孩子在闯关里会看到什么</h2><p class="section-note">这些功能不是装饰，而是为英语弱基础学生补底层能力。</p></div>
       </div>
       <div class="tabs" role="tablist">
-        <button class="tab active" data-tab="mode">四种模式</button>
+        <button class="tab active" data-tab="context">课文原句</button>
+        <button class="tab" data-tab="mode">四种模式</button>
         <button class="tab" data-tab="phonics">一串会读</button>
         <button class="tab" data-tab="forms">考试变身</button>
-        <button class="tab" data-tab="context">课文原句</button>
       </div>
-      <div class="card panel active" id="panel-mode">
+      <div class="card panel active" id="panel-context">
+        <h3>课文原句填空：直接对准教材单元</h3>
+        <p>孩子选定某个年级、某个教材版本、某个单元后，系统会把单词放回它在课文中首次出现的原句，并把目标词挖空。它不是从一个大众化词库里随机抽词，而是贴着孩子正在学的课本走。</p>
+      </div>
+      <div class="card panel" id="panel-mode">
         <div class="mode-list">
           <div class="mode-item"><div class="mode-name">听音辨义</div><div>先听英文发音，再从 4 个中文意思里选择。适合“不知道怎么读”的孩子。</div></div>
           <div class="mode-item"><div class="mode-name">闪卡</div><div>先看英文，再翻中文。适合建立第一印象。</div></div>
@@ -351,10 +419,6 @@
       <div class="card panel" id="panel-forms">
         <h3>考试变身：换个样子也认得</h3>
         <p>系统会轻量提示 studies、studied、studying，或者 happier、happiest。孩子不用先学一大节语法课，而是在背词时顺手看见常考变化。</p>
-      </div>
-      <div class="card panel" id="panel-context">
-        <h3>课文原句填空：回到教材里记</h3>
-        <p>教材词会尽量匹配首次出现在课文里的句子，并把目标词挖空。孩子不是孤立背词，而是在真实句子中再次遇见它。</p>
       </div>
     </section>
 
