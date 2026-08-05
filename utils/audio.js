@@ -1,12 +1,20 @@
-let correctAudio = null
+﻿let correctAudio = null
 let praiseAudio = null
 let wordAudio = null
 let wechatSIPlugin = null
 let pluginChecked = false
 let lastPlayAt = 0
+let wordSpeakTimer = null
 
 const CORRECT_SOUND_SRC = '/assets/audio/correct.mp3'
 const DICTIONARY_AUDIO_BASE = 'https://dict.youdao.com/dictvoice'
+
+const COMBO_CHEER_PHRASES = [
+  '哇！五连对！',
+  '耶！五连击！',
+  '太强了！连续五个全对！',
+  '漂亮！五连胜！'
+]
 
 const PRAISE_PHRASES = {
   '活泼姐姐': [
@@ -14,7 +22,7 @@ const PRAISE_PHRASES = {
     '{name}太棒了！',
     '漂亮，{name}又升级了！',
     '{name}这一击很准！',
-    '开心！{name}又拿下一题！'
+    '开心，{name}又拿下一题！'
   ],
   '稳重男教练': [
     '正确，{name}继续保持。',
@@ -31,7 +39,7 @@ const PRAISE_PHRASES = {
     '答对啦，{name}可以小小骄傲一下。'
   ],
   '游戏NPC': [
-    '命中！{name}收服了这个单词怪！',
+    '命中，{name}收服了这个单词怪！',
     '{name}经验值加十！',
     '恭喜{name}解锁新能量！',
     '漂亮，{name}完成一次精准攻击！',
@@ -82,6 +90,12 @@ function buildCorrectPraise(name, interactionStyle, voiceStyle) {
   return getRandomItem(list).replace(/\{name\}/g, safeName)
 }
 
+function buildComboCheer(comboCount, name) {
+  const safeName = sanitizeName(name)
+  const phrase = getRandomItem(COMBO_CHEER_PHRASES)
+  return phrase + safeName + '已经连续答对 ' + comboCount + ' 个！'
+}
+
 function getWechatSIPlugin() {
   if (pluginChecked) return wechatSIPlugin
   pluginChecked = true
@@ -89,13 +103,16 @@ function getWechatSIPlugin() {
   return wechatSIPlugin
 }
 
-function createAudioContext(onErrorText) {
+function createAudioContext(onErrorText, onErrorFallback) {
   configureAudio()
   if (typeof wx === 'undefined' || !wx.createInnerAudioContext) return null
   const audio = wx.createInnerAudioContext()
   audio.autoplay = false
   try { audio.obeyMuteSwitch = false } catch (err) {}
-  audio.onError((err) => console.warn(onErrorText, err))
+  audio.onError((err) => {
+    console.warn(onErrorText, err)
+    if (typeof onErrorFallback === 'function') onErrorFallback(err)
+  })
   audio.onCanplay(() => {
     try { audio.play() } catch (err) { console.warn(onErrorText, err) }
   })
@@ -128,7 +145,7 @@ function playCorrectSound() {
 function playTTS(content, lang, target) {
   const text = String(content || '').trim()
   const plugin = getWechatSIPlugin()
-  if (!text || !plugin || !plugin.textToSpeech) return
+  if (!text || !plugin || !plugin.textToSpeech) return false
 
   try {
     plugin.textToSpeech({
@@ -161,8 +178,10 @@ function playTTS(content, lang, target) {
         console.warn('TTS 生成失败：', err)
       }
     })
+    return true
   } catch (err) {
     console.warn('TTS 调用失败：', err)
+    return false
   }
 }
 
@@ -177,17 +196,25 @@ function playDictionaryWordAudio(content, options = {}) {
     wordAudio = null
   }
 
-  const audio = wordAudio = createAudioContext('English word audio failed:')
+  let fallbackUsed = false
+  const fallback = () => {
+    if (fallbackUsed) return
+    fallbackUsed = true
+    playTTS(text, 'en_US', 'word')
+  }
+
+  const audio = wordAudio = createAudioContext('English word audio failed:', fallback)
   if (!audio) return false
 
   try {
     audio.src = `${DICTIONARY_AUDIO_BASE}?audio=${encodeURIComponent(text)}&type=${accent}&_=${Date.now()}`
     setTimeout(() => {
-      try { audio.play() } catch (err) { console.warn('Dictionary audio play failed:', err) }
-    }, 160)
+      try { audio.play() } catch (err) { fallback() }
+    }, 120)
     return true
   } catch (err) {
     console.warn('Dictionary audio failed:', err)
+    fallback()
     return false
   }
 }
@@ -207,13 +234,22 @@ function speakEnglishWord(word, options = {}) {
   const text = String(word || '').trim()
   if (!text) return
   const delay = Number(options.delay || 0)
-  setTimeout(() => {
+  if (wordSpeakTimer) {
+    clearTimeout(wordSpeakTimer)
+    wordSpeakTimer = null
+  }
+  wordSpeakTimer = setTimeout(() => {
+    wordSpeakTimer = null
     const played = playDictionaryWordAudio(text, options)
     if (!played) playTTS(text, 'en_US', 'word')
   }, delay)
 }
 
 function destroyCorrectSound() {
+  if (wordSpeakTimer) {
+    clearTimeout(wordSpeakTimer)
+    wordSpeakTimer = null
+  }
   ;[correctAudio, praiseAudio, wordAudio].forEach((audio) => {
     if (audio) {
       try { audio.destroy() } catch (err) {}
@@ -230,5 +266,6 @@ module.exports = {
   playCorrectVoice,
   speakEnglishWord,
   buildCorrectPraise,
+  buildComboCheer,
   destroyCorrectSound
 }

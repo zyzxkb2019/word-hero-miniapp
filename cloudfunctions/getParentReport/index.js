@@ -1,4 +1,4 @@
-const cloud = require('wx-server-sdk')
+﻿const cloud = require('wx-server-sdk')
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV })
 const db = cloud.database()
 const _ = db.command
@@ -13,12 +13,22 @@ function getBucket(word) {
   return 'new'
 }
 function getTime(value) {
+  if (!value) return 0
+  if (value instanceof Date) return value.getTime()
+  if (typeof value === 'number') return value
+  if (typeof value === 'string') {
+    const t = new Date(value).getTime()
+    return Number.isNaN(t) ? 0 : t
+  }
+  if (value.$date) return getTime(value.$date)
+  if (value._seconds) return Number(value._seconds) * 1000
+  if (value.seconds) return Number(value.seconds) * 1000
   const d = new Date(value)
   const t = d.getTime()
   return Number.isNaN(t) ? 0 : t
 }
 function buildCurve(records) {
-  const sorted = [...(records || [])].sort((a, b) => getTime(a.createdAt) - getTime(b.createdAt)).slice(-30)
+  const sorted = [...(records || [])].sort((a, b) => getTime(a.createdAt || a.reviewedAt) - getTime(b.createdAt || b.reviewedAt)).slice(-30)
   let value = 60
   const points = sorted.map((item, index) => {
     const right = item.result === 'correct' || item.result === 'known'
@@ -110,3 +120,4 @@ exports.main = async (event) => {
     parentMessage: `${child.name || '孩子'} 目前共有 ${overall.totalWords} 个词，${overall.greenCount} 个进入绿格，${overall.spellingPassedCount} 个拼写过关，今天有 ${overall.dueReviewCount || 0} 个到期复习词。${curve.summary.trend}。`
   }
 }
+

@@ -40,11 +40,6 @@
 
   <view class="section-label">词库训练区</view>
   <view class="module-grid wordbank-grid">
-    <view class="module-card main" bindtap="goStudy">
-      <view class="module-icon">⚔️</view>
-      <view class="module-title">开始背词</view>
-      <view class="module-desc">闪卡 / 四选一 / 拼写挑战</view>
-    </view>
     <view class="module-card" bindtap="goLists">
       <view class="module-icon">📚</view>
       <view class="module-title">我的词库</view>
@@ -53,7 +48,7 @@
     <view class="module-card" bindtap="goImport">
       <view class="module-icon">➕</view>
       <view class="module-title">新建词库</view>
-      <view class="module-desc">手动/图片/教材/错题</view>
+      <view class="module-desc">手动/图片/版本/错题</view>
     </view>
     <view class="module-card" bindtap="goContextImport">
       <view class="module-icon">📖</view>

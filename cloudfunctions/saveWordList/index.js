@@ -1,7 +1,8 @@
-const cloud = require('wx-server-sdk')
+﻿const cloud = require('wx-server-sdk')
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV })
 const db = cloud.database()
-const WORD_LIST_LIMIT = 30
+const WORD_LIST_LIMIT = 70
+const WORD_LIMIT_PER_LIST = 50
 
 
 const MINI_PHONETICS = {
@@ -49,6 +50,10 @@ exports.main = async (event) => {
   if (!event.userId) return { success: false, message: '请先创建学生资料' }
   if (!Array.isArray(event.words) || !event.words.length) return { success: false, message: '词表数据不完整' }
 
+  if (event.words.length > WORD_LIMIT_PER_LIST) {
+    return { success: false, message: `一次最多保存 ${WORD_LIMIT_PER_LIST} 个单词或短语` }
+  }
+
   const userRes = await db.collection('users').doc(event.userId).get().catch(() => ({ data: null }))
   if (!userRes.data || userRes.data.openid !== openid) {
     return { success: false, message: '无权保存该词表' }
@@ -67,12 +72,17 @@ exports.main = async (event) => {
     if (!word || seen[word]) return
     seen[word] = true
     const meanings = normalizeMeanings(item)
+    const fullMeaning = String(item.meaningText || '').trim() || (meanings.length ? meanings.join('；') : String(item.meaning || '').trim())
 
     words.push({
       word,
-      meaning: meanings[0] || String(item.meaning || '').trim(),
+      meaning: fullMeaning,
+      meaningText: fullMeaning,
       meanings,
       example: String(item.example || '').trim(),
+      clozeExample: String(item.clozeExample || '').trim(),
+      matchedForm: String(item.matchedForm || '').trim(),
+      examplePage: item.examplePage || item.sourcePage || '',
       sourceText: String(item.sourceText || item.source || '').trim(),
       phonetic: String(item.phonetic || getPhonetic(word)).trim(),
       masteryScore: Number(item.masteryScore || 0),
@@ -124,3 +134,4 @@ exports.main = async (event) => {
 
   return { success: true, wordListId: res._id }
 }
+

@@ -218,3 +218,46 @@
 .theme-dark .review-due-card {
   background: #1e293b !important;
 }
+
+.curve-tabs {
+  display: flex;
+  gap: 12rpx;
+  margin: 18rpx 0 16rpx;
+  padding: 8rpx;
+  border-radius: 999rpx;
+  background: #f1f5f9;
+}
+.curve-tab {
+  flex: 1;
+  height: 54rpx;
+  line-height: 54rpx;
+  text-align: center;
+  border-radius: 999rpx;
+  color: #64748b;
+  font-size: 24rpx;
+  font-weight: 900;
+}
+.curve-tab.active {
+  color: #ffffff;
+  background: #2563eb;
+  box-shadow: 0 8rpx 18rpx rgba(37, 99, 235, 0.22);
+}
+.curve-legend {
+  display: flex;
+  align-items: center;
+  gap: 26rpx;
+  margin-top: 14rpx;
+  color: #475569;
+  font-size: 24rpx;
+  font-weight: 800;
+}
+.legend-dot {
+  display: inline-block;
+  width: 18rpx;
+  height: 18rpx;
+  margin-right: 8rpx;
+  border-radius: 50%;
+  vertical-align: -1rpx;
+}
+.legend-dot.practiced { background: #2563eb; }
+.legend-dot.wrong { background: #f97316; }

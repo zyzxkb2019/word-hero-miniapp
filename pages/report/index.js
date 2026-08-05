@@ -1,4 +1,4 @@
-const storage = require('../../utils/storage')
+﻿const storage = require('../../utils/storage')
 const theme = require('../../utils/theme')
 const { callFunction } = require('../../utils/cloud')
 
@@ -21,10 +21,24 @@ function emptyReport() {
     newWords: [],
     curvePoints: [],
     curveSummary: {},
+    curveRanges: [],
+    curveActiveRange: '7d',
+    curveSeries: {},
     message: '',
     dueReviewWords: [],
     dueReviewCount: 0
   }
+}
+
+function normalizeReport(report = {}) {
+  const next = { ...emptyReport(), ...report }
+  next.curveActiveRange = next.curveActiveRange || '7d'
+  const active = next.curveSeries && next.curveSeries[next.curveActiveRange]
+  if (active) {
+    next.curvePoints = active.points || []
+    next.curveSummary = active.summary || {}
+  }
+  return next
 }
 
 Page({
@@ -64,10 +78,22 @@ Page({
         ])
       })
       .then(([userRes, reportRes]) => {
-        this.setData({ user: userRes.user, report: reportRes.report || emptyReport() })
+        this.setData({ user: userRes.user, report: normalizeReport(reportRes.report) })
         setTimeout(() => this.drawCurve(), 120)
       })
       .catch(() => {})
+  },
+
+  switchCurveRange(e) {
+    const range = e.currentTarget.dataset.range
+    const report = { ...this.data.report }
+    const active = report.curveSeries && report.curveSeries[range]
+    if (!active) return
+    report.curveActiveRange = range
+    report.curvePoints = active.points || []
+    report.curveSummary = active.summary || {}
+    this.setData({ report })
+    setTimeout(() => this.drawCurve(), 30)
   },
 
   drawCurve() {
@@ -75,15 +101,26 @@ Page({
     const ctx = wx.createCanvasContext('learningCurveCanvas', this)
     const width = 315
     const height = 150
+    const paddingLeft = 24
+    const paddingRight = 10
+    const paddingTop = 18
+    const paddingBottom = 24
+    const chartWidth = width - paddingLeft - paddingRight
+    const chartHeight = height - paddingTop - paddingBottom
+
     ctx.clearRect(0, 0, width, height)
     ctx.setFillStyle('#f8fafc')
     ctx.fillRect(0, 0, width, height)
     ctx.setStrokeStyle('#e2e8f0')
     ctx.setLineWidth(1)
     for (let i = 1; i <= 3; i += 1) {
-      const y = (height / 4) * i
-      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(width, y); ctx.stroke()
+      const y = paddingTop + (chartHeight / 4) * i
+      ctx.beginPath()
+      ctx.moveTo(paddingLeft, y)
+      ctx.lineTo(width - paddingRight, y)
+      ctx.stroke()
     }
+
     if (!points.length) {
       ctx.setFillStyle('#94a3b8')
       ctx.setFontSize(13)
@@ -91,22 +128,44 @@ Page({
       ctx.draw()
       return
     }
-    const step = points.length > 1 ? width / (points.length - 1) : width
-    ctx.beginPath()
-    points.forEach((p, index) => {
-      const x = index * step
-      const y = height - (Number(p.value || 0) / 100) * (height - 24) - 12
-      if (index === 0) ctx.moveTo(x, y)
-      else ctx.lineTo(x, y)
-    })
-    ctx.setStrokeStyle('#ef4444')
-    ctx.setLineWidth(3)
-    ctx.stroke()
-    points.forEach((p, index) => {
-      const x = index * step
-      const y = height - (Number(p.value || 0) / 100) * (height - 24) - 12
-      ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI * 2); ctx.setFillStyle(p.result === 'wrong' || p.result === 'unknown' ? '#f97316' : '#22c55e'); ctx.fill()
-    })
+
+    const maxValue = Math.max(1, ...points.map((p) => Math.max(Number(p.practicedCount || 0), Number(p.wrongCount || 0))))
+    const step = points.length > 1 ? chartWidth / (points.length - 1) : chartWidth
+    const getX = (index) => paddingLeft + index * step
+    const getY = (value) => paddingTop + chartHeight - (Number(value || 0) / maxValue) * chartHeight
+
+    const drawLine = (field, color) => {
+      ctx.beginPath()
+      points.forEach((p, index) => {
+        const x = getX(index)
+        const y = getY(p[field])
+        if (index === 0) ctx.moveTo(x, y)
+        else ctx.lineTo(x, y)
+      })
+      ctx.setStrokeStyle(color)
+      ctx.setLineWidth(3)
+      ctx.stroke()
+      points.forEach((p, index) => {
+        const x = getX(index)
+        const y = getY(p[field])
+        ctx.beginPath()
+        ctx.arc(x, y, 3, 0, Math.PI * 2)
+        ctx.setFillStyle(color)
+        ctx.fill()
+      })
+    }
+
+    drawLine('practicedCount', '#2563eb')
+    drawLine('wrongCount', '#f97316')
+
+    ctx.setFillStyle('#64748b')
+    ctx.setFontSize(10)
+    if (points[0]) ctx.fillText(points[0].label || '', paddingLeft, height - 6)
+    if (points.length > 1) ctx.fillText(points[points.length - 1].label || '', width - 45, height - 6)
+    ctx.setFillStyle('#2563eb')
+    ctx.fillText('背词', paddingLeft, 12)
+    ctx.setFillStyle('#f97316')
+    ctx.fillText('错词', paddingLeft + 42, 12)
     ctx.draw()
   },
 

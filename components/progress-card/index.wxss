@@ -38,3 +38,15 @@
 .success { color: #16a34a; }
 .warning { color: #f97316; }
 .danger { color: #ef4444; }
+.mastery-rule {
+  margin-top: 18rpx;
+  padding: 16rpx 18rpx;
+  border-radius: 18rpx;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 21rpx;
+  line-height: 1.55;
+}
+.mastery-rule text {
+  display: block;
+}

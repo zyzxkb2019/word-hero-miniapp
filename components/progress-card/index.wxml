@@ -17,4 +17,8 @@
       <view class="num danger">{{unmasteredCount}}</view>
     </view>
   </view>
+  <view class="mastery-rule">
+    <text>未掌握：掌握分 ≤ 1，通常是刚开始、答错或点“不认识”的词。</text>
+    <text>半掌握：掌握分 2-4，见过但还不稳定，需要继续复现。</text>
+  </view>
 </view>

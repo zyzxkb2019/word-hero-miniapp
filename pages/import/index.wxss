@@ -161,3 +161,49 @@
 }
 
 .preview-phonetic { color:#6366f1; font-size:22rpx; font-weight:800; margin-top:4rpx; }
+
+.textbook-picker-panel {
+  display: grid;
+  grid-template-columns: 250rpx 1fr;
+  gap: 16rpx;
+  min-height: 420rpx;
+  margin-top: 16rpx;
+  margin-bottom: 18rpx;
+}
+.book-list,
+.unit-list {
+  height: 420rpx;
+  border-radius: 22rpx;
+  background: #f8fafc;
+  border: 1rpx solid #e2e8f0;
+  overflow: hidden;
+}
+.book-item,
+.unit-item {
+  padding: 22rpx 18rpx;
+  border-bottom: 1rpx solid #e2e8f0;
+  color: #475569;
+}
+.book-item.active,
+.unit-item.active {
+  background: #eef2ff;
+  color: #3730a3;
+  box-shadow: inset 6rpx 0 0 #6366f1;
+}
+.book-title,
+.unit-title {
+  font-size: 28rpx;
+  font-weight: 1000;
+  line-height: 1.35;
+}
+.book-meta,
+.unit-meta {
+  margin-top: 6rpx;
+  font-size: 22rpx;
+  line-height: 1.4;
+  color: #64748b;
+}
+.book-item.active .book-meta,
+.unit-item.active .unit-meta {
+  color: #4f46e5;
+}

@@ -1,7 +1,7 @@
 <view class="container {{themeClass}}">
   <view class="hero-card import-hero">
     <view class="page-title">创建专属生词库</view>
-    <view class="page-subtitle">支持手动输入、图片识别、教材单元、错题本导入。每次最多 50 个词/短语，每个学生最多 {{wordListLimit}} 个词库。</view>
+    <view class="page-subtitle">支持手动输入、图片识别、年级单元、错题本导入。每次最多 50 个词/短语，每个学生最多 {{wordListLimit}} 个词库。</view>
   </view>
 
   <view class="card limit-card">
@@ -16,21 +16,21 @@
     <view class="mode-tabs">
       <view class="mode-tab {{inputMode === 'manual' ? 'active' : ''}}" data-mode="manual" bindtap="chooseMode">手动输入</view>
       <view class="mode-tab {{inputMode === 'image' ? 'active' : ''}}" data-mode="image" bindtap="chooseMode">图片识别</view>
-      <view class="mode-tab {{inputMode === 'textbook' ? 'active' : ''}}" data-mode="textbook" bindtap="chooseMode">教材单元</view>
+      <view class="mode-tab {{inputMode === 'textbook' ? 'active' : ''}}" data-mode="textbook" bindtap="chooseMode">年级单元</view>
       <view class="mode-tab {{inputMode === 'mistakes' ? 'active' : ''}}" data-mode="mistakes" bindtap="chooseMode">错题本</view>
     </view>
 
     <view class="form-item">
       <text class="label">词库名称</text>
-      <input class="input" placeholder="比如 6月5日生词库 / 校内Unit 4" value="{{title}}" bindinput="onTitleInput" />
+      <input class="input" placeholder="比如 6月5日生词库 / 七上Unit 4" value="{{title}}" bindinput="onTitleInput" />
       <button class="mini-btn" bindtap="useDateTitle">用今天日期命名</button>
     </view>
 
     <block wx:if="{{inputMode === 'manual'}}">
       <view class="form-item">
-        <text class="label">粘贴英文单词 / 短语</text>
-        <textarea class="textarea" placeholder="例如：parrot、thanks to、come from。短语请单独一行或用逗号隔开" value="{{rawText}}" bindinput="onTextInput" />
-        <view class="helper">只填英文，不用手动输入中文；系统会在预览区提醒疑似拼写错误。</view>
+        <text class="label">粘贴单词 / 短语</text>
+        <textarea class="textarea" maxlength="-1" placeholder="例如：parrot、improve 提升、6. goal 目标。短语请单独一行或用逗号隔开" value="{{rawText}}" bindinput="onTextInput" />
+        <view class="helper">可只填英文，也可粘贴“英文 + 中文释义”。系统会在预览区提醒疑似拼写错误。</view>
       </view>
     </block>
 
@@ -43,7 +43,7 @@
         </view>
         <image wx:elif="{{imagePath}}" class="ocr-preview" src="{{imagePath}}" mode="aspectFill" />
         <button class="secondary-btn warm" loading="{{ocrBusy}}" bindtap="recognizeImage">识别图片文字</button>
-        <textarea class="textarea small" placeholder="图片识别出的英文会出现在这里，也可以手动粘贴修正" value="{{ocrText}}" bindinput="onOcrTextInput" />
+        <textarea class="textarea small" maxlength="-1" placeholder="图片识别出的英文会出现在这里，也可以手动粘贴修正" value="{{ocrText}}" bindinput="onOcrTextInput" />
         <button class="secondary-btn" bindtap="useOcrText">使用这段文字</button>
         <view class="helper">图片识别依赖微信 OCR 能力。若个别图片识别不准，可在这里手动改一下再保存。</view>
       </view>
@@ -51,12 +51,23 @@
 
     <block wx:if="{{inputMode === 'textbook'}}">
       <view class="form-item">
-        <text class="label">从教材单元选择</text>
-        <picker mode="selector" range="{{textbookUnits}}" range-key="title" bindchange="chooseTextbookUnit">
-          <view class="picker-value">{{textbookUnits[selectedUnitIndex].title}}</view>
-        </picker>
-        <button class="secondary-btn" bindtap="useSelectedUnit">导入这个单元</button>
-        <view class="helper">这里先内置常用样例单元，后续可以继续把你的教材版本完整补进去。</view>
+        <text class="label">先选年级，再选单元</text>
+        <view class="textbook-picker-panel">
+          <scroll-view class="book-list" scroll-y="true">
+            <view wx:for="{{textbookBooks}}" wx:key="key" class="book-item {{selectedBookIndex === index ? 'active' : ''}}" data-index="{{index}}" bindtap="chooseTextbookBook">
+              <view class="book-title">{{item.displayTitle}}</view>
+              <view class="book-meta">{{item.meta}}</view>
+            </view>
+          </scroll-view>
+          <scroll-view class="unit-list" scroll-y="true">
+            <view wx:for="{{visibleTextbookUnits}}" wx:key="id" class="unit-item {{selectedUnitIndex === index ? 'active' : ''}}" data-index="{{index}}" bindtap="chooseTextbookUnit">
+              <view class="unit-title">{{item.unit}}</view>
+              <view class="unit-meta">{{item.words.length}} 个单元词</view>
+            </view>
+          </scroll-view>
+        </view>
+        <button class="secondary-btn" bindtap="useSelectedUnit">导入选中的单元</button>
+        <view class="helper">家长先选孩子正在学习的年级，再在右侧选择具体单元。</view>
       </view>
     </block>
 
@@ -86,7 +97,7 @@
       </view>
       <view class="word-edit-stack">
         <input class="meaning-input" value="{{item.meaning}}" data-index="{{index}}" placeholder="自动生成中文" bindinput="editMeaning" />
-        <textarea class="example-input" value="{{item.example}}" data-index="{{index}}" placeholder="教材课文原句 / 语境句，例如：The parrot is looking at itself in the mirror." bindinput="editExample" />
+        <textarea class="example-input" maxlength="-1" value="{{item.example}}" data-index="{{index}}" placeholder="课文原句 / 语境句，例如：The parrot is looking at itself in the mirror." bindinput="editExample" />
       </view>
     </view>
   </view>

@@ -14,7 +14,7 @@
 
   <view class="card">
     <view class="section-title">1. 课文来源</view>
-    <input class="input" placeholder="例如：人教版七年级上 Unit 3 / 校内讲义 Week 6" value="{{sourceText}}" bindinput="onSourceInput" />
+    <input class="input" placeholder="例如：七年级上 Unit 3 / 校内讲义 Week 6" value="{{sourceText}}" bindinput="onSourceInput" />
   </view>
 
   <view class="card">

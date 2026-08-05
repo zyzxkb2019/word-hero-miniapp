@@ -3,6 +3,16 @@ Component({
     word: String,
     meaning: String,
     phonetic: String,
-    showMeaning: Boolean
+    showMeaning: Boolean,
+    playable: {
+      type: Boolean,
+      value: false
+    }
+  },
+
+  methods: {
+    onTapSpeak() {
+      this.triggerEvent('speak', { word: this.data.word })
+    }
   }
 })

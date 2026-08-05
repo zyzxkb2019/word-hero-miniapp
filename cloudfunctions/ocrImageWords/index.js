@@ -4,9 +4,58 @@ cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV })
 function normalizeOcrText(text) {
   return String(text || '')
     .replace(/[|]/g, '\n')
-    .replace(/[，,；;]/g, '\n')
+    .replace(/[；;，,]/g, '\n')
     .replace(/\s{2,}/g, '\n')
     .trim()
+}
+
+function extractTextFromOcrResult(ocrRes) {
+  if (!ocrRes) return ''
+  if (typeof ocrRes.text === 'string') return ocrRes.text
+  const items = ocrRes.items || ocrRes.result || ocrRes.words_result || ocrRes.wordsResult || []
+  if (!Array.isArray(items)) return ''
+  return items
+    .map((item) => item.text || item.words || item.content || item.word || '')
+    .filter(Boolean)
+    .join('\n')
+}
+
+async function callPrintedTextOcr(payload) {
+  const ocr = cloud.openapi && cloud.openapi.ocr
+  if (!ocr) return null
+  const printedText = ocr.printedText || ocr.printedtext
+  if (!printedText) return null
+  return printedText(payload)
+}
+
+async function runOcr(fileID, tempUrl) {
+  const attempts = []
+  if (tempUrl) {
+    attempts.push({ imgUrl: tempUrl })
+    attempts.push({ img_url: tempUrl })
+  }
+
+  try {
+    const downloadRes = await cloud.downloadFile({ fileID })
+    if (downloadRes && downloadRes.fileContent) {
+      attempts.push({ img: downloadRes.fileContent })
+      attempts.push({ image: downloadRes.fileContent })
+    }
+  } catch (err) {}
+
+  let lastError = null
+  for (let i = 0; i < attempts.length; i += 1) {
+    try {
+      const result = await callPrintedTextOcr(attempts[i])
+      const text = extractTextFromOcrResult(result)
+      if (text) return text
+    } catch (err) {
+      lastError = err
+    }
+  }
+
+  if (lastError) throw lastError
+  return ''
 }
 
 exports.main = async (event) => {
@@ -15,29 +64,17 @@ exports.main = async (event) => {
   try {
     const urlRes = await cloud.getTempFileURL({ fileList: [event.fileID] })
     const tempUrl = urlRes.fileList && urlRes.fileList[0] && urlRes.fileList[0].tempFileURL
-    if (!tempUrl) return { success: false, text: '', message: '图片临时链接生成失败' }
+    const text = await runOcr(event.fileID, tempUrl)
 
-    // 不同微信基础库的 OCR OpenAPI 名称可能不同，所以这里做多路尝试。
-    // 如果你的后台暂未开通 OCR，会返回友好提示，前端仍可手动粘贴识别文字。
-    let ocrRes = null
-    if (cloud.openapi && cloud.openapi.ocr && cloud.openapi.ocr.printedText) {
-      ocrRes = await cloud.openapi.ocr.printedText({ imgUrl: tempUrl })
-    } else if (cloud.openapi && cloud.openapi.ocr && cloud.openapi.ocr.printedtext) {
-      ocrRes = await cloud.openapi.ocr.printedtext({ imgUrl: tempUrl })
+    if (!text) {
+      return { success: false, text: '', message: '没有识别到清晰英文，请换更清晰的图片，或在下方手动粘贴文字' }
     }
-
-    const items = (ocrRes && (ocrRes.items || ocrRes.result || ocrRes.words_result)) || []
-    const text = Array.isArray(items)
-      ? items.map((item) => item.text || item.words || item.content || '').filter(Boolean).join('\n')
-      : ''
-
-    if (!text) return { success: false, text: '', message: '没有识别到清晰英文，请手动粘贴或换一张更清楚的图片' }
     return { success: true, text: normalizeOcrText(text) }
   } catch (err) {
     return {
       success: false,
       text: '',
-      message: '图片识别通道暂未开通或图片不够清晰，可先手动粘贴文字',
+      message: '图片识别通道暂未开通或图片不够清晰，可先在下方手动粘贴文字',
       errorMessage: err.message || String(err)
     }
   }

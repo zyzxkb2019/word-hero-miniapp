@@ -1,7 +1,7 @@
 const cloud = require('wx-server-sdk')
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV })
 const db = cloud.database()
-const WORD_LIST_LIMIT = 30
+const WORD_LIST_LIMIT = 70
 
 function getBucket(word) {
   if (word.recognitionPassed || word.memoryStatus === 'green') return 'green'

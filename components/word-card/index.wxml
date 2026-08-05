@@ -1,6 +1,14 @@
 <view class="word-card">
-  <view class="word">{{word}}</view>
+  <view class="word-row">
+    <view class="word">{{word}}</view>
+    <button
+      wx:if="{{playable}}"
+      class="word-sound-button"
+      catchtap="onTapSpeak"
+      aria-label="播放单词发音"
+    >🔊</button>
+  </view>
   <view wx:if="{{phonetic}}" class="phonetic">{{phonetic}}</view>
   <view wx:if="{{showMeaning}}" class="meaning">{{meaning || '暂未填写中文释义'}}</view>
-  <view wx:else class="hint">点击卡片查看中文意思</view>
+  <view wx:else class="hint">点击卡片查看中文意思，不会读就点小喇叭</view>
 </view>

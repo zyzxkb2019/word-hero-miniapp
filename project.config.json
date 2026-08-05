@@ -17,6 +17,10 @@
       {
         "value": "assets/audio/correct.wav",
         "type": "file"
+      },
+      {
+        "value": "assets/images/splash-cover-word-hero.png",
+        "type": "file"
       }
     ],
     "include": []

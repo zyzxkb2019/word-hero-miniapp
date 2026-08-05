@@ -7,19 +7,49 @@ function normalizeWord(word) {
     .toLowerCase()
 }
 
+function stripLeadingIndex(value) {
+  return String(value || '')
+    .trim()
+    .replace(/^\s*(?:\d+|[A-Za-z])[\.、\)]\s*/, '')
+    .replace(/^\s*[（(]\s*\d+\s*[）)]\s*/, '')
+    .trim()
+}
+
+function hasChinese(value) {
+  return /[\u3400-\u9fff]/.test(String(value || ''))
+}
+
 function splitWordLine(item) {
-  const raw = String(item || '').trim()
-  const parts = raw.split(/\s*(?:\||\t| -- | - |：|:)\s*/).filter(Boolean)
+  const raw = stripLeadingIndex(item)
+  const explicitParts = raw.split(/\s*(?:\||\t| -- | - |:|：)\s*/).filter(Boolean)
+  if (explicitParts.length > 1) {
+    return {
+      word: normalizeWord(explicitParts[0] || raw),
+      meaning: explicitParts[1] || '',
+      example: explicitParts.slice(2).join(' - ')
+    }
+  }
+
+  const chineseIndex = raw.search(/[\u3400-\u9fff]/)
+  if (chineseIndex > 0) {
+    const wordPart = raw.slice(0, chineseIndex).replace(/[，,;；:：|]+$/g, '').trim()
+    const meaningPart = raw.slice(chineseIndex).trim()
+    return {
+      word: normalizeWord(wordPart),
+      meaning: meaningPart,
+      example: ''
+    }
+  }
+
   return {
-    word: normalizeWord(parts[0] || raw),
-    meaning: parts[1] || '',
-    example: parts.slice(2).join(' - ')
+    word: normalizeWord(raw),
+    meaning: '',
+    example: ''
   }
 }
 
 function looksLikeEnglishItem(item) {
   const value = normalizeWord(item)
-  // 支持单词、短语、带连字符/撇号的英文；例如 thank you, thanks to, ice cream, don't worry, well-known。
   return /^[a-zA-Z][a-zA-Z\-' ]{0,79}$/.test(value) && /[a-zA-Z]/.test(value)
 }
 
@@ -37,12 +67,10 @@ function splitInputIntoItems(text) {
   const hasLineBreak = /[\n\r]/.test(raw)
   const hasStrongSeparator = /[,，;；、]/.test(raw)
 
-  // 有换行或逗号/分号时：每一行/每一段都视为一个“单词或短语”。
-  // 这样 thanks to、look after、a lot of 不会被拆开。
   if (hasLineBreak || hasStrongSeparator) return splitByStrongSeparators(raw)
 
-  // 没有换行也没有标点时：兼容老用法，允许直接粘贴 parrot apple orange 这种单词串。
-  // 但短语建议一行一个或用逗号隔开，页面文案会明确提醒。
+  if (hasChinese(raw)) return [raw]
+
   return raw.split(/\s+/).map((item) => item.trim()).filter(Boolean)
 }
 

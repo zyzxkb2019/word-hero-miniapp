@@ -1,4 +1,4 @@
-<view class="container {{themeClass}}">
+﻿<view class="container {{themeClass}}">
   <view class="hero-card">
     <view class="page-title">{{user.name || '同学'}} 的学习报告</view>
     <view class="page-subtitle">按21天抗遗忘来分层：见过几次、连续认出几天、能不能拼写，分开看。</view>
@@ -11,13 +11,20 @@
     unmasteredCount="{{report.unmasteredCount}}"
   />
 
-  <view class="card curve-card">
-    <view class="section-title">专业学习曲线</view>
+    <view class="card curve-card">
+    <view class="section-title">学习曲线</view>
+    <view class="curve-tabs">
+      <view wx:for="{{report.curveRanges}}" wx:key="key" data-range="{{item.key}}" bindtap="switchCurveRange" class="curve-tab {{report.curveActiveRange == item.key ? 'active' : ''}}">{{item.label}}</view>
+    </view>
     <canvas canvas-id="learningCurveCanvas" class="curve-canvas"></canvas>
+    <view class="curve-legend">
+      <view><text class="legend-dot practiced"></text>背词数量</view>
+      <view><text class="legend-dot wrong"></text>错词/不认识</view>
+    </view>
     <view class="curve-meta">
-      <text>最近练习 {{report.curveSummary.total || 0}} 次</text>
-      <text>正确率 {{report.curveSummary.accuracy || 0}}%</text>
-      <text>波动 {{report.curveSummary.volatility || 0}}</text>
+      <text>共练 {{report.curveSummary.practicedTotal || 0}} 个词</text>
+      <text>错词 {{report.curveSummary.wrongTotal || 0}} 个</text>
+      <text>活跃 {{report.curveSummary.activeDays || 0}} 天</text>
     </view>
     <view class="diagnosis">{{report.curveSummary.trend || '完成一轮练习后自动生成曲线'}}</view>
   </view>
@@ -132,3 +139,5 @@
     <button class="ghost-btn" bindtap="goHome">回首页</button>
   </view>
 </view>
+
+

@@ -1,4 +1,4 @@
-const cloud = require('wx-server-sdk')
+﻿const cloud = require('wx-server-sdk')
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV })
 const db = cloud.database()
 const _ = db.command
@@ -92,47 +92,126 @@ function buildMessage(user, report) {
 }
 
 function getTimeValue(value) {
+  if (!value) return 0
+  if (value instanceof Date) return value.getTime()
+  if (typeof value === 'number') return value
+  if (typeof value === 'string') {
+    const t = new Date(value).getTime()
+    return Number.isNaN(t) ? 0 : t
+  }
+  if (value.$date) return getTimeValue(value.$date)
+  if (value._seconds) return Number(value._seconds) * 1000
+  if (value.seconds) return Number(value.seconds) * 1000
   const d = new Date(value)
   const t = d.getTime()
   return Number.isNaN(t) ? 0 : t
 }
 
-function buildCurve(records) {
-  const sorted = [...(records || [])].sort((a, b) => getTimeValue(a.createdAt) - getTimeValue(b.createdAt)).slice(-24)
-  if (!sorted.length) {
-    return {
-      points: [],
-      summary: { trend: '暂无曲线，完成一轮练习后自动生成', accuracy: 0, total: 0, volatility: 0 }
-    }
-  }
+const CURVE_RANGES = [
+  { key: '3d', label: '3天', days: 3 },
+  { key: '7d', label: '1周', days: 7 },
+  { key: '30d', label: '1月', days: 30 },
+  { key: '365d', label: '1年', days: 365 }
+]
 
-  let value = 62
-  const points = sorted.map((item, index) => {
-    const right = item.result === 'correct' || item.result === 'known'
-    const spelling = item.mode === 'spelling'
-    const delta = right ? (spelling ? 10 : 7) : -12
-    const pulse = index % 2 === 0 ? 5 : -4
-    value = Math.max(20, Math.min(96, value + delta + pulse))
-    return {
-      index: index + 1,
-      value,
-      label: item.word || '',
-      result: item.result,
-      mode: item.mode
+function getChinaDayKey(value = new Date()) {
+  if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value)) return value
+  const time = getTimeValue(value)
+  const date = time ? new Date(time) : new Date()
+  const offsetMs = 8 * 60 * 60 * 1000
+  const china = new Date(date.getTime() + offsetMs)
+  return `${china.getUTCFullYear()}-${String(china.getUTCMonth() + 1).padStart(2, '0')}-${String(china.getUTCDate()).padStart(2, '0')}`
+}
+
+function dayKeyToChinaDate(dayKey) {
+  const [y, m, d] = String(dayKey).split('-').map(Number)
+  return new Date(Date.UTC(y, m - 1, d))
+}
+
+function addDaysToKey(dayKey, delta) {
+  const date = dayKeyToChinaDate(dayKey)
+  date.setUTCDate(date.getUTCDate() + delta)
+  return `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2, '0')}-${String(date.getUTCDate()).padStart(2, '0')}`
+}
+
+function shortDayLabel(dayKey) {
+  const [, m, d] = String(dayKey).split('-')
+  return `${Number(m)}.${Number(d)}`
+}
+
+function markDayStat(byDay, dayKey, word, result) {
+  if (!dayKey || !word) return
+  if (!byDay[dayKey]) byDay[dayKey] = { practiced: {}, wrong: {} }
+  byDay[dayKey].practiced[word] = true
+  if (result === 'wrong' || result === 'unknown') byDay[dayKey].wrong[word] = true
+}
+
+function seedCurveFromWords(byDay, words) {
+  ;(words || []).forEach((word) => {
+    const term = word.word
+    ;(word.recognitionDates || []).forEach((dayKey) => {
+      markDayStat(byDay, getChinaDayKey(dayKey), term, 'correct')
+    })
+
+    if (Number(word.reviewedCount || 0) > 0 && word.lastReviewedAt) {
+      markDayStat(byDay, getChinaDayKey(word.lastReviewedAt), term, '')
+    }
+  })
+}
+
+function buildCurve(records, words) {
+  const byDay = {}
+  seedCurveFromWords(byDay, words)
+  ;(records || []).forEach((item) => {
+    const recordTime = item.createdAt || item.reviewedAt || item.updatedAt
+    const dayKey = item.dayKey || getChinaDayKey(recordTime)
+    markDayStat(byDay, dayKey, item.word, item.result)
+  })
+
+  const todayKey = getChinaDayKey(new Date())
+  const series = {}
+  CURVE_RANGES.forEach((range) => {
+    const points = []
+    for (let i = range.days - 1; i >= 0; i -= 1) {
+      const dayKey = addDaysToKey(todayKey, -i)
+      const stat = byDay[dayKey] || { practiced: {}, wrong: {} }
+      points.push({
+        date: dayKey,
+        label: shortDayLabel(dayKey),
+        practicedCount: Object.keys(stat.practiced).length,
+        wrongCount: Object.keys(stat.wrong).length
+      })
+    }
+    const practicedTotal = points.reduce((sum, item) => sum + item.practicedCount, 0)
+    const wrongTotal = points.reduce((sum, item) => sum + item.wrongCount, 0)
+    const activeDays = points.filter((item) => item.practicedCount > 0).length
+    const peak = points.reduce((max, item) => Math.max(max, item.practicedCount, item.wrongCount), 0)
+    let trend = '暂无足够练习数据'
+    if (practicedTotal > 0) {
+      trend = `这${range.label}共练 ${practicedTotal} 个词，出现错词 ${wrongTotal} 个，活跃 ${activeDays} 天。`
+    }
+    series[range.key] = {
+      points,
+      summary: {
+        range: range.key,
+        label: range.label,
+        practicedTotal,
+        wrongTotal,
+        activeDays,
+        peak,
+        total: practicedTotal,
+        trend
+      }
     }
   })
 
-  const correct = sorted.filter((item) => item.result === 'correct' || item.result === 'known').length
-  const accuracy = Math.round((correct / sorted.length) * 100)
-  const first = points[0].value
-  const last = points[points.length - 1].value
-  const volatility = points.length > 1 ? Math.round(points.slice(1).reduce((sum, item, idx) => sum + Math.abs(item.value - points[idx].value), 0) / (points.length - 1)) : 0
-  let trend = '整体平稳'
-  if (last - first >= 12) trend = '明显上扬，越练越稳'
-  else if (last - first <= -12) trend = '后半段有波动，需要减量复盘'
-  else if (volatility >= 16) trend = '起伏较大，说明有词还不够熟'
-
-  return { points, summary: { trend, accuracy, total: sorted.length, volatility } }
+  return {
+    ranges: CURVE_RANGES.map(({ key, label }) => ({ key, label })),
+    activeRange: '7d',
+    series,
+    points: series['7d'].points,
+    summary: series['7d'].summary
+  }
 }
 
 function buildWeakWords(words, records) {
@@ -213,16 +292,23 @@ async function createReport({ wordList, user, openid, wordListId }) {
 
   const { start, end } = getChinaDayRange()
   const todayRes = await db.collection('studyRecords').where({ openid, wordListId, createdAt: _.gte(start).and(_.lt(end)) }).limit(1000).get()
-  const allRes = await db.collection('studyRecords').where({ openid, wordListId }).orderBy('createdAt', 'desc').limit(120).get()
+  const allRes = await db.collection('studyRecords').where({ openid, wordListId }).orderBy('createdAt', 'desc').limit(1000).get()
   const todayRecords = todayRes.data || []
   const allRecords = allRes.data || []
-  const curve = buildCurve(allRecords)
+  const curve = buildCurve(allRecords, words)
 
-  report.todayPracticeCount = todayRecords.length
+  const todayKey = getChinaDayKey(new Date())
+  const todayWordFallback = words.filter((item) => Number(item.reviewedCount || 0) > 0 && (
+    getChinaDayKey(item.lastReviewedAt) === todayKey || (item.recognitionDates || []).includes(todayKey)
+  ))
+  report.todayPracticeCount = todayRecords.length || todayWordFallback.length
   report.correctCount = todayRecords.filter((item) => item.result === 'correct' || item.result === 'known').length
   report.wrongCount = todayRecords.filter((item) => item.result === 'wrong' || item.result === 'unknown').length
   report.curvePoints = curve.points
   report.curveSummary = curve.summary
+  report.curveRanges = curve.ranges
+  report.curveActiveRange = curve.activeRange
+  report.curveSeries = curve.series
   report.weakWords = buildWeakWords(words, allRecords)
   report.masteredWords = words.filter((item) => item.memoryBucket === 'green').sort((a, b) => Number(b.consecutiveRecognizedDays || 0) - Number(a.consecutiveRecognizedDays || 0)).slice(0, 50)
   report.spellingWords = words.filter((item) => item.spellingPassed).sort((a, b) => Number(b.spellingRightCount || 0) - Number(a.spellingRightCount || 0)).slice(0, 50)
@@ -249,3 +335,4 @@ exports.main = async (event) => {
   const report = await createReport({ wordList, user, openid, wordListId: event.wordListId })
   return { success: true, report }
 }
+

@@ -61,6 +61,49 @@ const CORE_MEANINGS = {
   fashion: ['时尚', '流行方式'],
   mirror: ['镜子', '反映'],
   wall: ['墙', '墙壁'],
+  arm: ['手臂', '武器', '扶手'],
+  back: ['背部', '后面', '回来'],
+  bank: ['银行', '河岸'],
+  bat: ['球棒', '蝙蝠'],
+  bear: ['熊', '忍受', '承受'],
+  bit: ['一点', '小块'],
+  book: ['书', '预订'],
+  break: ['打破', '休息', '违反'],
+  change: ['改变', '零钱', '变化'],
+  class: ['班级', '课', '等级'],
+  close: ['关闭', '接近的', '亲密的'],
+  cold: ['寒冷的', '感冒'],
+  date: ['日期', '约会', '枣'],
+  fair: ['公平的', '集市', '相当好的'],
+  fan: ['风扇', '迷', '扇子'],
+  fine: ['好的', '晴朗的', '罚款'],
+  fire: ['火', '开火', '解雇'],
+  fly: ['飞', '苍蝇'],
+  foot: ['脚', '英尺'],
+  free: ['免费的', '自由的', '空闲的'],
+  hand: ['手', '递给', '帮助'],
+  head: ['头', '负责人', '前往'],
+  kind: ['种类', '友善的'],
+  letter: ['字母', '信'],
+  light: ['光', '轻的', '浅色的'],
+  line: ['线', '排', '台词'],
+  match: ['比赛', '火柴', '相配'],
+  mind: ['头脑', '介意', '思维'],
+  miss: ['想念', '错过', '小姐'],
+  present: ['礼物', '现在', '出席的'],
+  rest: ['休息', '其余部分'],
+  rock: ['岩石', '摇滚乐'],
+  room: ['房间', '空间'],
+  ruler: ['尺子', '统治者'],
+  second: ['第二', '秒'],
+  sentence: ['句子', '判决'],
+  spring: ['春天', '泉水', '弹簧'],
+  square: ['广场', '正方形', '平方'],
+  still: ['仍然', '静止的'],
+  train: ['火车', '训练'],
+  trip: ['旅行', '绊倒'],
+  watch: ['观看', '手表', '看守'],
+  well: ['好', '井', '健康的'],
   'thanks to': ['多亏', '由于'],
   'come from': ['来自', '源于'],
   'a lot of': ['许多', '大量'],
@@ -78,7 +121,8 @@ function splitMeanings(value) {
 
 function getCoreMeanings(word, fallback) {
   const key = String(word || '').trim().toLowerCase()
-  const candidates = [...(CORE_MEANINGS[key] || []), ...splitMeanings(fallback)]
+  const core = CORE_MEANINGS[key] || []
+  const candidates = core.length ? core : splitMeanings(fallback)
   const seen = {}
   return candidates.filter((item) => {
     if (!item || seen[item]) return false
@@ -138,9 +182,9 @@ async function enrichWordsWithMeaning(words, onProgress) {
     const meanings = Array.isArray(item.meanings) && item.meanings.length
       ? getCoreMeanings(word, item.meanings.join('；'))
       : getCoreMeanings(word, meaning)
-    const primaryMeaning = meanings[0] || meaning
+    const fullMeaning = String(item.meaningText || '').trim() || (meanings.length ? meanings.join('；') : String(item.meaning || '').trim()) || meaning
 
-    result.push({ ...item, word, meaning: primaryMeaning, meanings, phonetic: item.phonetic || getLocalPhonetic(word) })
+    result.push({ ...item, word, meaning: fullMeaning, meaningText: fullMeaning, meanings, phonetic: item.phonetic || getLocalPhonetic(word) })
     if (typeof onProgress === 'function') onProgress(i + 1, list.length)
   }
 
@@ -152,3 +196,4 @@ module.exports = {
   getLocalPhonetic,
   enrichWordsWithMeaning
 }
+

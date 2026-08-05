@@ -1,4 +1,4 @@
-const storage = require('../../utils/storage')
+﻿const storage = require('../../utils/storage')
 const theme = require('../../utils/theme')
 const { callFunction } = require('../../utils/cloud')
 
@@ -26,9 +26,12 @@ Page({
       wx.redirectTo({ url: '/pages/profile/index' })
       return
     }
-    callFunction('getUserProfile', { userId }, { showLoading: false })
+    callFunction('getUserProfile', { userId }, { showLoading: false, showError: false })
       .then((res) => this.setData({ user: res.user || {} }))
-      .catch(() => {})
+      .catch(() => {
+        wx.showToast({ title: '请先完成登录资料', icon: 'none' })
+        setTimeout(() => wx.redirectTo({ url: '/pages/profile/index' }), 600)
+      })
   },
 
   onGroupCodeInput(e) {
@@ -37,10 +40,26 @@ Page({
 
   createGroup() {
     const userId = storage.getCurrentUserId()
+    if (!userId) {
+      wx.redirectTo({ url: '/pages/profile/index' })
+      return
+    }
     callFunction('createStudyGroup', { userId }, { loadingTitle: '创建小队...' })
       .then((res) => {
-        this.setData({ group: res.group, inviteCode: res.group.code, leaderboard: res.leaderboard || [], sharedLists: res.sharedLists || [] })
+        this.setData({
+          group: res.group,
+          inviteCode: res.group && res.group.code,
+          leaderboard: res.leaderboard || [],
+          sharedLists: res.sharedLists || []
+        })
         wx.showToast({ title: '小队已创建', icon: 'success' })
+      })
+      .catch((err) => {
+        wx.showModal({
+          title: '小队创建失败',
+          content: err && err.message ? err.message : '请确认 createStudyGroup 云函数已经上传部署。',
+          showCancel: false
+        })
       })
   },
 

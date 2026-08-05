@@ -1,5 +1,5 @@
 <view class="splash-page {{themeClass}}">
-  <image class="splash-bg" src="/assets/images/splash-cover.jpg" mode="aspectFill" />
+  <image class="splash-bg" src="/assets/images/splash-cover-word-hero.jpg" mode="aspectFill" />
   <view class="overlay">
     <view class="top-spacer"></view>
     <view class="bottom-panel">

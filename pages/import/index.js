@@ -7,7 +7,88 @@ const { validateWordList } = require('../../utils/validators')
 const { annotateWords } = require('../../utils/spellcheck')
 const textbookUnits = require('../../constants/textbookUnits')
 
-const WORD_LIST_LIMIT = 30
+function getTextbookBookKey(unit) {
+  return [unit.publisher, unit.grade].filter(Boolean).join(' ')
+}
+
+function getGradeOrder(grade = '') {
+  const text = String(grade || '')
+  const digitMatch = text.match(/(\d+)/)
+  if (digitMatch) return Number(digitMatch[1])
+  const chineseGrades = {
+    一: 1,
+    二: 2,
+    三: 3,
+    四: 4,
+    五: 5,
+    六: 6,
+    七: 7,
+    八: 8,
+    九: 9
+  }
+  const match = text.match(/([一二三四五六七八九])年级/)
+  return match ? chineseGrades[match[1]] : 99
+}
+
+function getTermOrder(grade = '') {
+  const text = String(grade || '')
+  if (text.includes('上')) return 1
+  if (text.includes('下')) return 2
+  return 0
+}
+
+function buildTextbookBooks(units) {
+  const seen = {}
+  const gradeCounts = {}
+  const gradeIndexes = {}
+  ;(units || []).forEach((unit) => {
+    const key = getTextbookBookKey(unit)
+    if (!key || seen[key]) return
+    seen[key] = true
+    gradeCounts[unit.grade] = (gradeCounts[unit.grade] || 0) + 1
+  })
+
+  const picked = {}
+  return (units || []).reduce((books, unit) => {
+    const key = getTextbookBookKey(unit)
+    if (!key || picked[key]) return books
+    picked[key] = true
+    gradeIndexes[unit.grade] = (gradeIndexes[unit.grade] || 0) + 1
+    books.push({
+      key,
+      title: unit.grade,
+      displayTitle: unit.grade,
+      meta: unit.publisher || '年级单元词库',
+      variantLabel: '',
+      publisher: unit.publisher,
+      grade: unit.grade
+    })
+    return books
+  }, []).sort((a, b) => {
+    const gradeDiff = getGradeOrder(a.grade) - getGradeOrder(b.grade)
+    if (gradeDiff !== 0) return gradeDiff
+    const termDiff = getTermOrder(a.grade) - getTermOrder(b.grade)
+    if (termDiff !== 0) return termDiff
+    return String(a.publisher || '').localeCompare(String(b.publisher || ''), 'zh-Hans-CN')
+  })
+}
+
+function getUnitsByBook(units, book) {
+  if (!book) return []
+  return (units || []).filter((unit) => getTextbookBookKey(unit) === book.key)
+}
+
+const textbookBooks = buildTextbookBooks(textbookUnits)
+const defaultTextbookUnits = getUnitsByBook(textbookUnits, textbookBooks[0])
+
+function buildUnitListTitle(unit, book) {
+  const bookTitle = book && book.displayTitle ? book.displayTitle : (unit && unit.grade) || '年级单元'
+  const variant = book && book.variantLabel ? ` ${book.variantLabel}` : ''
+  const unitName = unit && unit.unit ? unit.unit : ''
+  return [`${bookTitle}${variant}`, unitName].filter(Boolean).join(' ')
+}
+
+const WORD_LIST_LIMIT = 70
 const OCR_STOP_WORDS = {
   the: true, a: true, an: true, and: true, or: true, but: true, is: true, are: true, am: true, was: true, were: true,
   be: true, been: true, being: true, to: true, of: true, in: true, on: true, at: true, for: true, with: true,
@@ -113,7 +194,7 @@ Page({
   data: {
     themeClass: theme.getThemeClass(),
     title: buildDateTitle(),
-    rawText: `parrot\nappearance\nmirror\nconfident\nadventure\nfashion\nchallenge`,
+    rawText: `parrot\nmirror\nchallenge`,
     parsedWords: [],
     errors: [],
     translating: false,
@@ -123,6 +204,9 @@ Page({
     listCount: 0,
     inputMode: 'manual',
     textbookUnits,
+    textbookBooks,
+    visibleTextbookUnits: defaultTextbookUnits,
+    selectedBookIndex: 0,
     selectedUnitIndex: 0,
     imagePath: '',
     imagePaths: [],
@@ -169,12 +253,15 @@ Page({
     this.setData({ title: buildDateTitle() })
   },
 
-  runParser(text) {
+  runParser(text, options = {}) {
     const result = parseWordText(text, { maxWords: this.data.maxWords })
     let words = result.words
     const wordLikeCount = (String(text || '').match(/[A-Za-z][A-Za-z'-]{1,}/g) || []).length
     const looksLikePassage = wordLikeCount >= 8 && /[.!?。！？]/.test(String(text || ''))
-    if (looksLikePassage && words.length < 2) {
+    if (looksLikePassage && words.length < 2 && options.allowPassageFallback) {
+      words = extractWordsFromPassage(text, this.data.maxWords)
+    }
+    if (looksLikePassage && words.length < 2 && options.blockPassageImport) {
       this.setData({
         parsedWords: [],
         errors: [{
@@ -199,7 +286,7 @@ Page({
   },
 
   parseText() {
-    this.runParser(this.data.rawText)
+    this.runParser(this.data.rawText, { blockPassageImport: false })
   },
 
   applySuggestion(e) {
@@ -211,28 +298,38 @@ Page({
     this.setData({ parsedWords: annotateWords(next) })
   },
 
-  chooseTextbookUnit(e) {
-    const index = Number(e.detail.value || 0)
-    const unit = this.data.textbookUnits[index]
+  loadTextbookUnit(unit) {
+    if (!unit) return
     this.setData({
-      selectedUnitIndex: index,
-      title: unit.title,
+      title: buildUnitListTitle(unit, this.data.textbookBooks[this.data.selectedBookIndex]),
       rawText: joinWords(unit.words),
       parsedWords: normalizeTextbookWords(unit.words),
       errors: []
     })
-    wx.showToast({ title: `已载入 ${unit.words.length} 个教材词`, icon: 'none' })
+    wx.showToast({ title: `已载入 ${unit.words.length} 个单元词`, icon: 'none' })
+  },
+
+  chooseTextbookBook(e) {
+    const index = Number(e.currentTarget.dataset.index || 0)
+    const book = this.data.textbookBooks[index]
+    const units = getUnitsByBook(this.data.textbookUnits, book)
+    this.setData({
+      selectedBookIndex: index,
+      visibleTextbookUnits: units,
+      selectedUnitIndex: 0
+    })
+  },
+
+  chooseTextbookUnit(e) {
+    const index = Number(e.currentTarget.dataset.index || e.detail.value || 0)
+    const unit = this.data.visibleTextbookUnits[index]
+    this.setData({ selectedUnitIndex: index })
+    this.loadTextbookUnit(unit)
   },
 
   useSelectedUnit() {
-    const unit = this.data.textbookUnits[this.data.selectedUnitIndex]
-    this.setData({
-      title: unit.title,
-      rawText: joinWords(unit.words),
-      parsedWords: normalizeTextbookWords(unit.words),
-      errors: []
-    })
-    wx.showToast({ title: `已载入 ${unit.words.length} 个教材词`, icon: 'none' })
+    const unit = this.data.visibleTextbookUnits[this.data.selectedUnitIndex]
+    this.loadTextbookUnit(unit)
   },
 
   importWrongWords() {
@@ -267,7 +364,7 @@ Page({
           .filter(Boolean)
           .slice(0, 3)
         if (!paths.length) return
-        this.setData({ imagePaths: paths, imagePath: paths[0] })
+        this.setData({ imagePaths: paths, imagePath: paths[0] }, () => this.recognizeImage())
       }
     })
   },
@@ -305,7 +402,7 @@ Page({
         return
       }
       this.setData({ ocrText: text, rawText: text })
-      this.runParser(text)
+      this.runParser(text, { allowPassageFallback: true })
     }).finally(() => {
       wx.hideLoading()
       this.setData({ ocrBusy: false })
@@ -318,7 +415,7 @@ Page({
       return
     }
     this.setData({ rawText: this.data.ocrText })
-    this.runParser(this.data.ocrText)
+    this.runParser(this.data.ocrText, { allowPassageFallback: true })
   },
 
   async autoGenerateMeanings() {

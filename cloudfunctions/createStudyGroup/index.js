@@ -1,4 +1,4 @@
-const cloud = require('wx-server-sdk')
+﻿const cloud = require('wx-server-sdk')
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV })
 const db = cloud.database()
 
@@ -9,16 +9,16 @@ function makeCode() {
   return code
 }
 
-function sortLeaderboard(list = []) {
-  return [...list].sort((a, b) => Number(b.score || 0) - Number(a.score || 0)).slice(0, 30)
-}
-
 exports.main = async (event) => {
   const wxContext = cloud.getWXContext()
   const openid = wxContext.OPENID
-  const userRes = await db.collection('users').doc(event.userId).get().catch(() => ({ data: null }))
+  const userId = event.userId
+  if (!userId) return { success: false, message: '请先完成登录资料，再创建学习小队' }
+
+  const userRes = await db.collection('users').doc(userId).get().catch(() => ({ data: null }))
   const user = userRes.data
-  if (!user || user.openid !== openid) return { success: false, message: '请先登录学生端' }
+  if (!user) return { success: false, message: '没有找到当前用户资料，请重新进入小程序' }
+  if (user.openid !== openid) return { success: false, message: '当前微信号和用户资料不匹配，请重新登录' }
 
   const code = makeCode()
   const group = {

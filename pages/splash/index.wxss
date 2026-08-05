@@ -54,15 +54,23 @@ page {
 }
 
 .enter-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 28rpx;
   height: 92rpx;
-  line-height: 92rpx;
+  line-height: 1;
+  padding: 0;
+  box-sizing: border-box;
   border-radius: 999rpx;
   background: linear-gradient(180deg, #ffcf52 0%, #ff8f1f 100%);
   color: #6b2300;
   font-size: 32rpx;
   font-weight: 800;
   box-shadow: 0 16rpx 40rpx rgba(255, 123, 0, 0.35);
+}
+.enter-btn::after {
+  border: 0;
 }
 .parent-btn {
   margin-top: 18rpx;

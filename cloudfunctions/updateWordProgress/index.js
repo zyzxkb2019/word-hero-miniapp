@@ -1,4 +1,4 @@
-const cloud = require('wx-server-sdk')
+﻿const cloud = require('wx-server-sdk')
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV })
 const db = cloud.database()
 const REVIEW_DAYS = [1, 2, 4, 7, 15]
@@ -199,9 +199,13 @@ exports.main = async (event) => {
       reviewStage: updatedWord.reviewStage,
       nextReviewAt: updatedWord.nextReviewAt,
       needsReview: updatedWord.needsReview,
+      dayKey: todayKey,
+      reviewedAt,
       createdAt: now
     }
   })
 
   return { success: true, updatedWord, scoreChange }
 }
+
+
