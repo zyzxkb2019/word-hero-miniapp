@@ -1,0 +1,454 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>单词英雄家长使用说明书</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #667085;
+      --line: #e6eaf2;
+      --paper: #ffffff;
+      --wash: #f6f8fb;
+      --brand: #2563eb;
+      --brand-dark: #1d4ed8;
+      --orange: #f97316;
+      --green: #059669;
+      --red: #dc2626;
+      --violet: #6d5dfc;
+      --shadow: 0 18px 45px rgba(21, 34, 66, 0.10);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--wash);
+      line-height: 1.65;
+    }
+    button { font: inherit; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+    .mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, #2563eb, #06b6d4);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 19px;
+    }
+    .nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .nav a, .print-btn {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: #344054;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .print-btn { color: var(--brand); }
+    .hero {
+      background: radial-gradient(circle at top left, rgba(37, 99, 235, 0.14), transparent 38%), linear-gradient(135deg, #ffffff 0%, #edf7ff 100%);
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 56px 20px 42px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 32px;
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: #fff7ed;
+      color: #9a3412;
+      font-weight: 900;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 46px;
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+    .subtitle {
+      margin: 18px 0 0;
+      color: #475467;
+      font-size: 19px;
+      max-width: 740px;
+    }
+    .hero-actions {
+      margin-top: 26px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .primary, .secondary {
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-weight: 900;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .primary { background: var(--brand); color: #fff; }
+    .secondary { background: #fff; color: var(--brand); border: 1px solid #bfdbfe; }
+    .phone {
+      background: #111827;
+      border-radius: 28px;
+      padding: 14px;
+      box-shadow: var(--shadow);
+      max-width: 350px;
+      justify-self: center;
+    }
+    .screen {
+      background: #f8fafc;
+      border-radius: 20px;
+      padding: 18px;
+      min-height: 430px;
+    }
+    .mini-title { font-size: 24px; font-weight: 1000; margin-bottom: 12px; }
+    .pill-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+    .pill { padding: 6px 10px; border-radius: 999px; background: #e0f2fe; color: #075985; font-size: 13px; font-weight: 900; }
+    .demo-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+    .demo-label { font-size: 13px; font-weight: 900; color: var(--green); margin-bottom: 8px; }
+    .word-row { display: flex; align-items: center; gap: 10px; font-size: 24px; font-weight: 1000; }
+    .sound { width: 28px; height: 28px; object-fit: contain; }
+    .chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+    .chip { background: #d1fae5; color: #065f46; border-radius: 7px; padding: 5px 9px; font-weight: 900; }
+    .focus { color: var(--red); background: #fee2e2; border-radius: 4px; padding: 0 2px; }
+    main { max-width: 1180px; margin: 0 auto; padding: 34px 20px 80px; }
+    section { scroll-margin-top: 78px; }
+    .section-head { margin: 38px 0 16px; display: flex; align-items: end; justify-content: space-between; gap: 16px; }
+    h2 { margin: 0; font-size: 30px; line-height: 1.25; }
+    .section-note { margin: 6px 0 0; color: var(--muted); }
+    .grid { display: grid; gap: 16px; }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(21, 34, 66, 0.04);
+    }
+    .card h3 { margin: 0 0 8px; font-size: 20px; }
+    .card p { margin: 0; color: var(--muted); }
+    .num {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      background: #eff6ff;
+      color: var(--brand);
+      border-radius: 8px;
+      font-weight: 1000;
+      margin-bottom: 12px;
+    }
+    .tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .tab {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 8px;
+      padding: 9px 12px;
+      font-weight: 900;
+      cursor: pointer;
+      color: #344054;
+    }
+    .tab.active { background: var(--brand); border-color: var(--brand); color: #fff; }
+    .panel { display: none; }
+    .panel.active { display: block; }
+    .mode-list { display: grid; gap: 12px; }
+    .mode-item { display: grid; grid-template-columns: 150px 1fr; gap: 14px; padding: 14px; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+    .mode-name { font-weight: 1000; color: var(--brand-dark); }
+    .checklist { display: grid; gap: 10px; }
+    .check {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      cursor: pointer;
+    }
+    .box {
+      margin-top: 3px;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #98a2b3;
+      border-radius: 5px;
+      flex: 0 0 auto;
+    }
+    .check.done .box { background: var(--green); border-color: var(--green); position: relative; }
+    .check.done .box::after { content: ''; position: absolute; left: 5px; top: 1px; width: 6px; height: 11px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+    .check.done span:last-child { color: #667085; text-decoration: line-through; }
+    .faq { display: grid; gap: 10px; }
+    details { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+    summary { cursor: pointer; font-weight: 1000; }
+    details p { margin: 10px 0 0; color: var(--muted); }
+    .warning { border-left: 5px solid var(--orange); background: #fff7ed; }
+    .feedback-box textarea {
+      width: 100%; min-height: 130px; border: 1px solid var(--line); border-radius: 10px; padding: 12px; resize: vertical; font: inherit;
+    }
+    .copy-btn { margin-top: 10px; border: 0; background: var(--green); color: #fff; border-radius: 8px; padding: 10px 14px; font-weight: 900; cursor: pointer; }
+    .toast { display: none; margin-left: 10px; color: var(--green); font-weight: 900; }
+    .toast.show { display: inline; }
+    .footer { margin-top: 44px; color: var(--muted); font-size: 14px; text-align: center; }
+    @media (max-width: 860px) {
+      .hero-inner { grid-template-columns: 1fr; padding-top: 36px; }
+      h1 { font-size: 34px; }
+      .grid-3, .grid-2 { grid-template-columns: 1fr; }
+      .mode-item { grid-template-columns: 1fr; }
+      .nav { display: none; }
+      .phone { width: 100%; max-width: 380px; }
+    }
+    @media print {
+      .topbar, .hero-actions, .copy-btn { display: none; }
+      body { background: #fff; }
+      .card, details { box-shadow: none; break-inside: avoid; }
+      main { padding-top: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand"><div class="mark">W</div><span>单词英雄家长说明书</span></div>
+      <nav class="nav">
+        <a href="#start">开始使用</a>
+        <a href="#study">孩子怎么学</a>
+        <a href="#report">家长怎么看</a>
+        <a href="#feedback">内测反馈</a>
+        <button class="print-btn" onclick="window.print()">打印</button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow">给英语基础薄弱孩子的背词系统</div>
+        <h1>不是多背几个词，而是把词真正背活。</h1>
+        <p class="subtitle">单词英雄把教材单元、课文原句、标准发音、拼读同族、考试变形和抗遗忘复习连在一起。家长不用懂技术，也能看见孩子每天学了什么、卡在哪里、下一步该复习什么。</p>
+        <div class="hero-actions">
+          <a class="primary" href="#start">按步骤开始</a>
+          <a class="secondary" href="#feedback">查看内测反馈清单</a>
+        </div>
+      </div>
+      <div class="phone" aria-label="功能示意">
+        <div class="screen">
+          <div class="mini-title">背词闯关</div>
+          <div class="pill-row"><span class="pill">听音辨义</span><span class="pill">四选一</span><span class="pill">拼写</span></div>
+          <div class="demo-card">
+            <div class="demo-label">考试变身</div>
+            <div class="word-row">organize 会这样变</div>
+            <div class="chips"><span class="chip">organizes</span><span class="chip">organized</span><span class="chip">organizing</span></div>
+          </div>
+          <div class="demo-card">
+            <div class="demo-label">一串会读</div>
+            <div class="word-row">i-e = /aɪ/ <img class="sound" src="../assets/images/speaker-mini.png" alt="播放" /></div>
+            <div class="chips"><span class="chip">organ<span class="focus">i</span>ze</span><span class="chip">b<span class="focus">i</span>ke</span><span class="chip">l<span class="focus">i</span>ke</span></div>
+          </div>
+          <div class="demo-card">
+            <div class="demo-label">课文原句填空</div>
+            <div>the editors..., ____ the entries in alphabetical order.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section id="start">
+      <div class="section-head">
+        <div><h2>一、家长第一次怎么用</h2><p class="section-note">照着这 5 步走，先让孩子完成第一轮体验。</p></div>
+      </div>
+      <div class="grid grid-3">
+        <div class="card"><div class="num">1</div><h3>创建学生资料</h3><p>打开小程序后，先填写孩子姓名和年级。系统会生成家长绑定码，用于家长查看报告。</p></div>
+        <div class="card"><div class="num">2</div><h3>选择或导入词库</h3><p>优先选择孩子正在学的教材版本和单元；也可以手动输入、拍照识别、从错题本导入。</p></div>
+        <div class="card"><div class="num">3</div><h3>让孩子开始闯关</h3><p>建议先用“听音辨义”，再切换“四选一”和“拼写”。每次 5 到 10 分钟即可。</p></div>
+        <div class="card"><div class="num">4</div><h3>当天看报告</h3><p>看孩子练了多少、错了哪些、哪些进入绿格、哪些需要到期复习。</p></div>
+        <div class="card"><div class="num">5</div><h3>第二天继续复习</h3><p>系统会按抗遗忘节奏提醒到期词。不要只追求新词数量，先把不熟的词反复认出来。</p></div>
+        <div class="card warning"><h3>家长最重要的动作</h3><p>不要问“你都会了吗”，而是看报告里的“重点复习词”和“到期复习任务”。这两个地方最能反映真实问题。</p></div>
+      </div>
+    </section>
+
+    <section id="study">
+      <div class="section-head">
+        <div><h2>二、孩子在闯关里会看到什么</h2><p class="section-note">这些功能不是装饰，而是为英语弱基础学生补底层能力。</p></div>
+      </div>
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="mode">四种模式</button>
+        <button class="tab" data-tab="phonics">一串会读</button>
+        <button class="tab" data-tab="forms">考试变身</button>
+        <button class="tab" data-tab="context">课文原句</button>
+      </div>
+      <div class="card panel active" id="panel-mode">
+        <div class="mode-list">
+          <div class="mode-item"><div class="mode-name">听音辨义</div><div>先听英文发音，再从 4 个中文意思里选择。适合“不知道怎么读”的孩子。</div></div>
+          <div class="mode-item"><div class="mode-name">闪卡</div><div>先看英文，再翻中文。适合建立第一印象。</div></div>
+          <div class="mode-item"><div class="mode-name">四选一</div><div>根据中文选择英文。答对后才显示英文答案，避免提前偷看。</div></div>
+          <div class="mode-item"><div class="mode-name">拼写</div><div>根据中文意思输入英文。能拼出来的词，会进入蓝格。</div></div>
+        </div>
+      </div>
+      <div class="card panel" id="panel-phonics">
+        <h3>一串会读：记一个，带一串</h3>
+        <p>孩子学习 organize 时，会先看到 organize 自己，并把里面的 i 高亮；后面再列出 bike、like、time、five 等同族词。每个词都能点击小喇叭播放读音。</p>
+      </div>
+      <div class="card panel" id="panel-forms">
+        <h3>考试变身：换个样子也认得</h3>
+        <p>系统会轻量提示 studies、studied、studying，或者 happier、happiest。孩子不用先学一大节语法课，而是在背词时顺手看见常考变化。</p>
+      </div>
+      <div class="card panel" id="panel-context">
+        <h3>课文原句填空：回到教材里记</h3>
+        <p>教材词会尽量匹配首次出现在课文里的句子，并把目标词挖空。孩子不是孤立背词，而是在真实句子中再次遇见它。</p>
+      </div>
+    </section>
+
+    <section id="report">
+      <div class="section-head">
+        <div><h2>三、家长怎么看学习报告</h2><p class="section-note">报告不是为了制造焦虑，而是为了找到下一步。</p></div>
+      </div>
+      <div class="grid grid-2">
+        <div class="card"><h3>学习曲线</h3><p>看孩子最近是否持续练习。活跃天数越稳定，遗忘越容易被拉住。</p></div>
+        <div class="card"><h3>到期复习任务</h3><p>今天该复习哪些词，由系统按抗遗忘节奏推出来。优先做这里。</p></div>
+        <div class="card"><h3>绿格</h3><p>连续 3 天都能认出的词。绿格越多，说明不是只靠短期记忆。</p></div>
+        <div class="card"><h3>蓝格</h3><p>能正确拼写的词。对考试和作文更有价值。</p></div>
+        <div class="card"><h3>重点复习词</h3><p>这里是家长最该看的地方。孩子错得多、忘得快、不熟的词会集中在这里。</p></div>
+        <div class="card"><h3>今日鼓励</h3><p>给孩子反馈时，先肯定努力，再指出一个小目标。比如：今天先把 5 个到期词拿下。</p></div>
+      </div>
+    </section>
+
+    <section id="checklist">
+      <div class="section-head">
+        <div><h2>四、第一次内测检查清单</h2><p class="section-note">点一下可以打勾。建议家长试用时按这份清单观察。</p></div>
+      </div>
+      <div class="card checklist">
+        <div class="check"><span class="box"></span><span>孩子能否独立进入词库并开始闯关？</span></div>
+        <div class="check"><span class="box"></span><span>听音辨义里，孩子是否愿意多听几遍发音？</span></div>
+        <div class="check"><span class="box"></span><span>一串会读是否让孩子感觉“这个词好像没那么难”？</span></div>
+        <div class="check"><span class="box"></span><span>考试变身会不会太多、太重、影响答题节奏？</span></div>
+        <div class="check"><span class="box"></span><span>课文原句填空是否能正常挖空目标词？</span></div>
+        <div class="check"><span class="box"></span><span>家长是否能看懂学习曲线、绿格、蓝格和重点复习词？</span></div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="section-head">
+        <div><h2>五、常见问题</h2><p class="section-note">内测家长最容易问到的几个问题。</p></div>
+      </div>
+      <div class="faq">
+        <details open><summary>孩子英语很弱，会不会看不懂？</summary><p>建议先从“听音辨义”和“闪卡”开始，不要一上来拼写。每天 5 到 10 分钟，先建立发音和词义连接。</p></details>
+        <details><summary>为什么有些词有“一串会读”，有些没有？</summary><p>当前版本优先覆盖高频拼读规律。没有显示不代表错误，只是暂时没有命中内置拼读家族。</p></details>
+        <details><summary>为什么要看绿格和蓝格？</summary><p>绿格代表能连续认出，蓝格代表能拼写。一个解决“认得出”，一个解决“写得出”。</p></details>
+        <details><summary>孩子答错了怎么办？</summary><p>答错不是坏事。系统会把错词放回复习节奏里。家长重点看“重点复习词”，不要只看当天对错。</p></details>
+        <details><summary>家长要不要陪着背？</summary><p>第一次可以陪 5 分钟，帮孩子熟悉入口。之后建议让孩子自己闯关，家长只看报告和复习任务。</p></details>
+      </div>
+    </section>
+
+    <section id="feedback">
+      <div class="section-head">
+        <div><h2>六、给家长的内测反馈模板</h2><p class="section-note">可以直接复制给家长，让反馈更具体。</p></div>
+      </div>
+      <div class="card feedback-box">
+        <textarea id="feedbackText">请帮我们观察孩子使用单词英雄后的真实反应：
+
+1. 孩子最愿意点哪个模式？听音辨义、闪卡、四选一还是拼写？
+2. “一串会读”有没有帮助孩子发现拼读规律？有没有觉得太多？
+3. “考试变身”有没有帮助孩子理解 studies / studied / studying 这类变化？
+4. 课文原句填空有没有正常显示？孩子看得懂吗？
+5. 家长报告里，哪些数据你最看得懂？哪些看不懂？
+6. 使用过程中有没有卡住、误触、看不清、听不到声音的地方？
+7. 如果只保留一个你觉得最有价值的功能，你会选哪个？为什么？</textarea>
+        <button class="copy-btn" onclick="copyFeedback()">复制反馈模板</button><span class="toast" id="toast">已复制</span>
+      </div>
+    </section>
+
+    <div class="footer">单词英雄 Word Hero MiniApp · 家长使用说明书 · 内测版</div>
+  </main>
+
+  <script>
+    document.querySelectorAll('.tab').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        document.querySelectorAll('.tab').forEach(function(item) { item.classList.remove('active'); });
+        document.querySelectorAll('.panel').forEach(function(item) { item.classList.remove('active'); });
+        tab.classList.add('active');
+        document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+      });
+    });
+    document.querySelectorAll('.check').forEach(function(item) {
+      item.addEventListener('click', function() { item.classList.toggle('done'); });
+    });
+    function copyFeedback() {
+      var text = document.getElementById('feedbackText').value;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(showToast);
+      } else {
+        var area = document.getElementById('feedbackText');
+        area.focus();
+        area.select();
+        document.execCommand('copy');
+        showToast();
+      }
+    }
+    function showToast() {
+      var toast = document.getElementById('toast');
+      toast.classList.add('show');
+      setTimeout(function() { toast.classList.remove('show'); }, 1600);
+    }
+  </script>
+</body>
+</html>

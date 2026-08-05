@@ -1,321 +1,240 @@
-# 单词英雄 Word Hero MiniApp
+﻿# 单词英雄 Word Hero MiniApp
 
-这是一个「AI 个性化背单词微信小程序」MVP。当前版本已经把前端 mock 数据替换成 CloudBase 云函数 + 云数据库真实读写。
+单词英雄是一款面向英语基础薄弱学生的微信小程序。它不是简单的“刷单词”，而是把教材单元、生词语境、标准发音、拼读规律、词形变化、抗遗忘复习和家长报告放在同一个学习闭环里。
 
-## 已包含能力
+当前版本重点服务一种真实场景：学生英语成绩不理想，背过的词容易忘，换个形式不认识，看见单词不会读，家长也很难判断孩子到底学到了哪里。
 
-- 6 个页面：学生资料、首页、导入词表、背词游戏、AI 故事、学习报告
-- 学生资料保存到 `users` 集合
-- 词表保存到 `wordLists` 集合
-- 每次答题更新 `wordLists.words` 中的掌握度
-- 每次答题写入 `studyRecords` 集合
-- 学习报告从云数据库统计
-- AI 故事由 `generateStory` 云函数生成并保存到 `stories` 集合
-- 云函数内校验 `openid`，避免用户访问别人的数据
-- AI 故事目前仍是云函数内 mock 生成，已经预留真实 AI API 接入位置
+## 产品定位
 
-## 如何打开
+单词英雄的核心目标是：
 
-1. 解压项目。
-2. 用微信开发者工具导入 `word-hero-miniapp` 文件夹。
-3. 把项目 AppID 换成你自己的微信小程序 AppID。
-4. 开通微信云开发 CloudBase。
-5. 在 `app.js` 中把云环境 ID 填进去，例如：
+- 让学生先听标准发音，再建立词义连接。
+- 让教材单元词汇直接进入闯关，不再靠家长手工整理。
+- 让每个生词回到课文原句中，通过填空看见真实语境。
+- 让孩子背一个词时，顺手看到它的考试变形和拼读同族词。
+- 让家长通过学习报告看见进度、薄弱词、复习任务和趋势。
 
-```js
-wx.cloud.init({
-  env: '你的云开发环境ID',
-  traceUser: true
-})
-```
+一句话：背一个词，不只记一个词，而是顺手打通“读音、词义、语境、变形、复习”。
 
-如果不填写 `env`，微信会尝试使用默认环境；正式开发建议明确填写。
+## 当前核心功能
 
-## 需要创建的云数据库集合
+### 1. 学生词库
 
-请在云开发控制台创建 4 个集合：
+- 支持为每个学生建立多个专属词库。
+- 每个学生最多 70 个词库。
+- 支持手动输入、图片识别、教材年级单元、错题本导入。
+- 支持英文单词和英文短语。
+- 支持自动生成中文释义、音标和课文例句。
 
-```text
-users
-wordLists
-studyRecords
-stories
-```
+### 2. 教材单元词库
 
-建议前端不要直接读写数据库，本项目默认全部通过云函数读写。云函数会写入并校验 `openid`。
+- 内置教材版本和单元词汇。
+- 支持按年级、教材、单元选择词库。
+- 支持教材原文首次出现句子的语境展示。
+- 支持“课文原句填空”，把目标词在句子中挖空。
 
-## 需要部署的云函数
+### 3. 背词闯关
 
-请在微信开发者工具中右键逐个上传并部署：
+学习页包含四种模式：
 
-```text
-cloudfunctions/getOpenId
-cloudfunctions/saveUserProfile
-cloudfunctions/getUserProfile
-cloudfunctions/saveWordList
-cloudfunctions/getCurrentWordList
-cloudfunctions/updateWordProgress
-cloudfunctions/generateStory
-cloudfunctions/getStudyReport
-```
+- 听音辨义：先听发音，再选中文意思。
+- 闪卡：看英文，翻中文，快速建立第一印象。
+- 四选一：根据中文选择正确英文。
+- 拼写：根据中文意思输入英文。
 
-每个云函数目录里都有 `package.json`，依赖为：
+闯关中支持：
 
-```json
-{
-  "dependencies": {
-    "wx-server-sdk": "latest"
-  }
-}
-```
+- 标准英文发音。
+- 答对反馈音效。
+- 个性化鼓励语音。
+- 连续答对 5 个触发欢呼和鲜花动效。
+- 错词立即回炉。
+- 按 1/2/4/7/15 天安排抗遗忘复习。
 
-## 第一版使用流程
+### 4. 考试变身
 
-1. 创建学生资料。
-2. 导入词表。
-3. 开始背词。
-4. 每次答题后，云端更新掌握度并记录学习行为。
-5. 查看学习报告。
-6. 生成个性化故事。
+针对动词和形容词，学习页会给出轻量提示，例如：
 
-## 数据闭环
+- study -> studies / studied / studying
+- stop -> stops / stopped / stopping
+- happy -> happier / happiest
+- be similar to -> is similar to / was similar to / are similar to
+- can / be able to 的区别
+- borrow / lend / keep 的区别
 
-```text
-创建学生资料 → users
-导入词表 → wordLists
-背词答题 → updateWordProgress → wordLists + studyRecords
-学习报告 → getStudyReport → wordLists + studyRecords
-生成故事 → generateStory → stories
-```
+这个功能不是完整语法课，而是在孩子遇到单词时，提醒它在考试里可能换成什么样子。
 
-## 真实 AI API 接入位置
+### 5. 一串会读
 
-文件：
+针对拼读基础弱的学生，学习页会显示拼读同族词。例如：
 
-```text
-cloudfunctions/generateStory/index.js
-```
+- hard：突出 ar，并展示 hard / card / art / farm / star
+- organize：突出 i-e 结构中的 i，并展示 organize / bike / like / time / five
+- teacher：突出 ea，并展示 teacher / read / clean / speak / team
 
-现在的故事由 `makeMockStory(user, targetWords)` 生成。
+每个同族词都可以点击播放读音，帮助学生从“记一个”迁移到“会一串”。
 
-后续接入真实大模型时，把这里替换成真实 API 调用即可。
+### 6. 学习报告
 
-注意：AI API Key 只能放在云函数环境变量里，不能写进小程序前端。
+报告页支持：
 
-## 常见问题
+- 学习曲线。
+- 活跃天数。
+- 今日练习次数和答对次数。
+- 到期复习任务。
+- 绿格：连续 3 天认出的词。
+- 蓝格：拼写过关的词。
+- 已背过的词和上传时间。
+- 重点复习词。
+- 家长端绑定码查看报告。
 
-### 1. 页面提示“服务走神了”
+### 7. 学习小队
 
-通常是云函数没有上传部署，或者云环境 ID 没配置对。
+支持创建学习小队、加入小队、单词 PK、排行榜和共享词库。
 
-### 2. 能打开页面，但保存失败
+### 8. 中英结合故事
 
-检查：
+支持把已学单词生成中英结合小故事，帮助学生在阅读中再次遇见生词。
 
-- 是否已经开通云开发
-- `app.js` 中的 `env` 是否正确
-- 4 个数据库集合是否已经创建
-- 云函数是否已经上传部署
-
-### 3. 生成故事为什么还不是真 AI？
-
-当前版本优先完成数据库真实读写闭环。故事生成逻辑已经放进云函数，不在前端 mock。这样后续接真实 AI 时，只需要改 `generateStory` 云函数。
-
-## 下一步建议
-
-1. 在微信开发者工具里部署云函数。
-2. 跑通完整流程。
-3. 找 3-5 个孩子试用。
-4. 再接真实 AI 故事生成。
-5. 再做 UI 美化和学习曲线图表。
-
-## v0.1.15 更新：听音辨义
-
-本版在背词页新增“听音辨义”模式，并把它放在闪卡、四选一、拼写前面。
-
-- 学生点击小喇叭，播放当前单词或短语的标准英文发音
-- 页面不提前显示英文，避免偷看答案
-- 学生从 4 个中文意思中选择正确答案
-- 答错时选项抖动，答题后显示正确英文、音标和中文意思
-- 听音辨义结果会写入 `studyRecords`，并参与掌握度和抗遗忘复习安排
-
-需要重新部署：
+## 技术架构
 
 ```text
-cloudfunctions/updateWordProgress
+微信小程序前端
+  pages/               页面
+  components/          通用组件
+  utils/               本地工具与规则
+  constants/           教材词库与内置数据
+
+微信云开发 CloudBase
+  cloudfunctions/      云函数
+  云数据库集合          users / wordLists / studyRecords / stories 等
 ```
 
-## v0.2 更新：正确答案游戏音效
-
-本版在背词页增加了正确答案反馈音效：
-
-- 四选一答对时播放短促游戏音效
-- 拼写挑战答对时播放短促游戏音效
-- 闪卡点击“认识”时播放短促游戏音效
-- 同时触发一次轻微震动，增强闯关反馈感
-
-涉及文件：
+关键数据流：
 
 ```text
-assets/audio/correct.wav
-utils/audio.js
-pages/study/index.js
+创建学生资料 -> users
+导入词库 -> saveWordList -> wordLists
+背词答题 -> updateWordProgress -> wordLists + studyRecords
+学习报告 -> getStudyReport / getParentReport
+教材词库 -> constants/textbookUnits.js
+拼读同族 -> utils/phonicsFamilies.js
+考试变身 -> utils/wordForms.js
 ```
 
-如果真机没有声音，请先检查手机媒体音量。有些系统或微信版本会受静音键、系统音量、蓝牙耳机状态影响。
+## 主要目录
 
-## 家长打不开预览二维码怎么办
+```text
+assets/audio/                         音效资源
+assets/images/                        封面图、小喇叭等图片资源
+components/progress-card/             学习进度卡片
+components/word-card/                 单词卡片
+constants/textbookUnits.js            教材单元词库
+pages/study/                          背词闯关页
+pages/import/                         创建词库页
+pages/report/                         学生学习报告
+pages/parent-login/                   家长绑定入口
+pages/parent-report/                  家长报告页
+pages/community/                      学习小队
+utils/audio.js                        发音、音效、鼓励语音
+utils/phonicsFamilies.js              拼读同族规则
+utils/wordForms.js                    考试变身规则
+```
 
-开发者工具生成的“预览码”通常适合开发者本人临时测试，不适合直接发给外部家长。给家长试用时，建议走“体验版”：
+## 云函数
 
-1. 在微信开发者工具点击“上传”。
-2. 到微信公众平台后台，进入“版本管理”。
-3. 把刚上传的版本设为“体验版”。
-4. 到“成员管理”里添加家长微信号为“体验成员”。
-5. 再把体验版二维码发给家长。
+当前项目包含以下云函数：
 
-如果还没发布正式版，非体验成员一般打不开体验版或开发版二维码。
+```text
+createStudyGroup
+deleteWordList
+generateStory
+getCurrentWordList
+getOpenId
+getParentReport
+getStudyGroup
+getStudyReport
+getUserProfile
+getWechatShareSignature
+getWrongWords
+joinStudyGroup
+listWordLists
+ocrImageWords
+saveUserProfile
+saveWordList
+shareWordListToGroup
+submitPKScore
+updateWordExamples
+updateWordProgress
+```
 
-## 个性化人声鼓励
+涉及云函数改动后，需要在微信开发者工具中重新上传对应云函数。常见需要重新上传的函数：
 
-这个版本已经支持答对后播报动态鼓励语，例如：
+- saveWordList：词库保存、教材字段、词库数量上限。
+- listWordLists：词库列表和数量统计。
+- updateWordProgress：答题记录、抗遗忘复习、学习曲线数据。
+- getStudyReport：学生报告和学习曲线。
+- getParentReport：家长报告。
+- ocrImageWords：图片识别导入。
 
-- 对了！
-- 你真厉害！
-- Luna太棒了！
-- Luna这一击很准！
+如果只是改前端页面、样式、图片、拼读规则或考试变身规则，一般只需要重新上传小程序版本，不需要上传云函数。
 
-实现方式：
+## 本地打开与上传
 
-1. 答对时优先调用 WechatSI 文本转语音插件，动态播报包含学生姓名的鼓励语。
-2. 如果插件没有启用、没有授权、网络异常，自动降级为本地 `assets/audio/correct.wav` 游戏叮声。
-3. 同时保留轻微震动和页面文字反馈。
+1. 用微信开发者工具打开本项目目录。
+2. 确认 `project.config.json` 中的 AppID 是当前小程序 AppID。
+3. 确认已开通微信云开发。
+4. 确认云环境选择正确。
+5. 如修改了云函数，右键对应云函数目录，选择上传并部署。
+6. 点击上传小程序版本。
+7. 到微信公众平台后台设置为体验版，添加体验成员。
 
-如果微信开发者工具提示插件未授权，请到微信公众平台后台添加插件：
+常见云环境上传错误：
 
-小程序后台 → 设置 → 第三方设置 → 插件管理 → 添加插件 → 搜索「微信同声传译」/ WechatSI → 添加。
+```text
+请在编辑器云函数根目录 cloudfunctionRoot 选择一个云环境
+```
 
-添加后重新编译即可。
+处理方法：
 
+- 确认是从小程序项目根目录打开，而不是单独打开 cloudfunctions 目录。
+- 确认 `project.config.json` 中存在 `cloudfunctionRoot` 配置。
+- 在微信开发者工具顶部云开发区域选择正确云环境。
+- 再右键云函数目录上传。
 
-## v0.1.7 更新
+## 家长使用说明书
 
-- 新增答对金币爆闪动画。
-- 新增连续答对连击特效：2 连击开始提示，3 连击 / 5 连击有强化文案。
-- 保留 v0.1.6 的开机封面、手机音频优化、四选一防作弊逻辑。
+家长版互动说明书已放在：
 
-## v0.1.9 更新：21天抗遗忘分层
+```text
+docs/parent-user-guide.html
+```
 
-本版本在 v0.1.8 基础上增加更细的单词分层记录：
+可以直接用浏览器打开，也可以发给内测家长阅读。
 
-1. 每个单词新增上传时间 `uploadAt`、已背次数 `reviewedCount`。
-2. 连续 3 天都能快速认出的词，进入“绿格”。系统通过 `recognitionDates` 与 `consecutiveRecognizedDays` 记录。
-3. 拼写模式中正确拼写过的词，进入“蓝格”。系统通过 `spellingPassed` 与 `spellingRightCount` 记录。
-4. 学习报告新增“抗遗忘分层”：绿格、拼写格、已背过、新词。
-5. 我的词库页展示每个词库的绿格数量、拼写格数量、新词数量。
+## 版本维护建议
 
-需要重新部署的云函数：
+每次完成一轮可测试功能后，建议执行：
 
-- saveWordList
-- updateWordProgress
-- getStudyReport
-- listWordLists
-- generateStory
+```bash
+git status
+git add -A
+git commit -m "描述本次功能"
+git push origin main
+```
 
-其他云函数可不动，但重新全部部署也没问题。
+这样 GitHub 会成为项目的正式版本备份，而不是只依赖桌面文件。
 
-## v0.1.12 更新说明
+## 当前最新提交
 
-- 词库导入支持英文短语：如 `thanks to`、`come from`、`a lot of`，短语单独一行或用逗号隔开时不会被拆分。
-- 兼容旧输入方式：如果只输入 `parrot apple orange` 这种空格分隔的单词串，仍会按单词拆分。
-- 自动生成中文支持常见短语本地词典，并继续兼容微信同声传译插件翻译。
-- 故事生成升级为英文趣味短文为主，避免把词生硬串成中文段落；结尾保留 Vocabulary Helper 方便孩子理解词义。
+最新同步到 GitHub 的功能包括：
 
-
-## v0.1.12
-- 英文趣味短文中的目标生词和短语会自动加粗斜体显示，帮助学生在阅读中定位重点词。
-
-## v0.1.13 家长报告与专业学习曲线升级
-
-本版新增：
-
-1. 家长入口：开机页新增“家长入口”，家长输入孩子绑定码后查看报告。
-2. 专业学习报告：新增心电图式学习曲线，展示最近练习起伏、正确率和趋势诊断。
-3. 首页重构：词库训练区、成长作品区、家长报告区分区展示。
-4. 录入纠错：导入预览区提示疑似拼写错误，并可一键改为建议词。
-5. 多种导入方式：手动输入、图片识别、教材单元、错题本导入。
-6. 词库上限：每个学生最多 30 个专属词库，每个词库最多 50 个词/短语。
-7. 中英结合故事：生成 400 字以内的中英结合小故事，并高亮生词/短语。
-
-新增云函数：
-- getParentReport
-- getWrongWords
-- ocrImageWords
-
-需要重新部署的云函数：
-- saveUserProfile
-- getUserProfile
-- saveWordList
-- getStudyReport
-- getParentReport
-- getWrongWords
-- ocrImageWords
-- generateStory
-
-图片识别说明：ocrImageWords 会优先尝试微信 OCR OpenAPI。如果当前小程序后台或基础库暂未开放对应 OCR 能力，前端会给出提示，仍可在图片识别页手动粘贴或修正文字。
-
-
-## v0.1.14 更新说明
-
-本版本继续在 v0.1.13 基础上升级，重点解决家长试用后提出的 7 个方向：
-
-1. **只复习不会的 + 1/2/4/7/15 天抗遗忘任务**
-   - 单词记录 `reviewStage`、`nextReviewAt`、`needsReview`。
-   - 答题后自动安排下一次复习时间。
-   - 首页显示“今日到期复习”任务，背词页优先练到期词/薄弱词，减少无效重复。
-
-2. **夜间深色模式**
-   - 首页可一键切换夜间/日间模式。
-   - 常用页面、卡片、按钮、输入框、报告、学习小队等基础 UI 已适配深色主题。
-   - 主题状态本地保存，切换后页面间同步。
-
-3. **可删除词库**
-   - 我的词库页增加删除按钮。
-   - 新增云函数 `deleteWordList`。
-   - 删除词库不会删除学生资料。
-
-4. **自动恢复上次练习位置**
-   - 背词页会保存当前词库、练习位置和模式。
-   - 首页显示“继续上次练习”入口。
-   - 完成本轮后自动清除上次进度。
-
-5. **单词音标**
-   - 新建词库时为常见单词/短语自动补充音标。
-   - 闪卡、答题答案区、导入预览区显示音标。
-   - 未收录音标的词不影响使用，后续可继续扩展音标词典。
-
-6. **四选一错误抖动动画**
-   - 四选一点击错误选项时，错误按钮会红色抖动。
-   - 同时继续读出正确发音，帮助加深印象。
-
-7. **学习社群 / 单词 PK / 排行榜 / 共享词库**
-   - 新增“学习小队”页面。
-   - 支持创建小队、输入小队码加入。
-   - 支持单词 PK 生成分数和排行榜。
-   - 支持把当前自建词库共享给小队。
-   - 新增云函数：`createStudyGroup`、`joinStudyGroup`、`getStudyGroup`、`submitPKScore`、`shareWordListToGroup`。
-
-> 注意：当前“自动推送复习任务”先实现为小程序内的任务提醒和到期复习入口。如果要做微信服务通知级别的主动推送，需要后续接入微信订阅消息模板，并让用户授权订阅。
-
-
-## v0.1.16 修复：强化听音辨义入口
-
-- 背词页顶部增加版本提示：v0.1.16 · 听音辨义已开启。
-- 将听音辨义放到顶部快捷模式栏第一位，避免因为页面滚动或缓存误判看不到。
-- 保留 v0.1.15 的听音辨义、小喇叭发音、四个中文意思选项、答错抖动功能。
-
-## v0.1.17 更新
-
-- 修复微信开发者工具上传失败：主包体积超过 2MB。
-- 将开机封面图压缩为 JPG，并通过 packOptions 忽略云函数目录、文档、README 和未使用 wav 文件参与小程序上传。
-- 保留 v0.1.16 的听音辨义入口和全部学习功能。
+- 发音和听音辨义优化。
+- 答对音效、连续 5 个正确欢呼和鲜花动效。
+- 教材原句填空修复。
+- 每个学生词库数量上限提升到 70。
+- 学习曲线和活跃天数修复。
+- 考试变身。
+- 一串会读。
+- 同族词点击播放读音。
+- 小喇叭真实图片图标。
